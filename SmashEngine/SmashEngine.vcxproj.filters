@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Precompiled Header">
+      <UniqueIdentifier>{ab0e7af1-19c3-4074-aa74-d0b079eff9bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Systems">
+      <UniqueIdentifier>{2d6b3207-5b4e-455b-a62e-c5d79dca5276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{bd8a7f01-571e-4d94-bf71-8f48dfc3aa88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{d9a464e1-2e30-4210-b98c-259035eaa694}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Physics">
+      <UniqueIdentifier>{09809a54-ed75-4508-9115-aabff6f4b566}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Manager">
+      <UniqueIdentifier>{e73cf233-331d-44b9-9d1b-8d028fa488dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component">
+      <UniqueIdentifier>{e82d8280-8198-4aea-be0e-80c827b9cb9e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{9704591b-0dd0-4225-9981-3b2d731e3a1c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{013cc1eb-33de-4d77-9f6f-b9f89a70234b}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Precompiled Header</Filter>
+    </ClCompile>
+    <ClCompile Include="MainEngine.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectFactory.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Graphics.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="VertexBufferObject.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchSystem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WindowSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>Object</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectManager.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="System.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentCreator.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MainEngine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectFactory.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectManager.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="VertexBufferObject.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchSystem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Precompiled Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SystemType.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="ComponentType.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="WindowSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

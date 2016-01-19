@@ -1,0 +1,35 @@
+﻿Build started 1/16/2016 12:29:50 PM.
+     1>Project "D:\Digipen\Smash Engine\SmashEngine\SmashEngine\SmashEngine.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"D:\Program Files (x86)\Visual Leak Detector\include" /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\SmashEngine.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt GameObject.cpp Graphics.cpp MainEngine.cpp ObjectFactory.cpp ObjectManager.cpp WatchSystem.cpp WindowSystem.cpp main.cpp
+         main.cpp
+         WindowSystem.cpp
+         WatchSystem.cpp
+     1>d:\digipen\smash engine\smashengine\smashengine\watchsystem.cpp(12): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>d:\digipen\smash engine\smashengine\smashengine\watchsystem.cpp(19): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>d:\digipen\smash engine\smashengine\smashengine\watchsystem.cpp(21): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>d:\digipen\smash engine\smashengine\smashengine\watchsystem.cpp(41): warning C4244: 'return' : conversion from 'float' to 'int', possible loss of data
+         ObjectManager.cpp
+         ObjectFactory.cpp
+         MainEngine.cpp
+         Graphics.cpp
+         GameObject.cpp
+       Link:
+         D:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Digipen\Smash Engine\SmashEngine\Debug\SmashEngine.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\Program Files (x86)\Visual Leak Detector\lib\Win32" tinyxml2.lib opengl32.lib glfw3.lib glew32s.lib glew32.lib SOIL.lib assimpd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Digipen\Smash Engine\SmashEngine\Debug\SmashEngine.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Digipen\Smash Engine\SmashEngine\Debug\SmashEngine.lib" /MACHINE:X86 Debug\GameObject.obj
+         Debug\Graphics.obj
+         Debug\MainEngine.obj
+         Debug\main.obj
+         Debug\ObjectFactory.obj
+         Debug\ObjectManager.obj
+         Debug\stdafx.obj
+         Debug\Texture.obj
+         Debug\VertexBufferObject.obj
+         Debug\WatchSystem.obj
+         Debug\WindowSystem.obj
+     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+         SmashEngine.vcxproj -> D:\Digipen\Smash Engine\SmashEngine\Debug\SmashEngine.exe
+     1>Done Building Project "D:\Digipen\Smash Engine\SmashEngine\SmashEngine\SmashEngine.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:06.18
