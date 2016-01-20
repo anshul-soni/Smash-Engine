@@ -6,7 +6,7 @@ namespace SmashEngine
 	{
 		TYPE_None=0,
 		TYPE_Transform,
-		TYPE_Model,
+		TYPE_Render,
 		TYPE_Body
 	};
 }
