@@ -77,6 +77,7 @@
     <ClCompile Include="MainEngine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="stdafx.cpp" />
@@ -88,6 +89,7 @@
     <ClCompile Include="WindowSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ModelManager.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentCreator.h" />

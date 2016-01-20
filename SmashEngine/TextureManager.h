@@ -1,5 +1,5 @@
 #pragma once
-#include "Model.h"
+#include "Texture.h"
 
 namespace SmashEngine
 {

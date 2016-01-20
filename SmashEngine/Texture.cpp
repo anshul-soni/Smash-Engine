@@ -3,7 +3,10 @@
 
 namespace SmashEngine
 {
-	Texture::Texture(){};
+	Texture::Texture(const std::string& path)
+	{
+		LoadTexture2D(path);
+	};
 
 	Texture::~Texture() {
 		glDeleteTextures(1, &id);
