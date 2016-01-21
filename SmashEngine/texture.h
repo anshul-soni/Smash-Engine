@@ -4,6 +4,7 @@ namespace SmashEngine
 {
 	class Texture {
 	public:
+		Texture();
 		Texture(const std::string& path);
 		void BindTexture() const;
 		void Unbind() const;

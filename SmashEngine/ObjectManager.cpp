@@ -13,6 +13,7 @@ namespace SmashEngine
 
 	void ObjectManager::Update(float dt)
 	{
+
 	}
 
 	void ObjectManager::Release()

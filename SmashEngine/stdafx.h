@@ -3,6 +3,8 @@
 #include <string.h>
 #include <unordered_map>
 #include <set>
+#include <fstream>
+#include <sstream>
 
 //OpenGl
 #include <GL\glew.h>

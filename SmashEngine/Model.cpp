@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Model.h"
+#include "TextureManager.h"
 
 namespace SmashEngine
 {
@@ -7,7 +8,7 @@ namespace SmashEngine
 	std::string GetDirectoryPath(std::string filePath)
 	{
 		std::string directory = "";
-		for (int i = (int)filePath.size(); i >= 0; i--)
+		for (auto i = static_cast<int>(filePath.size()); i >= 0; i--)
 		{
 			if (filePath[i] == '\\' || filePath[i] == '/')
 			{
@@ -17,7 +18,11 @@ namespace SmashEngine
 		}
 		return directory;
 	}
-	Model::Model(const char* filePath) :key(filePath), bLoaded(false)
+	Model::Model(const char* filePath) :
+		key(filePath), 
+		bLoaded(false), 
+		VAO(0), 
+		numMaterial(0)
 	{
 	}
 
@@ -29,55 +34,54 @@ namespace SmashEngine
 			textures.reserve(50);
 		}
 		Assimp::Importer importer;
-		const aiScene* scene = importer.ReadFile(key, aiProcess_CalcTangentSpace | aiProcess_Triangulate | aiProcess_JoinIdenticalVertices | aiProcess_SortByPType);
+		auto scene = importer.ReadFile(key, aiProcess_CalcTangentSpace | aiProcess_Triangulate | aiProcess_JoinIdenticalVertices | aiProcess_SortByPType);
 		if (!scene)
 		{
 			//error reading file
 			return false;
 		}
-		const int vertexTotalSize = sizeof(aiVector3D) * 2 + sizeof(aiVector2D);
-		int totalVertices = 0;
-		for (int i = 0; i < scene->mNumMeshes; i++)
+		auto vertexTotalSize = sizeof(aiVector3D) * 2 + sizeof(aiVector2D);
+		auto totalVertices = 0;
+		for (auto i = 0; i < scene->mNumMeshes; i++)
 		{
-			aiMesh* mesh = scene->mMeshes[i];
-			int meshFaces = mesh->mNumFaces;
+			auto mesh = scene->mMeshes[i];
+			auto meshFaces = mesh->mNumFaces;
 			materialIndices.push_back(mesh->mMaterialIndex);
-			int sizeBefore = vboModelData.GetCurrentSize();
+			auto sizeBefore = vboModelData.GetCurrentSize();
 			meshStartIndices.push_back(sizeBefore / vertexTotalSize);
-			for (int j = 0; j < meshFaces; j++)
+			for (auto j = 0; j < meshFaces; j++)
 			{
-				const aiFace& face = mesh->mFaces[j];
-				for (int k = 0; k < 3; k++)
+				auto face = mesh->mFaces[j];
+				for (auto k = 0; k < 3; k++)
 				{
-					aiVector3D pos = mesh->mVertices[face.mIndices[k]];
-					aiVector3D uv = mesh->mTextureCoords[0][face.mIndices[k]];
-					aiVector3D normal = mesh->HasNormals() ? mesh->mNormals[face.mIndices[k]] : aiVector3D(1.0f, 1.0f, 1.0f);
+					auto pos = mesh->mVertices[face.mIndices[k]];
+					auto uv = mesh->mTextureCoords[0][face.mIndices[k]];
+					auto normal = mesh->HasNormals() ? mesh->mNormals[face.mIndices[k]] : aiVector3D(1.0f, 1.0f, 1.0f);
 					vboModelData.AddData(&pos, sizeof(aiVector3D));
 					vboModelData.AddData(&uv, sizeof(aiVector2D));
 					vboModelData.AddData(&normal, sizeof(aiVector3D));
 				}
 			}
-			int meshVertices = mesh->mNumVertices;
+			auto meshVertices = mesh->mNumVertices;
 			totalVertices += meshVertices;
 			meshSizes.push_back((vboModelData.GetCurrentSize() - sizeBefore) / vertexTotalSize);
 		}
 		numMaterial = scene->mNumMaterials;
 		std::vector<int> materialRemap(numMaterial);
-		for (int i = 0; i < numMaterial; i++)
+		for (auto i = 0; i < numMaterial; i++)
 		{
 			const aiMaterial* material = scene->mMaterials[i];
-			int a = 5;
-			int texIndex = 0;
+			auto texIndex = 0;
 			aiString path;
 			if (material->GetTexture(aiTextureType_DIFFUSE, texIndex, &path) == AI_SUCCESS)
 			{
-				std::string dir = GetDirectoryPath(filePath);
-				std::string textureName = path.data;
-				std::string fullPath = dir + textureName;
-				int texFound = -1;
-				for (int j = 0; j < (int)textures.size(); j++)
+				auto dir = GetDirectoryPath(key);
+				auto textureName = path.data;
+				auto fullPath = dir + textureName;
+				auto texFound = -1;
+				for (auto j = 0; j < static_cast<int>(textures.size()); j++)
 				{
-					if (fullPath == textures[j].GetPath())
+					if (fullPath == textures[j]->GetPath())
 					{
 						texFound = j;
 						break;
@@ -91,15 +95,15 @@ namespace SmashEngine
 				{
 					Texture newTex;
 					newTex.LoadTexture2D(fullPath);
-					materialRemap[i] = (int)textures.size();
-					textures.push_back(AssetManager::GetInstance().GetTextureID(fullPath));
+					materialRemap[i] = static_cast<int>(textures.size());
+					textures.push_back(TextureManager::GetInstance().GetTexture(fullPath));
 					std::cout << "texture loaded" << fullPath << std::endl;
 				}
 			}
 		}
-		for (int i = 0; i < (int)meshSizes.size(); i++)
+		for (auto i = 0; i < static_cast<int>(meshSizes.size()); i++)
 		{
-			int oldIndex = materialIndices[i];
+			auto oldIndex = materialIndices[i];
 			materialIndices[i] = materialRemap[oldIndex];
 		}
 		glGenVertexArrays(1, &VAO);
@@ -119,6 +123,16 @@ namespace SmashEngine
 
 	void Model::Render(float dt)
 	{
+		if (!bLoaded)
+			return;
+		auto numMeshes = static_cast<int>(meshSizes.size());
+		for (auto i = 0; i < numMeshes; i++)
+		{
+			auto matIndex = materialIndices[i];
+			if (textures.size()>0)
+				textures[matIndex]->BindTexture();
+			glDrawArrays(GL_TRIANGLES, meshStartIndices[i], meshSizes[i]);
+		}
 	}
 
 	Model::~Model()

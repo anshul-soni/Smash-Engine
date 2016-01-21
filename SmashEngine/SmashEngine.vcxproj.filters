@@ -28,9 +28,6 @@
     <Filter Include="Physics">
       <UniqueIdentifier>{09809a54-ed75-4508-9115-aabff6f4b566}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Manager">
-      <UniqueIdentifier>{e73cf233-331d-44b9-9d1b-8d028fa488dd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Component">
       <UniqueIdentifier>{e82d8280-8198-4aea-be0e-80c827b9cb9e}</UniqueIdentifier>
     </Filter>
@@ -39,6 +36,9 @@
     </Filter>
     <Filter Include="Resources">
       <UniqueIdentifier>{013cc1eb-33de-4d77-9f6f-b9f89a70234b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Managers">
+      <UniqueIdentifier>{af60b443-f9ac-4aaf-89cb-8eb5cc53f9ae}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -63,9 +63,6 @@
     <ClCompile Include="VertexBufferObject.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
-    <ClCompile Include="WatchSystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="WindowSystem.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
@@ -75,20 +72,32 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="TextureManager.cpp">
-      <Filter>Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="ModelManager.cpp">
-      <Filter>Resources</Filter>
-    </ClCompile>
     <ClCompile Include="RenderComponent.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="TransformComponent.cpp">
       <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Shader.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelManager.cpp">
+      <Filter>Resource Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="ShaderManager.cpp">
+      <Filter>Resource Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="TextureManager.cpp">
+      <Filter>Resource Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="WatchSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraSystem.cpp">
+      <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -125,9 +134,6 @@
     <ClInclude Include="Model.h">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="WatchSystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Precompiled Header</Filter>
     </ClInclude>
@@ -143,17 +149,29 @@
     <ClInclude Include="GameObject.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="TextureManager.h">
-      <Filter>Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelManager.h">
-      <Filter>Resources</Filter>
-    </ClInclude>
     <ClInclude Include="RenderComponent.h">
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="TransformComponent.h">
       <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Shader.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelManager.h">
+      <Filter>Resource Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="ShaderManager.h">
+      <Filter>Resource Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="TextureManager.h">
+      <Filter>Resource Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="WatchSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraSystem.h">
+      <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

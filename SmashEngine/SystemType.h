@@ -9,6 +9,7 @@ namespace SmashEngine
 		SYSTEM_Graphics,
 		SYSTEM_Factory,
 		SYSTEM_Watch,
+		SYSTEM_Camera,
 		SYSTEM_ObjectManager
 	};
 }

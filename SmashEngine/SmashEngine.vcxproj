@@ -72,6 +72,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CameraSystem.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="MainEngine.cpp" />
@@ -81,6 +82,8 @@
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
+    <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -90,8 +93,11 @@
     <ClCompile Include="WindowSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CameraSystem.h" />
     <ClInclude Include="ModelManager.h" />
     <ClInclude Include="RenderComponent.h" />
+    <ClInclude Include="Shader.h" />
+    <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentCreator.h" />

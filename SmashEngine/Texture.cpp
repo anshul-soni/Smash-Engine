@@ -3,6 +3,14 @@
 
 namespace SmashEngine
 {
+	Texture::Texture() :
+		id(0),
+		width(0),
+		height(0),
+		channels(0)
+	{
+	};
+
 	Texture::Texture(const std::string& path)
 	{
 		LoadTexture2D(path);
@@ -20,7 +28,7 @@ namespace SmashEngine
 			&height,
 			&channels,
 			SOIL_LOAD_RGBA);
-		if (image == NULL)
+		if (image == nullptr)
 			return false;
 		GLuint id;
 		// Create OpenGL texture and load bytes into it.
