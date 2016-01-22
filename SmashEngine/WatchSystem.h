@@ -16,14 +16,14 @@ namespace SmashEngine
 		void Update(float dt)override;
 		void Release()override;
 		SystemType GetType()const override;
-		float Getdt();
-		int GetFrameRate();
+		float Getdt()const;
+		float GetFrameRate()const;
 	private:
 		const SystemType type;
 		float dt;
 		float frameRate;
 		int frameCounter;
-		float lastTime;
+		double lastTime;
 		WatchSystem(const WatchSystem&) = delete;
 		WatchSystem& operator=(const WatchSystem&) = delete;
 	};

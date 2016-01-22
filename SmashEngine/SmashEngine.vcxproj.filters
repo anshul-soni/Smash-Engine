@@ -40,6 +40,9 @@
     <Filter Include="Resource Managers">
       <UniqueIdentifier>{af60b443-f9ac-4aaf-89cb-8eb5cc53f9ae}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{bf032cb8-ad71-4cdb-ae26-97138b3cf112}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">

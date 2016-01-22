@@ -16,7 +16,7 @@ namespace SmashEngine
 	{
 		frameCounter++;
 		auto currentTime = glfwGetTime();
-		dt = currentTime - lastTime;
+		dt = static_cast<float>(currentTime - lastTime);
 		frameRate = 1000.0f/dt;
 		lastTime = glfwGetTime();
 
@@ -31,12 +31,12 @@ namespace SmashEngine
 		return type;
 	}
 
-	float WatchSystem::Getdt()
+	float WatchSystem::Getdt()const
 	{
 		return dt;
 	}
 
-	int WatchSystem::GetFrameRate()
+	float WatchSystem::GetFrameRate()const
 	{
 		return frameRate;
 	}

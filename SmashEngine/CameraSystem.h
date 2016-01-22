@@ -20,6 +20,7 @@ namespace SmashEngine
 		const glm::mat4& GetProjectionMatrix()const;
 	private:
 		const SystemType type;
+		float fov;
 		glm::mat4 projectionMatrix;
 		glm::mat4 viewMatrix;
 		glm::vec3 position;

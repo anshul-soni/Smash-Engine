@@ -42,14 +42,14 @@ namespace SmashEngine
 		}
 		auto vertexTotalSize = sizeof(aiVector3D) * 2 + sizeof(aiVector2D);
 		auto totalVertices = 0;
-		for (auto i = 0; i < scene->mNumMeshes; i++)
+		for (unsigned int i = 0; i < scene->mNumMeshes; i++)
 		{
 			auto mesh = scene->mMeshes[i];
 			auto meshFaces = mesh->mNumFaces;
 			materialIndices.push_back(mesh->mMaterialIndex);
 			auto sizeBefore = vboModelData.GetCurrentSize();
 			meshStartIndices.push_back(sizeBefore / vertexTotalSize);
-			for (auto j = 0; j < meshFaces; j++)
+			for (unsigned int j = 0; j < meshFaces; j++)
 			{
 				auto face = mesh->mFaces[j];
 				for (auto k = 0; k < 3; k++)

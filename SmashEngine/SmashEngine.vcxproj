@@ -51,10 +51,13 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeader>Create</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalDependencies>tinyxml2.lib;opengl32.lib;glfw3.lib;glew32s.lib;glew32.lib;SOIL.lib;assimpd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -121,4 +124,21 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
+  <Target Name="AfterBuild">
+    <!-- Resource variables -->
+    <!-- <CreateItem Include="$(ProjectDir)resources\models\*.md5anim">
+      <Output TaskParameter="Include" ItemName="AnimationFiles" />
+    </CreateItem> -->
+    <!-- Copying to output folder -->
+    <Copy SourceFiles="$(SolutionDir)Libraries\dlls\assimpd.dll" DestinationFolder="$(OutputPath)" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <Copy SourceFiles="$(SolutionDir)Libraries\dlls\assimp.dll" DestinationFolder="$(OutputPath)" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <Copy SourceFiles="$(SolutionDir)Libraries\dlls\assimp32.dll" DestinationFolder="$(OutputPath)" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <Copy SourceFiles="$(SolutionDir)Libraries\dlls\glew32.dll" DestinationFolder="$(OutputPath)" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <Copy SourceFiles="$(SolutionDir)Libraries\dlls\glfw3.dll" DestinationFolder="$(OutputPath)" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" />
+    <Copy SourceFiles="$(SolutionDir)Libraries\dlls\assimp.dll" DestinationFolder="$(OutputPath)" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <Copy SourceFiles="$(SolutionDir)Libraries\dlls\assimpd.dll" DestinationFolder="$(OutputPath)" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <Copy SourceFiles="$(SolutionDir)Libraries\dlls\assimp32.dll" DestinationFolder="$(OutputPath)" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <Copy SourceFiles="$(SolutionDir)Libraries\dlls\glew32.dll" DestinationFolder="$(OutputPath)" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+    <Copy SourceFiles="$(SolutionDir)Libraries\dlls\glfw3.dll" DestinationFolder="$(OutputPath)" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" />
+  </Target>
 </Project>
