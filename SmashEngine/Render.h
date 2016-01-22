@@ -3,15 +3,15 @@
 
 namespace SmashEngine
 {
-	class RenderComponent:public Component
+	class Render:public Component
 	{
 	public:
-		RenderComponent();
+		Render();
 		void Initialize()override;
 		void Deserialize(tinyxml2::XMLElement* pElement)override;
 		void Update(float dt)override;
 		void Destroy()override;
-		~RenderComponent();
+		~Render();
 	private:
 
 	};

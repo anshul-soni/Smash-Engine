@@ -9,6 +9,12 @@ namespace SmashEngine
 	{
 	}
 
+	GameObjectFactory& GameObjectFactory::GetInstance()
+	{
+		static GameObjectFactory instance;
+		return instance;
+	}
+
 	void GameObjectFactory::Init()
 	{
 	}
@@ -27,6 +33,7 @@ namespace SmashEngine
 		auto pComponent = pRoot->FirstChildElement("Component");
 		assert(pComponent != nullptr);
 		gameObjectName = pRoot->Attribute("ObjectName");
+		//GameObject To hold Components 
 		auto object = new GameObject(gameObjectName,++lastObjectId);
 		while (pComponent != nullptr)
 		{
@@ -34,20 +41,32 @@ namespace SmashEngine
 			std::string componentName;
 			componentName = pComponent->Attribute("type");
 			auto itr = ComponentMap.find(componentName);
-			//Abort if the component creator was not found //Component needs to be registered in the factory before creating
+			//Abort if the component creator was not found 
+			//Component needs to be registered in the factory before creating
 			assert(itr != ComponentMap.end());
 			//Creator for each object is stored in the map, if the creator was found, then get the creator
 			auto creator = itr->second;
 			//Create the component that needs to be added to the object using the creator
 			auto component = creator->Create();
-
+			//Call the desrializer for the required component
 			component->Deserialize(pComponent);
+			//add the component that was created to the object
 			object->AddComponent(creator->TypeId, component);
 			pComponent = pComponent->NextSiblingElement("Component");
 		}
-		//GameObject To hold Components 
+		//Pass the object to the object manager
 		ObjectManager::GetInstance().AddObject(object);
+		//return the pointer to object 
 		return object;
+	}
+
+	void GameObjectFactory::AddComponentCreator(const std::string& name, ComponentCreator* creator)
+	{
+		ComponentMap[name] = creator;
+	}
+
+	void GameObjectFactory::Release()
+	{
 	}
 
 	SystemType GameObjectFactory::GetType()const

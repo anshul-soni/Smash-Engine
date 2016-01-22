@@ -1,6 +1,6 @@
-
+#pragma once
 #include "Component.h"
-
+#include "ObjectFactory.h"
 namespace SmashEngine
 {
 	class Component;
@@ -34,4 +34,4 @@ namespace SmashEngine
 
 };
 
-#define RegisterComponent(type) FACTORY->AddComponentCreator( #type, new ComponentCreatorType<type>( TYPE_##type ) );
+#define RegisterComponent(type) GameObjectFactory::GetInstance().AddComponentCreator( #type, new ComponentCreatorType<type>( TYPE_##type ) );

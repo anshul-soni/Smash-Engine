@@ -85,13 +85,13 @@
     <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
-    <ClCompile Include="RenderComponent.cpp" />
+    <ClCompile Include="Render.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
-    <ClCompile Include="TransformComponent.cpp" />
+    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="VertexBufferObject.cpp" />
     <ClCompile Include="WatchSystem.cpp" />
     <ClCompile Include="WindowSystem.cpp" />
@@ -101,7 +101,7 @@
     <ClInclude Include="EngineType.h" />
     <ClInclude Include="GameLogicSystem.h" />
     <ClInclude Include="ModelManager.h" />
-    <ClInclude Include="RenderComponent.h" />
+    <ClInclude Include="Render.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="TextureManager.h" />
@@ -119,7 +119,7 @@
     <ClInclude Include="System.h" />
     <ClInclude Include="SystemType.h" />
     <ClInclude Include="Texture.h" />
-    <ClInclude Include="TransformComponent.h" />
+    <ClInclude Include="Transform.h" />
     <ClInclude Include="VertexBufferObject.h" />
     <ClInclude Include="WatchSystem.h" />
     <ClInclude Include="WindowSystem.h" />

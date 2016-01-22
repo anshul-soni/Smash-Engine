@@ -2,6 +2,7 @@
 
 namespace SmashEngine
 {
+	//Enumerator to define the type of the systems
 	enum SystemType
 	{
 		SYSTEM_None=0,

@@ -17,10 +17,6 @@ int main()
 	auto windowSystem = new SmashEngine::WindowSystem();
 	//Insert window system into the main engine
 	engine->InsertSystem(windowSystem);
-	//Create Watch System
-	auto watchSystem =new SmashEngine::WatchSystem();
-	//Insert watch System into the main engine
-	engine->InsertSystem(watchSystem);
 	//Initialize All the Engines and Systems
 	engine->Init();
 	//Update All the Engines and Systems

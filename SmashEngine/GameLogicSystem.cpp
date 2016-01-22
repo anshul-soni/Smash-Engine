@@ -1,5 +1,8 @@
 #include "stdafx.h"
 #include "GameLogicSystem.h"
+#include "ComponentCreator.h"
+#include "Transform.h"
+#include "Render.h"
 
 namespace SmashEngine
 {
@@ -9,6 +12,11 @@ namespace SmashEngine
 
 	void GameLogicSystem::Init()
 	{
+		//Register all the components in the object factory
+		//This creates a component creator for the type of 
+		//component you register
+		RegisterComponent(Transform);
+		RegisterComponent(Render);
 	}
 
 	void GameLogicSystem::Update(float dt)

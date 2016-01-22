@@ -2,6 +2,7 @@
 
 namespace SmashEngine
 {
+	//enumerator to define the types of the component
 	enum ComponentType
 	{
 		TYPE_None=0,

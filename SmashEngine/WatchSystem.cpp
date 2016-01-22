@@ -3,17 +3,15 @@
 
 namespace SmashEngine
 {
-	WatchSystem* WatchSystem::instance = nullptr;
 
 	WatchSystem& WatchSystem::GetInstance()
 	{
-		return *instance;
+		static WatchSystem instance;
+		return instance;
 	}
 
-	WatchSystem::WatchSystem() :type(SYSTEM_Watch), dt(0), frameRate(0), lastTime(0), frameCounter(0)
+	WatchSystem::WatchSystem() :type(SYSTEM_Watch), dt(0), frameRate(0), frameCounter(0), lastTime(0)
 	{
-		if (instance == nullptr)
-			instance = this;
 	}
 
 	void WatchSystem::Init()
@@ -25,8 +23,8 @@ namespace SmashEngine
 	{
 		frameCounter++;
 		auto currentTime = glfwGetTime();
-		dt = static_cast<float>(currentTime - lastTime);
-		frameRate = 1000.0f/dt;
+		this->dt = static_cast<float>(currentTime - lastTime);
+		frameRate = 1000.0f/this->dt;
 		lastTime = glfwGetTime();
 
 	}

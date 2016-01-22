@@ -6,7 +6,7 @@ namespace SmashEngine
 	class WatchSystem:public System
 	{
 	public:
-		WatchSystem();
+		static WatchSystem& GetInstance();
 		void Init()override;
 		void Update(float dt)override;
 		void Release()override;
@@ -19,6 +19,7 @@ namespace SmashEngine
 		float frameRate;
 		int frameCounter;
 		double lastTime;
+		WatchSystem();
 		WatchSystem(const WatchSystem&) = delete;
 		WatchSystem& operator=(const WatchSystem) = delete;
 	};

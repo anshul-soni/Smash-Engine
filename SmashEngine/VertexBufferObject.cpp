@@ -24,21 +24,21 @@ namespace SmashEngine
 		dataUploaded = false;
 		data.clear();
 	}
-	void* VertexBufferObject::MapBufferToMemory(int uh)
+	void* VertexBufferObject::MapBufferToMemory(int uh)const
 	{
 		if (!dataUploaded)
-			return NULL;
-		void* res = glMapBuffer(bufferType, uh);
+			return nullptr;
+		auto res = glMapBuffer(bufferType, uh);
 		return res;
 	}
-	void* VertexBufferObject::MapSubBufferToMemory(int uh, unsigned int offset, unsigned int length)
+	void* VertexBufferObject::MapSubBufferToMemory(int uh, unsigned int offset, unsigned int length)const
 	{
 		if (!dataUploaded)
-			return NULL;
-		void* res = glMapBufferRange(bufferType, offset, length, uh);
+			return nullptr;
+		auto res = glMapBufferRange(bufferType, offset, length, uh);
 		return res;
 	}
-	void VertexBufferObject::UnMapBuffer()
+	void VertexBufferObject::UnMapBuffer()const
 	{
 		glUnmapBuffer(bufferType);
 	}
@@ -56,26 +56,26 @@ namespace SmashEngine
 
 	void VertexBufferObject::AddData(void* data, unsigned int datasize)
 	{
-		this->data.insert(this->data.end(), (unsigned char*)data, (unsigned char*)data + datasize);
+		this->data.insert(this->data.end(), static_cast<unsigned char*>(data), static_cast<unsigned char*>(data) + datasize);
 		currentSize += datasize;
 	}
 
 	void* VertexBufferObject::GetDataPointer()
 	{
-		if (dataUploaded)return NULL;
-		return (void*)data[0];
+		if (dataUploaded)return nullptr;
+		return reinterpret_cast<void*>(data[0]);
 	}
 
 
 
-	unsigned int VertexBufferObject::GetBufferID()
+	unsigned int VertexBufferObject::GetBufferID()const
 	{
 		return buffer;
 	}
 
 
 
-	int VertexBufferObject::GetCurrentSize()
+	int VertexBufferObject::GetCurrentSize()const
 	{
 		return currentSize;
 	}

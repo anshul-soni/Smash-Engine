@@ -12,10 +12,17 @@ namespace SmashEngine
 	{
 		while (running)
 		{
+			//Update watch system before hte engine 
+			WatchSystem::GetInstance().Update(dt);
+			//Update All the engines present in the engine container
 			for (auto engine : engines)
 			{
 				engine.second->Update(WatchSystem::GetInstance().Getdt());
 			}
+			//Update Singleton systems as they are not insterted
+			//into the systems map
+
+			//Update All the systems present in the system container
 			for (auto system : systems)
 			{
 				system.second->Update(WatchSystem::GetInstance().Getdt());
@@ -25,14 +32,19 @@ namespace SmashEngine
 
 	void MainEngine::Init()
 	{
+		//Intialize all the engines first.
 		for (auto engine : engines)
 		{
 			engine.second->Init();
 		}
+		//Initialize all the systems.
 		for (auto system : systems)
 		{
 			system.second->Init();
 		}
+		//Initialize Singleton systems as they are not insterted
+		//into the systems map
+		WatchSystem::GetInstance().Init();
 	}
 
 	void MainEngine::InsertSystem(System* system)

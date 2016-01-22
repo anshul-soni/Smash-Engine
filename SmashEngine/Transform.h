@@ -3,10 +3,10 @@
 
 namespace SmashEngine
 {
-	class TransformComponent :public Component
+	class Transform:public Component
 	{
 	public:
-		TransformComponent();
+		Transform();
 		void Initialize()override;
 		void Deserialize(tinyxml2::XMLElement* pElement)override;
 		void Update(float dt)override;
@@ -24,7 +24,7 @@ namespace SmashEngine
 		void SetRotation(const float x, const float y, const float z);
 		void SetScale(const float x, const float y, const float z);
 
-		~TransformComponent();
+		~Transform();
 	private:
 		glm::vec3 position;
 		glm::vec3 rotation;

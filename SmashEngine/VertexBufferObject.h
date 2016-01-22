@@ -8,9 +8,9 @@ namespace SmashEngine
 		void CreateVBO(int size = 0);
 		void DeleteVBO();
 
-		void* MapBufferToMemory(int uh);
-		void* MapSubBufferToMemory(int uh, unsigned int offset, unsigned int length);
-		void UnMapBuffer();
+		void* MapBufferToMemory(int uh)const;
+		void* MapSubBufferToMemory(int uh, unsigned int offset, unsigned int length)const;
+		void UnMapBuffer()const;
 
 		void BindVBO(int bufferType = GL_ARRAY_BUFFER);
 		void UploadDataToGPU(int uh);
@@ -18,8 +18,8 @@ namespace SmashEngine
 		void AddData(void* ptrData, unsigned int uiDataSize);
 
 		void* GetDataPointer();
-		unsigned int GetBufferID();
-		int GetCurrentSize();
+		unsigned int GetBufferID()const;
+		int GetCurrentSize()const;
 
 		VertexBufferObject();
 	private:

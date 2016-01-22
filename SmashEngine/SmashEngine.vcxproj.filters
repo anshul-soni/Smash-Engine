@@ -75,12 +75,6 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
-    <ClCompile Include="RenderComponent.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="TransformComponent.cpp">
-      <Filter>Component</Filter>
-    </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
@@ -104,6 +98,12 @@
     </ClCompile>
     <ClCompile Include="GameLogicSystem.cpp">
       <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Render.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -155,12 +155,6 @@
     <ClInclude Include="GameObject.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="RenderComponent.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="TransformComponent.h">
-      <Filter>Component</Filter>
-    </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Resources</Filter>
     </ClInclude>
@@ -184,6 +178,12 @@
     </ClInclude>
     <ClInclude Include="EngineType.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Render.h">
+      <Filter>Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
