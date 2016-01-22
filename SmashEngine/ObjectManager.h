@@ -8,7 +8,6 @@ namespace SmashEngine
 		public System
 	{
 	public:
-		ObjectManager(void);
 		static ObjectManager& GetInstance()
 		{
 			static ObjectManager instance;
@@ -27,5 +26,6 @@ namespace SmashEngine
 		const SystemType type;
 		std::unordered_map<unsigned, GameObject*> GameObjects;
 		std::set<GameObject*> ObjectsToBeDeleted;
+		ObjectManager(void);
 	};
 }

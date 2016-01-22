@@ -3,8 +3,17 @@
 
 namespace SmashEngine
 {
-	WatchSystem::WatchSystem() :type(SYSTEM_Watch), dt(0), frameRate(0), lastTime(0)
+	WatchSystem* WatchSystem::instance = nullptr;
+
+	WatchSystem& WatchSystem::GetInstance()
 	{
+		return *instance;
+	}
+
+	WatchSystem::WatchSystem() :type(SYSTEM_Watch), dt(0), frameRate(0), lastTime(0), frameCounter(0)
+	{
+		if (instance == nullptr)
+			instance = this;
 	}
 
 	void WatchSystem::Init()

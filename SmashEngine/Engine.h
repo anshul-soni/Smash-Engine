@@ -1,6 +1,5 @@
 #pragma once
-#include <unordered_map>
-#include "System.h"
+#include "EngineType.h"
 
 
 namespace SmashEngine
@@ -11,6 +10,7 @@ namespace SmashEngine
 		Engine(){};
 		virtual void Update(float dt)=0;
 		virtual void Init()=0;
+		virtual EngineType GetType()const=0;
 		virtual  ~Engine(){};
 	private:
 	};

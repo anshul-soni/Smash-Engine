@@ -1,5 +1,31 @@
-﻿Build started 1/21/2016 4:31:48 PM.
+﻿Build started 1/21/2016 7:24:33 PM.
+     1>Project "C:\Users\anshul.soni\Documents\SmashEngine\SmashEngine\SmashEngine.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\SmashEngine.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt MainEngine.cpp WatchSystem.cpp main.cpp
+         main.cpp
+     1>c:\users\anshul.soni\documents\smashengine\smashengine\main.cpp(21): error C2248: 'SmashEngine::WatchSystem::WatchSystem' : cannot access private member declared in class 'SmashEngine::WatchSystem'
+                 c:\users\anshul.soni\documents\smashengine\smashengine\watchsystem.h(22) : see declaration of 'SmashEngine::WatchSystem::WatchSystem'
+                 c:\users\anshul.soni\documents\smashengine\smashengine\watchsystem.h(6) : see declaration of 'SmashEngine::WatchSystem'
+     1>c:\users\anshul.soni\documents\smashengine\smashengine\main.cpp(23): error C2664: 'void SmashEngine::MainEngine::InsertSystem(SmashEngine::System *)' : cannot convert argument 1 from 'SmashEngine::WatchSystem' to 'SmashEngine::System *'
+                 No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+         WatchSystem.cpp
+     1>c:\users\anshul.soni\documents\smashengine\smashengine\watchsystem.cpp(6): error C2039: 'instance' : is not a member of 'SmashEngine::WatchSystem'
+                 c:\users\anshul.soni\documents\smashengine\smashengine\watchsystem.h(6) : see declaration of 'SmashEngine::WatchSystem'
+     1>c:\users\anshul.soni\documents\smashengine\smashengine\watchsystem.cpp(8): error C2039: 'GetInstance' : is not a member of 'SmashEngine::WatchSystem'
+                 c:\users\anshul.soni\documents\smashengine\smashengine\watchsystem.h(6) : see declaration of 'SmashEngine::WatchSystem'
+         MainEngine.cpp
+     1>c:\users\anshul.soni\documents\smashengine\smashengine\mainengine.cpp(17): error C2039: 'GetInstance' : is not a member of 'SmashEngine::WatchSystem'
+                 c:\users\anshul.soni\documents\smashengine\smashengine\watchsystem.h(6) : see declaration of 'SmashEngine::WatchSystem'
+     1>c:\users\anshul.soni\documents\smashengine\smashengine\mainengine.cpp(17): error C2228: left of '.Getdt' must have class/struct/union
+                 type is 'unknown-type'
+     1>c:\users\anshul.soni\documents\smashengine\smashengine\mainengine.cpp(17): error C3861: 'GetInstance': identifier not found
+     1>c:\users\anshul.soni\documents\smashengine\smashengine\mainengine.cpp(21): error C2039: 'GetInstance' : is not a member of 'SmashEngine::WatchSystem'
+                 c:\users\anshul.soni\documents\smashengine\smashengine\watchsystem.h(6) : see declaration of 'SmashEngine::WatchSystem'
+     1>c:\users\anshul.soni\documents\smashengine\smashengine\mainengine.cpp(21): error C2228: left of '.Getdt' must have class/struct/union
+                 type is 'unknown-type'
+     1>c:\users\anshul.soni\documents\smashengine\smashengine\mainengine.cpp(21): error C3861: 'GetInstance': identifier not found
+     1>Done Building Project "C:\Users\anshul.soni\Documents\SmashEngine\SmashEngine\SmashEngine.vcxproj" (Build target(s)) -- FAILED.
 
-Build succeeded.
+Build FAILED.
 
-Time Elapsed 00:00:00.02
+Time Elapsed 00:00:02.41

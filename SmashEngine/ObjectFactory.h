@@ -10,7 +10,6 @@ namespace SmashEngine
 	{
 	public:
 		GameObjectFactory(void);
-
 		void Init()override;
 		void Update(float dt)override;
 		SystemType GetType()const override;
@@ -21,8 +20,5 @@ namespace SmashEngine
 		const SystemType type;
 		unsigned int lastObjectId;
 		std::unordered_map<std::string, ComponentCreator*> ComponentMap;
-
-
-
 	};
 }

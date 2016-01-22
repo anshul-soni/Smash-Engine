@@ -5,7 +5,7 @@
 
 namespace SmashEngine
 {
-	GameObjectFactory::GameObjectFactory() :type(SYSTEM_Factory), lastObjectId(0)
+	GameObjectFactory::GameObjectFactory() :type(SYSTEM_ObjectFactory), lastObjectId(0)
 	{
 	}
 

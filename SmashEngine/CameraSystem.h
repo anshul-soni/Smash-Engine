@@ -11,7 +11,6 @@ namespace SmashEngine
 			static CameraSystem instance;
 			return instance;
 		}
-		CameraSystem();
 		void Init()override;
 		void Update(float dt)override;
 		void Release()override;
@@ -25,6 +24,7 @@ namespace SmashEngine
 		glm::mat4 viewMatrix;
 		glm::vec3 position;
 		glm::vec3 rotation;
+		CameraSystem();
 		CameraSystem(const CameraSystem&) = delete;
 		CameraSystem& operator=(const CameraSystem&) = delete;
 	};
