@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Model.h"
 #include "TextureManager.h"
+#include "ResourcePath.h"
 
 namespace SmashEngine
 {
@@ -18,7 +19,7 @@ namespace SmashEngine
 		}
 		return directory;
 	}
-	Model::Model(const char* filePath) :
+	Model::Model(const std::string& filePath) :
 		key(filePath), 
 		bLoaded(false), 
 		VAO(0), 
@@ -34,7 +35,7 @@ namespace SmashEngine
 			textures.reserve(50);
 		}
 		Assimp::Importer importer;
-		auto scene = importer.ReadFile(key, aiProcess_CalcTangentSpace | aiProcess_Triangulate | aiProcess_JoinIdenticalVertices | aiProcess_SortByPType);
+		auto scene = importer.ReadFile(ResourcePath::GetInstance().GetPath(RESOURCE_Model,key).c_str(), aiProcess_CalcTangentSpace | aiProcess_Triangulate | aiProcess_JoinIdenticalVertices | aiProcess_SortByPType);
 		if (!scene)
 		{
 			//error reading file
@@ -75,7 +76,7 @@ namespace SmashEngine
 			aiString path;
 			if (material->GetTexture(aiTextureType_DIFFUSE, texIndex, &path) == AI_SUCCESS)
 			{
-				auto dir = GetDirectoryPath(key);
+				auto dir = GetDirectoryPath(ResourcePath::GetInstance().GetPath(RESOURCE_Model, key).c_str());
 				auto textureName = path.data;
 				auto fullPath = dir + textureName;
 				auto texFound = -1;

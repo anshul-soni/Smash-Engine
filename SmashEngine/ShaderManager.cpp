@@ -18,7 +18,7 @@ namespace SmashEngine
 
 	void ShaderManager::AddShader(const std::string& key)
 	{
-		shaders[key] = new Shader((key + (".vert")).c_str(), (key + (".frag")).c_str());
+		shaders[key] = new Shader(key);
 	}
 
 	ShaderManager::~ShaderManager()

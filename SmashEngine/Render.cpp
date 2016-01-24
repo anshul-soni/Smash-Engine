@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Render.h"
+#include "ShaderManager.h"
 
 namespace SmashEngine
 {
@@ -13,6 +14,7 @@ namespace SmashEngine
 
 	void Render::Deserialize(tinyxml2::XMLElement* pElement)
 	{
+
 	}
 
 	void Render::Update(float dt)
@@ -21,6 +23,11 @@ namespace SmashEngine
 
 	void Render::Destroy()
 	{
+	}
+
+	void Render::SetShader(const std::string & key)
+	{
+		shader = ShaderManager::GetInstance().GetShader(key);
 	}
 
 	Render::~Render()

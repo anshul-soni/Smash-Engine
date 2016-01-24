@@ -21,6 +21,5 @@ namespace SmashEngine
 		int height;
 		int channels;
 		std::string path;
-		Texture& operator=(const Texture&) = delete;
 	};
 }

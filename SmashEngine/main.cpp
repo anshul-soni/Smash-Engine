@@ -13,10 +13,6 @@ int main()
 	auto graphicsEngine = new SmashEngine::Graphics();
 	//Insert the graphics engine into the main engine
 	engine->InsertEngine(graphicsEngine);
-	//Create window system
-	auto windowSystem = new SmashEngine::WindowSystem();
-	//Insert window system into the main engine
-	engine->InsertSystem(windowSystem);
 	//Initialize All the Engines and Systems
 	engine->Init();
 	//Update All the Engines and Systems

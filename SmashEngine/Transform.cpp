@@ -15,6 +15,65 @@ namespace SmashEngine
 
 	void Transform::Deserialize(tinyxml2::XMLElement* pElement)
 	{
+		glm::vec3 translate, rotation, scale;
+
+		if (pElement->FirstChildElement("position") != nullptr)
+		{
+			if (pElement->FirstChildElement("position")->QueryFloatAttribute("x", &translate.x) != tinyxml2::XML_SUCCESS)
+			{
+				translate.x = 0;
+			}
+			if (pElement->FirstChildElement("position")->QueryFloatAttribute("y", &translate.y) != tinyxml2::XML_SUCCESS)
+			{
+				translate.y = 0;
+			}
+			if (pElement->FirstChildElement("position")->QueryFloatAttribute("z", &translate.z) != tinyxml2::XML_SUCCESS)
+			{
+				translate.z = 0;
+			}
+		}
+		else
+		{
+			translate = glm::vec3(0);
+		}
+		if (pElement->FirstChildElement("rotation") != nullptr)
+		{
+			if (pElement->FirstChildElement("rotation")->QueryFloatAttribute("x", &rotation.x) != tinyxml2::XML_SUCCESS)
+			{
+				rotation.x = 0;
+			}
+			if (pElement->FirstChildElement("rotation")->QueryFloatAttribute("y", &rotation.y) != tinyxml2::XML_SUCCESS)
+			{
+				rotation.y = 0;
+			}
+			if (pElement->FirstChildElement("rotation")->QueryFloatAttribute("z", &rotation.z) != tinyxml2::XML_SUCCESS)
+			{
+				rotation.z = 0;
+			}
+		}
+		else
+		{
+			rotation = glm::vec3(0);
+		}
+		if (pElement->FirstChildElement("scale") != nullptr)
+		{
+			if (pElement->FirstChildElement("scale")->QueryFloatAttribute("x", &scale.x) != tinyxml2::XML_SUCCESS)
+			{
+				scale.x = 1;
+			}
+			if (pElement->FirstChildElement("scale")->QueryFloatAttribute("y", &scale.y) != tinyxml2::XML_SUCCESS)
+			{
+				scale.y = 1;
+			}
+			if (pElement->FirstChildElement("scale")->QueryFloatAttribute("z", &scale.z) != tinyxml2::XML_SUCCESS)
+			{
+				scale.z = 1;
+			}
+		}
+		else
+		{
+			scale = glm::vec3(1);
+		}
 	}
 
 	void Transform::Update(float dt)

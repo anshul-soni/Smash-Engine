@@ -1,14 +1,17 @@
 #include "stdafx.h"
 #include "Shader.h"
+#include "ResourcePath.h"
 
 namespace SmashEngine
 {
-	Shader::Shader(const GLchar* vertexPath, const GLchar* fragmentPath)
+	Shader::Shader(const std::string& shaderKey)
 	{
 		std::string vertexCode;
 		std::string fragmentCode;
 		std::ifstream vShaderFile;
 		std::ifstream fShaderFile;
+		auto vertexPath = ResourcePath::GetInstance().GetPath(RESOURCE_VertexShader, shaderKey).c_str();
+		auto fragmentPath = ResourcePath::GetInstance().GetPath(RESOURCE_FragmentShader, shaderKey).c_str();
 
 		vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 		fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);

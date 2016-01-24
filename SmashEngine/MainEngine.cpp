@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "MainEngine.h"
 #include "WatchSystem.h"
+#include "WindowSystem.h"
 
 namespace SmashEngine
 {
@@ -45,6 +46,7 @@ namespace SmashEngine
 		//Initialize Singleton systems as they are not insterted
 		//into the systems map
 		WatchSystem::GetInstance().Init();
+		WindowSystem::GetInstance().Init();
 	}
 
 	void MainEngine::InsertSystem(System* system)

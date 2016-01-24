@@ -7,12 +7,12 @@ namespace SmashEngine
 	class Model
 	{
 	public:
-		explicit Model(const char* filePath);
+		explicit Model(const std::string& filePath);
 		bool LoadModel();
 		void Render(float dt);
 		~Model();
 	private:
-		const char* key;
+		const std::string key;
 		bool bLoaded;
 		VertexBufferObject vboModelData;
 		unsigned int VAO;
@@ -22,7 +22,5 @@ namespace SmashEngine
 		std::vector<int> materialIndices;
 		int numMaterial;
 		Model() = delete;
-		Model operator=(Model&) = delete;
-		Model(Model&) = delete;
 	};
 }

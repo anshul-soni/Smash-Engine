@@ -86,6 +86,7 @@
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Render.cpp" />
+    <ClCompile Include="ResourcePath.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="stdafx.cpp" />
@@ -102,6 +103,8 @@
     <ClInclude Include="GameLogicSystem.h" />
     <ClInclude Include="ModelManager.h" />
     <ClInclude Include="Render.h" />
+    <ClInclude Include="ResourcePath.h" />
+    <ClInclude Include="ResourceType.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderManager.h" />
     <ClInclude Include="TextureManager.h" />

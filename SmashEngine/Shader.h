@@ -6,8 +6,7 @@ namespace SmashEngine
 	{
 	public:
 		GLuint Program;
-		Shader(const GLchar* vertexSourcePath, const GLchar* fragmentSourcePath);
-
+		explicit Shader(const std::string& shaderKey);
 		void Use()const;
 	};
 }

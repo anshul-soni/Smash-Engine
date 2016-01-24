@@ -24,13 +24,6 @@ namespace SmashEngine
 		//virtual public destructor 
 		virtual ~System(){}
 	private:
-		//private copy constructor
-		System(System&)=delete;
-		//Private = operator
-		System& operator=(const System&) = delete;
-		//Copy constructor and operator =
-		//are made private because
-		//Systems cannot be copied 
-		//Each system can have only 1 object
+		//System& operator=(const System&) = delete;
 	};
 }

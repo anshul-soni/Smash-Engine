@@ -7,6 +7,12 @@ namespace SmashEngine
 	{
 	}
 
+	WindowSystem & WindowSystem::GetInstance()
+	{
+		static WindowSystem instance;
+		return instance;
+	}
+
 	void WindowSystem::Init()
 	{
 		glfwInit();
@@ -38,6 +44,7 @@ namespace SmashEngine
 
 	void WindowSystem::Update(float dt)
 	{
+		int k = 0;
 	}
 
 	void WindowSystem::Release()
@@ -47,6 +54,11 @@ namespace SmashEngine
 	SystemType WindowSystem::GetType() const
 	{
 		return type;
+	}
+
+	GLFWwindow* WindowSystem::GetWindow()const
+	{
+		return window;
 	}
 
 	WindowSystem::~WindowSystem()
