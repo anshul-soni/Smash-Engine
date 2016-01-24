@@ -3,7 +3,6 @@
 #include "ComponentType.h"
 namespace SmashEngine
 {
-
 	class GameObject
 	{
 	public:
@@ -23,7 +22,6 @@ namespace SmashEngine
 	private:
 		std::string			ObjectName;
 		bool				deleteThis;
-		bool				deletedObj;
 		std::unordered_map<ComponentType, Component*> components;
 		unsigned int		objectId;
 
@@ -35,5 +33,5 @@ namespace SmashEngine
 		return static_cast<type*>(GetComponent(typeId));
 	}
 
-#define has(type) GetComponentType<type>( CT_##type )
+#define has(type) GetComponentType<type>( TYPE_##type )
 }

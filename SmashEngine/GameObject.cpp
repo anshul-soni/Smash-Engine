@@ -3,7 +3,7 @@
 
 namespace SmashEngine
 {
-	GameObject::GameObject(const std::string& name, unsigned int id) :ObjectName(name), objectId(id)
+	GameObject::GameObject(const std::string& name, unsigned int id) :ObjectName(name), deleteThis(false), objectId(id)
 	{
 	}
 

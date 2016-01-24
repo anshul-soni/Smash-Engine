@@ -14,6 +14,7 @@ namespace SmashEngine
 		void Update(float dt)override;
 		void Destroy()override;
 		void SetShader(const std::string& key);
+		void SetModel(const std::string& key);
 		~Render();
 	private:
 		Shader* shader;

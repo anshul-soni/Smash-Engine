@@ -6,11 +6,7 @@ namespace SmashEngine
 	class CameraSystem :public System
 	{
 	public:
-		static CameraSystem& GetInstance()
-		{
-			static CameraSystem instance;
-			return instance;
-		}
+		static CameraSystem& GetInstance();
 		void Init()override;
 		void Update(float dt)override;
 		void Release()override;

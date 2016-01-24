@@ -3,12 +3,17 @@
 
 namespace SmashEngine
 {
+	CameraSystem& CameraSystem::GetInstance()
+	{
+		static CameraSystem instance;
+		return instance;
+	}
 	CameraSystem::CameraSystem() :
 		type(SYSTEM_Camera),
 		fov(45),
 		projectionMatrix(glm::mat4(1)),
 		viewMatrix(glm::mat4(1)),
-		position(glm::vec3(0,0,0))
+		position(glm::vec3(0,0,5))
 	{
 	}
 

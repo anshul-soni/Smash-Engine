@@ -13,7 +13,21 @@ namespace SmashEngine
 
 	void ObjectManager::Update(float dt)
 	{
-
+		for (auto object : GameObjects)
+		{
+			object.second->Update(dt);
+		}
+		for (auto object : ObjectsToBeDeleted)
+		{
+			//make sure that the object exists and was not already deleted
+			if(GameObjects.find(object->GetId())!=GameObjects.end())
+			{
+				auto id = object->GetId();
+				delete object;
+				GameObjects.erase(id);
+			}
+		}
+		ObjectsToBeDeleted.clear();
 	}
 
 	void ObjectManager::Release()
