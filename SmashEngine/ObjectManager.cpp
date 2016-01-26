@@ -7,6 +7,12 @@ namespace SmashEngine
 	{
 	}
 
+	ObjectManager& ObjectManager::GetInstance()
+	{
+		static ObjectManager instance;
+			return instance;
+	}
+
 	void ObjectManager::Init()
 	{
 	}

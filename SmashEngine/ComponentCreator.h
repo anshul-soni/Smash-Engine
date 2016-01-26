@@ -34,4 +34,4 @@ namespace SmashEngine
 
 };
 
-#define RegisterComponent(type) GameObjectFactory::GetInstance().AddComponentCreator( #type, new ComponentCreatorType<type>( TYPE_##type ) );
+#define RegisterComponent(type) ObjectFactory::GetInstance().AddComponentCreator( #type, new ComponentCreatorType<type>( TYPE_##type ) );

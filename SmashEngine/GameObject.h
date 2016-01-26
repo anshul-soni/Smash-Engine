@@ -6,7 +6,6 @@ namespace SmashEngine
 	class GameObject
 	{
 	public:
-		friend class GameObjectFactory;
 		GameObject(const std::string& name,unsigned int id);
 		~GameObject(void);
 

@@ -9,9 +9,9 @@ namespace SmashEngine
 		return instance;
 	}
 
-	const std::string& ResourcePath::GetPath(ResourceType type, const std::string& key) const
+	std::string ResourcePath::GetPath(ResourceType type, const std::string& key) const
 	{
-		std::string resourcePath = "Resources/";
+		std::string resourcePath = "resources/";
 		switch(type)
 		{
 		case RESOURCE_Model:
@@ -21,7 +21,7 @@ namespace SmashEngine
 		case RESOURCE_Object:
 			resourcePath += "objects/";
 			resourcePath += key;
-			resourcePath += ".xml";
+			//resourcePath += ".xml";
 			break;
 		case RESOURCE_FragmentShader:
 			resourcePath += "shaders/";	

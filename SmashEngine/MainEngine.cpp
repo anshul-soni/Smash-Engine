@@ -2,6 +2,10 @@
 #include "MainEngine.h"
 #include "WatchSystem.h"
 #include "WindowSystem.h"
+#include "ObjectManager.h"
+#include "CameraSystem.h"
+#include "ObjectFactory.h"
+#include "GameLogicSystem.h"
 
 namespace SmashEngine
 {
@@ -20,14 +24,12 @@ namespace SmashEngine
 			{
 				engine.second->Update(WatchSystem::GetInstance().Getdt());
 			}
-			//Update Singleton systems as they are not insterted
-			//into the systems map
-
-			//Update All the systems present in the system container
-			for (auto system : systems)
-			{
-				system.second->Update(WatchSystem::GetInstance().Getdt());
-			}
+			//Update Singleton systems
+			WindowSystem::GetInstance().Update(WatchSystem::GetInstance().Getdt());
+			CameraSystem::GetInstance().Update(WatchSystem::GetInstance().Getdt());
+			ObjectFactory::GetInstance().Update(WatchSystem::GetInstance().Getdt());
+			ObjectManager::GetInstance().Update(WatchSystem::GetInstance().Getdt());
+			GameLogicSystem::GetInstance().Update(WatchSystem::GetInstance().Getdt());
 		}
 	}
 
@@ -38,20 +40,13 @@ namespace SmashEngine
 		{
 			engine.second->Init();
 		}
-		//Initialize all the systems.
-		for (auto system : systems)
-		{
-			system.second->Init();
-		}
-		//Initialize Singleton systems as they are not insterted
-		//into the systems map
+		//Initialize Singleton systems
 		WatchSystem::GetInstance().Init();
 		WindowSystem::GetInstance().Init();
-	}
-
-	void MainEngine::InsertSystem(System* system)
-	{
-		systems[system->GetType()] = system;
+		CameraSystem::GetInstance().Init();
+		ObjectFactory::GetInstance().Init();
+		ObjectManager::GetInstance().Init();
+		GameLogicSystem::GetInstance().Init();
 	}
 
 	void MainEngine::InsertEngine(Engine* engine)

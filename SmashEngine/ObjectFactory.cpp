@@ -2,37 +2,43 @@
 #include "ObjectFactory.h"
 #include "ObjectManager.h"
 #include "SystemType.h"
+#include "ResourcePath.h"
 
 namespace SmashEngine
 {
-	GameObjectFactory::GameObjectFactory() :type(SYSTEM_ObjectFactory), lastObjectId(0)
+	ObjectFactory::ObjectFactory() :type(SYSTEM_ObjectFactory), lastObjectId(0)
 	{
 	}
 
-	GameObjectFactory& GameObjectFactory::GetInstance()
+	ObjectFactory& ObjectFactory::GetInstance()
 	{
-		static GameObjectFactory instance;
+		static ObjectFactory instance;
 		return instance;
 	}
 
-	void GameObjectFactory::Init()
+	void ObjectFactory::Init()
 	{
 	}
 
-	void GameObjectFactory::Update(float dt)
+	void ObjectFactory::Update(float dt)
 	{
 	}
 
-	GameObject* GameObjectFactory::Create(const char* filename)
+	GameObject* ObjectFactory::Create(const std::string& filename)
 	{
 		tinyxml2::XMLDocument xmlDoc;
 		std::string gameObjectName;
-		assert(!xmlDoc.LoadFile(filename));							//Because XML Error returns 0 on (Success/No Error)
+		auto filepath = ResourcePath::GetInstance().GetPath(RESOURCE_Object, filename);
+		if(xmlDoc.LoadFile(filepath.c_str())!=tinyxml2::XML_SUCCESS)
+		{
+			std::cout << "failed to load file" << filepath << std::endl;
+			return nullptr;
+		}
 		auto pRoot = xmlDoc.FirstChildElement("GameObject");
 		assert(pRoot != nullptr);
+		gameObjectName = pRoot->Attribute("name");
 		auto pComponent = pRoot->FirstChildElement("Component");
 		assert(pComponent != nullptr);
-		gameObjectName = pRoot->Attribute("ObjectName");
 		//GameObject To hold Components 
 		auto object = new GameObject(gameObjectName,++lastObjectId);
 		while (pComponent != nullptr)
@@ -60,20 +66,21 @@ namespace SmashEngine
 		return object;
 	}
 
-	void GameObjectFactory::AddComponentCreator(const std::string& name, ComponentCreator* creator)
+	void ObjectFactory::AddComponentCreator(const std::string& name, ComponentCreator* creator)
 	{
 		ComponentMap[name] = creator;
 	}
 
-	void GameObjectFactory::Release()
+	void ObjectFactory::Release()
 	{
 	}
 
-	SystemType GameObjectFactory::GetType()const
+	SystemType ObjectFactory::GetType()const
 	{
 		return type;
 	}
-	GameObjectFactory::~GameObjectFactory()
+
+	ObjectFactory::~ObjectFactory()
 	{
 		
 	}

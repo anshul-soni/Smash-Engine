@@ -6,22 +6,22 @@
 namespace SmashEngine
 {
 	class ComponentCreator;
-	class GameObjectFactory :
+	class ObjectFactory :
 		public System
 	{
 	public:
-		static GameObjectFactory& GetInstance();
+		static ObjectFactory& GetInstance();
 		void Init()override;
 		void Update(float dt)override;
 		SystemType GetType()const override;
-		GameObject* Create(const char* filename);
+		GameObject* Create(const std::string& filename);
 		void AddComponentCreator(const std::string& name, ComponentCreator* creator);
 		void Release()override;
-		~GameObjectFactory(void);
+		~ObjectFactory(void);
 	private:
 		const SystemType type;
 		unsigned int lastObjectId;
 		std::unordered_map<std::string, ComponentCreator*> ComponentMap;
-		GameObjectFactory(void);
+		ObjectFactory(void);
 	};
 }

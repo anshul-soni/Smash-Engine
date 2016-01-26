@@ -8,11 +8,7 @@ namespace SmashEngine
 		public System
 	{
 	public:
-		static ObjectManager& GetInstance()
-		{
-			static ObjectManager instance;
-			return instance;
-		}
+		static ObjectManager& GetInstance();
 		void Init()override;
 		void Update(float dt)override;
 		void Release()override;
