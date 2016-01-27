@@ -10,14 +10,14 @@ namespace SmashEngine
 		std::string fragmentCode;
 		std::ifstream vShaderFile;
 		std::ifstream fShaderFile;
-		auto vertexPath = ResourcePath::GetInstance().GetPath(RESOURCE_VertexShader, shaderKey).c_str();
-		auto fragmentPath = ResourcePath::GetInstance().GetPath(RESOURCE_FragmentShader, shaderKey).c_str();
+		auto vertexPath = ResourcePath::GetInstance().GetPath(RESOURCE_VertexShader, shaderKey);
+		auto fragmentPath = ResourcePath::GetInstance().GetPath(RESOURCE_FragmentShader, shaderKey);
 
 		vShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 		fShaderFile.exceptions(std::ifstream::failbit | std::ifstream::badbit);
 		try{
-			vShaderFile.open(vertexPath);
-			fShaderFile.open(fragmentPath);
+			vShaderFile.open(vertexPath.c_str());
+			fShaderFile.open(fragmentPath.c_str());
 
 			std::stringstream vShaderStream, fShaderStream;
 

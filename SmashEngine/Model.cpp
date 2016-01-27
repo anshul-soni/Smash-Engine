@@ -25,6 +25,7 @@ namespace SmashEngine
 		VAO(0), 
 		numMaterial(0)
 	{
+		LoadModel();
 	}
 
 	bool Model::LoadModel()
@@ -35,10 +36,11 @@ namespace SmashEngine
 			textures.reserve(50);
 		}
 		Assimp::Importer importer;
-		auto scene = importer.ReadFile(ResourcePath::GetInstance().GetPath(RESOURCE_Model,key).c_str(), aiProcess_CalcTangentSpace | aiProcess_Triangulate | aiProcess_JoinIdenticalVertices | aiProcess_SortByPType);
+		auto filePath = ResourcePath::GetInstance().GetPath(RESOURCE_Model, key);
+		auto scene = importer.ReadFile(filePath.c_str(), aiProcess_CalcTangentSpace | aiProcess_Triangulate | aiProcess_JoinIdenticalVertices | aiProcess_SortByPType);
 		if (!scene)
 		{
-			//error reading file
+			std::cout << "error reading model file " << filePath << std::endl;
 			return false;
 		}
 		auto vertexTotalSize = sizeof(aiVector3D) * 2 + sizeof(aiVector2D);

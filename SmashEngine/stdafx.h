@@ -20,6 +20,4 @@
 //Soil
 #include <SOIL\include\SOIL.h>
 
-//Tinyxml2
-#include <tinyxml2/tinyxml2.h>
 

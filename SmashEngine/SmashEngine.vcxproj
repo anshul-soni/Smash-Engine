@@ -40,7 +40,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <IncludePath>$(SolutionDir)\Libraries\Assimp\Include;$(SolutionDir)\Libraries\Include;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)\Libraries\Libs;$(SolutionDir)\Libraries\Libs\tinyxml2\Win32-Debug-Lib\;$(SolutionDir)\Libraries\Libs\Assimp;$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\Libraries\Libs;$(SolutionDir)\Libraries\Libs\Assimp;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LibraryPath>$(SolutionDir)\Libraries\Libs\tinyxml2\Win32-Release-Lib\;$(LibraryPath)</LibraryPath>
@@ -55,7 +55,7 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>tinyxml2.lib;opengl32.lib;glfw3.lib;glew32s.lib;glew32.lib;SOIL.lib;assimpd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;glew32.lib;SOIL.lib;assimpd.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
     </Link>
@@ -92,6 +92,7 @@
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
+    <ClCompile Include="tinyxml2.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="VertexBufferObject.cpp" />
     <ClCompile Include="WatchSystem.cpp" />
@@ -122,6 +123,7 @@
     <ClInclude Include="System.h" />
     <ClInclude Include="SystemType.h" />
     <ClInclude Include="Texture.h" />
+    <ClInclude Include="tinyxml2.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="VertexBufferObject.h" />
     <ClInclude Include="WatchSystem.h" />

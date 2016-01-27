@@ -1,6 +1,7 @@
 #pragma once
 #include "ComponentType.h"
 #include "stdafx.h"
+#include "tinyxml2.h"
 
 namespace SmashEngine
 {

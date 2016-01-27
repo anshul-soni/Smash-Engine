@@ -21,7 +21,7 @@ namespace SmashEngine
 		if (pElement->FirstChildElement("shader")->GetText())
 			SetShader(pElement->FirstChildElement("shader")->GetText());
 		if (pElement->FirstChildElement("model")->GetText())
-			SetModel(pElement->FirstChildElement("shader")->GetText());
+			SetModel(pElement->FirstChildElement("model")->GetText());
 	}
 
 	void Render::Update(float dt)
@@ -50,6 +50,7 @@ namespace SmashEngine
 		glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
 		glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, &Model[0][0]);
 		glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, &View[0][0]);
+		model->Render(dt);
 
 	}
 

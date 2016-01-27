@@ -3,7 +3,7 @@
 #include "ObjectManager.h"
 #include "SystemType.h"
 #include "ResourcePath.h"
-
+#include "tinyxml2.h"
 namespace SmashEngine
 {
 	ObjectFactory::ObjectFactory() :type(SYSTEM_ObjectFactory), lastObjectId(0)
@@ -31,7 +31,7 @@ namespace SmashEngine
 		auto filepath = ResourcePath::GetInstance().GetPath(RESOURCE_Object, filename);
 		if(xmlDoc.LoadFile(filepath.c_str())!=tinyxml2::XML_SUCCESS)
 		{
-			std::cout << "failed to load file" << filepath << std::endl;
+			std::cout << "failed to load file " << filepath << std::endl;
 			return nullptr;
 		}
 		auto pRoot = xmlDoc.FirstChildElement("GameObject");
@@ -61,6 +61,7 @@ namespace SmashEngine
 			pComponent = pComponent->NextSiblingElement("Component");
 		}
 		//Pass the object to the object manager
+		object->Initialize();
 		ObjectManager::GetInstance().AddObject(object);
 		//return the pointer to object 
 		return object;

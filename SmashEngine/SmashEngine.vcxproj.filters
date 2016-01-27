@@ -108,6 +108,9 @@
     <ClCompile Include="ResourcePath.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
+    <ClCompile Include="tinyxml2.cpp">
+      <Filter>Resource Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h">
@@ -193,6 +196,9 @@
     </ClInclude>
     <ClInclude Include="ResourceType.h">
       <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="tinyxml2.h">
+      <Filter>Resource Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,13 +15,13 @@ namespace SmashEngine
 		switch(type)
 		{
 		case RESOURCE_Model:
-			resourcePath += "model/";
+			resourcePath += "models/";
 			resourcePath += key;
 			break;
 		case RESOURCE_Object:
 			resourcePath += "objects/";
 			resourcePath += key;
-			//resourcePath += ".xml";
+			resourcePath += ".xml";
 			break;
 		case RESOURCE_FragmentShader:
 			resourcePath += "shaders/";	
