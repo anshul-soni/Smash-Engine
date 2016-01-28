@@ -2,18 +2,19 @@
 #include "System.h"
 #include "SignalHandler.h"
 #include "InputSignal.h"
+#include "CameraSignal.h"
 
 namespace SmashEngine
 {
 	class CameraSystem :public System,
-		public SignalHandler<InputSignal>
+		public SignalHandler<CameraSignal>
 	{
 	public:
 		static CameraSystem& GetInstance();
 		void Init()override;
 		void Update(float dt)override;
 		void Release()override;
-		virtual void OnSignal(InputSignal signal)override;
+		void OnSignal(CameraSignal signal)override;
 		SystemType GetType()const override;
 		const glm::mat4& GetViewMatrix()const;
 		const glm::mat4& GetProjectionMatrix()const;
@@ -24,6 +25,11 @@ namespace SmashEngine
 		glm::mat4 viewMatrix;
 		glm::vec3 position;
 		glm::vec3 rotation;
+		float cameraSpeed;
+		float deltaTime;
+		glm::vec3 right;
+		glm::vec3 up;
+		glm::vec3 direction;
 		CameraSystem();
 		CameraSystem(const CameraSystem&) = delete;
 		CameraSystem& operator=(const CameraSystem&) = delete;

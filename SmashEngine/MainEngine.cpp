@@ -6,11 +6,13 @@
 #include "CameraSystem.h"
 #include "ObjectFactory.h"
 #include "GameLogicSystem.h"
+#include "SignalManager.h"
 
 namespace SmashEngine
 {
 	MainEngine::MainEngine() :type(ENGINE_Main),running(true)
 	{
+		SignalManager::GetInstance().Connect<EngineStateSignal>(this);
 	}
 
 	void MainEngine::Update(float dt)
@@ -52,6 +54,14 @@ namespace SmashEngine
 	void MainEngine::InsertEngine(Engine* engine)
 	{
 		engines[engine->GetType()] = engine;
+	}
+
+	void MainEngine::OnSignal(EngineStateSignal signal)
+	{
+		if(signal==EngineStateSignal::ENGINE_TERMINATE)
+		{
+			running = false;
+		}
 	}
 
 	EngineType MainEngine::GetType() const

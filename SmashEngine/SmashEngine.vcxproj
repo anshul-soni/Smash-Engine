@@ -101,7 +101,9 @@
     <ClCompile Include="WindowSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CameraSignal.h" />
     <ClInclude Include="CameraSystem.h" />
+    <ClInclude Include="EngineState.h" />
     <ClInclude Include="EngineType.h" />
     <ClInclude Include="GameLogicSystem.h" />
     <ClInclude Include="InputSignal.h" />

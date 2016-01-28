@@ -16,20 +16,20 @@ uniform mat4 M;
 uniform vec3 lightPosition_worldSpace;
 void main() 
 { 
-	//gl_PointSize=100.0;
-	//gl_Position = vec4(0,0,0,0);
-	gl_Position = MVP*M*vec4(vertexPosition_modelSpace,1);
-	
-	position_worldSpace = (M*vec4(vertexPosition_modelSpace,1)).xyz;
-	
-	vec3 vertexPosition_cameraSpace = (V*M*vec4(vertexPosition_modelSpace,1)).xyz;
-	
-	eyeDirection_cameraSpace = vec3(0,0,0) - vertexPosition_cameraSpace;
-	
-	vec3 lightPosition_cameraSpace = (V* vec4(lightPosition_worldSpace,1)).xyz;
-	lightDirection_cameraSpace = lightPosition_cameraSpace + eyeDirection_cameraSpace;
-	
-	normal_cameraSpace = (V*M* vec4(vertexNormal_modelSpace,0)).xyz;
-	
-	UV = vec2(vertexUV.x,vertexUV.y);
+	gl_PointSize=100.0;
+	gl_Position = vec4(0,0,0,0);
+	//gl_Position = MVP*M*vec4(vertexPosition_modelSpace,1);
+	//
+	//position_worldSpace = (M*vec4(vertexPosition_modelSpace,1)).xyz;
+	//
+	//vec3 vertexPosition_cameraSpace = (V*M*vec4(vertexPosition_modelSpace,1)).xyz;
+	//
+	//eyeDirection_cameraSpace = vec3(0,0,0) - vertexPosition_cameraSpace;
+	//
+	//vec3 lightPosition_cameraSpace = (V* vec4(lightPosition_worldSpace,1)).xyz;
+	//lightDirection_cameraSpace = lightPosition_cameraSpace + eyeDirection_cameraSpace;
+	//
+	//normal_cameraSpace = (V*M* vec4(vertexNormal_modelSpace,0)).xyz;
+	//
+	//UV = vec2(vertexUV.x,vertexUV.y);
 }

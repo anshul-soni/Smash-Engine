@@ -230,6 +230,12 @@
     <ClInclude Include="InputType.h">
       <Filter>Input</Filter>
     </ClInclude>
+    <ClInclude Include="EngineState.h">
+      <Filter>Signal</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraSignal.h">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\normal.frag">

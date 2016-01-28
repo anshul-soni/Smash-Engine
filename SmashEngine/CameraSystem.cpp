@@ -14,22 +14,29 @@ namespace SmashEngine
 		fov(45),
 		projectionMatrix(glm::mat4(1)),
 		viewMatrix(glm::mat4(1)),
-		position(glm::vec3(0,0,5))
+		position(glm::vec3(0,0,5)),
+		cameraSpeed(0.005f),
+		deltaTime(0),
+		right(glm::vec3(1)),
+		up(glm::vec3(1)),
+		direction(glm::vec3(1))
 	{
 	}
 
 	void CameraSystem::Init()
 	{
-		SignalManager::GetInstance().Connect<InputSignal>(this);
+		SignalManager::GetInstance().Connect<CameraSignal>(this);
 	}
 
 	void CameraSystem::Update(float dt)
 	{
-		glm::vec3 direction(cos(rotation.y)*sin(rotation.x), sin(rotation.y), cos(rotation.y)*cos(rotation.x));
+		deltaTime = dt;
 
-		auto right = glm::vec3(sin(rotation.x - 3.14f / 2.0f), 0, cos(rotation.x - 3.14f / 2.0f));
+		direction = glm::vec3(cos(rotation.y)*sin(rotation.x), sin(rotation.y), cos(rotation.y)*cos(rotation.x));
 
-		auto up = glm::cross(right, direction);
+		right = glm::vec3(sin(rotation.x - 3.14f / 2.0f), 0, cos(rotation.x - 3.14f / 2.0f));
+
+		up = glm::cross(right, direction);
 
 		projectionMatrix = glm::perspective(fov, 4.0f / 3.0f, 0.1f, 1000.0f);
 
@@ -40,17 +47,27 @@ namespace SmashEngine
 	{
 	}
 
-	void CameraSystem::OnSignal(InputSignal signal)
+	void CameraSystem::OnSignal(CameraSignal signal)
 	{
-		switch (signal.GetType())
+		switch (signal)
 		{
-		case INPUT_MouseMoveDown:
+		case CAMERA_DOWN:
+			position -= up*deltaTime*cameraSpeed;
 			break;
-		case INPUT_MouseMoveUp:
+		case CAMERA_UP:
+			position += up*deltaTime*cameraSpeed;
 			break;
-		case INPUT_MouseMoveLeft:
+		case CAMERA_LEFT:
+			position -= right*deltaTime*cameraSpeed;
 			break;
-		case INPUT_MouseMoveRight:
+		case CAMERA_RIGHT:
+			position += right*deltaTime*cameraSpeed;
+			break;
+		case CAMERA_ZOOMIN:
+			position += direction*deltaTime*cameraSpeed;
+			break;
+		case CAMERA_ZOOMOUT:
+			position -= direction*deltaTime*cameraSpeed;
 			break;
 		default:
 			break;

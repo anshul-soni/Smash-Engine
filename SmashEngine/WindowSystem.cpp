@@ -1,22 +1,13 @@
 #include "stdafx.h"
 #include "WindowSystem.h"
+#include "SignalManager.h"
+#include "EngineState.h"
+#include "CameraSignal.h"
 
 namespace SmashEngine
 {
 	WindowSystem::WindowSystem() :type(SYSTEM_Window)
 	{
-	}
-
-	void WindowSystem::MouseCallBack(GLFWwindow* window, int button, int action, int mods)
-	{
-	}
-
-	void WindowSystem::KeyBoardCallBack(GLFWwindow* window, int key, int scancode, int action, int mode)
-	{
-		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-		{
-			glfwSetWindowShouldClose(window, GL_TRUE);
-		}
 	}
 
 	WindowSystem & WindowSystem::GetInstance()
@@ -62,7 +53,7 @@ namespace SmashEngine
 			glfwPollEvents();
 		}else
 		{
-			
+			SignalManager::GetInstance().Signal(ENGINE_TERMINATE);
 		}
 	}
 
@@ -83,4 +74,34 @@ namespace SmashEngine
 	WindowSystem::~WindowSystem()
 	{
 	}
+	void WindowSystem::KeyBoardCallBack(GLFWwindow* window, int key, int scancode, int action, int mode)
+	{
+		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		{
+			SignalManager::GetInstance().Signal(ENGINE_TERMINATE);
+			glfwSetWindowShouldClose(window, GL_TRUE);
+		}
+		if (key == GLFW_KEY_W &&  action == GLFW_PRESS)
+		{
+			SignalManager::GetInstance().Signal(CAMERA_UP);
+		}
+		if (key == GLFW_KEY_A &&  action == GLFW_PRESS)
+		{
+			SignalManager::GetInstance().Signal(CAMERA_LEFT);
+		}
+		if (key == GLFW_KEY_S &&  action == GLFW_PRESS)
+		{
+			SignalManager::GetInstance().Signal(CAMERA_DOWN);
+		}
+		if (key == GLFW_KEY_D &&  action == GLFW_PRESS)
+		{
+			SignalManager::GetInstance().Signal(CAMERA_RIGHT);
+		}
+	}
+
+
+	void WindowSystem::MouseCallBack(GLFWwindow* window, int button, int action, int mods)
+	{
+	}
+
 }

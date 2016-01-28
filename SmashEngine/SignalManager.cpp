@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "SignalManager.h"
 #include "InputSignal.h"
+#include "EngineState.h"
+#include "CameraSignal.h"
 
 
 namespace SmashEngine {
@@ -12,6 +14,8 @@ namespace SmashEngine {
 	SignalManager::SignalManager() {
 		// Sets up supported broadcast channels.
 		CreateChannel<InputSignal>();
+		CreateChannel<EngineStateSignal>();
+		CreateChannel<CameraSignal>();
 	}
 
 	SignalManager::~SignalManager() {
