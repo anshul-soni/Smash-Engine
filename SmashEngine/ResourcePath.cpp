@@ -17,6 +17,7 @@ namespace SmashEngine
 		case RESOURCE_Model:
 			resourcePath += "models/";
 			resourcePath += key;
+			resourcePath += ".model";
 			break;
 		case RESOURCE_Object:
 			resourcePath += "objects/";

@@ -21,7 +21,7 @@ namespace SmashEngine
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 
-		this->window = glfwCreateWindow(1024, 768, "Voldy", nullptr, nullptr);
+		this->window = glfwCreateWindow(1024, 768, "Smash Engine", nullptr, nullptr);
 		glfwMakeContextCurrent(window);
 		if (window == NULL)
 		{

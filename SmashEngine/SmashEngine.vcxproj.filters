@@ -43,6 +43,12 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{bf032cb8-ad71-4cdb-ae26-97138b3cf112}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Signal">
+      <UniqueIdentifier>{bb1ef87f-b023-4431-9d7e-2395a86b51d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{96d0bcdd-feb4-4f04-a572-5a4a045d7d85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -110,6 +116,15 @@
     </ClCompile>
     <ClCompile Include="tinyxml2.cpp">
       <Filter>Resource Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SignalManager.cpp">
+      <Filter>Signal</Filter>
+    </ClCompile>
+    <ClCompile Include="InputSignal.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="InputSystem.cpp">
+      <Filter>Systems</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,5 +215,34 @@
     <ClInclude Include="tinyxml2.h">
       <Filter>Resource Files</Filter>
     </ClInclude>
+    <ClInclude Include="SignalHandler.h">
+      <Filter>Signal</Filter>
+    </ClInclude>
+    <ClInclude Include="SignalManager.h">
+      <Filter>Signal</Filter>
+    </ClInclude>
+    <ClInclude Include="SignalSource.h">
+      <Filter>Signal</Filter>
+    </ClInclude>
+    <ClInclude Include="sigslot.h">
+      <Filter>Signal</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSignal.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="InputType.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="InputSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\shaders\normal.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="resources\shaders\normal.vert">
+      <Filter>Shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

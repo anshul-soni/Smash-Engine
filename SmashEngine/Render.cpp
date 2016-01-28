@@ -34,12 +34,11 @@ namespace SmashEngine
 
 		//For Wireframe uncomment next statement
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-
+		model->BindVAO();
 		shader->Use();
 		auto matrixID = glGetUniformLocation(shader->Program, "MVP");
-		auto modelMatrixID = glGetUniformLocation(shader->Program, "M");
 		auto viewMatrixID = glGetUniformLocation(shader->Program, "V");
+		auto modelMatrixID = glGetUniformLocation(shader->Program, "M");
 		auto transformComponent = this->GetOwner()->has(Transform);
 		auto transformMatrix = glm::translate(glm::mat4(), transformComponent->GetPosition());
 		auto rotationX = glm::rotate(glm::mat4(), transformComponent->GetRotation().x, glm::vec3(1, 0, 0));

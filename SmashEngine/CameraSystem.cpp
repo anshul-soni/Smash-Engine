@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "CameraSystem.h"
+#include "SignalManager.h"
 
 namespace SmashEngine
 {
@@ -19,6 +20,7 @@ namespace SmashEngine
 
 	void CameraSystem::Init()
 	{
+		SignalManager::GetInstance().Connect<InputSignal>(this);
 	}
 
 	void CameraSystem::Update(float dt)
@@ -36,6 +38,23 @@ namespace SmashEngine
 
 	void CameraSystem::Release()
 	{
+	}
+
+	void CameraSystem::OnSignal(InputSignal signal)
+	{
+		switch (signal.GetType())
+		{
+		case INPUT_MouseMoveDown:
+			break;
+		case INPUT_MouseMoveUp:
+			break;
+		case INPUT_MouseMoveLeft:
+			break;
+		case INPUT_MouseMoveRight:
+			break;
+		default:
+			break;
+		}
 	}
 
 	SystemType CameraSystem::GetType() const

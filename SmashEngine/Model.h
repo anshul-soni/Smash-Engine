@@ -10,11 +10,12 @@ namespace SmashEngine
 		explicit Model(const std::string& filePath);
 		bool LoadModel();
 		void Render(float dt);
+		void BindVAO()const;
 		~Model();
 	private:
 		const std::string key;
 		bool bLoaded;
-		VertexBufferObject vboModelData;
+		VertexBufferObject* vboModelData;
 		unsigned int VAO;
 		std::vector<Texture*> textures;
 		std::vector<int> meshStartIndices;

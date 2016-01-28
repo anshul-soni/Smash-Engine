@@ -79,6 +79,8 @@
     <ClCompile Include="GameLogicSystem.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="InputSignal.cpp" />
+    <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="MainEngine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -89,6 +91,7 @@
     <ClCompile Include="ResourcePath.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
+    <ClCompile Include="SignalManager.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -102,12 +105,19 @@
     <ClInclude Include="CameraSystem.h" />
     <ClInclude Include="EngineType.h" />
     <ClInclude Include="GameLogicSystem.h" />
+    <ClInclude Include="InputSignal.h" />
+    <ClInclude Include="InputSystem.h" />
+    <ClInclude Include="InputType.h" />
     <ClInclude Include="ModelManager.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="ResourcePath.h" />
     <ClInclude Include="ResourceType.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderManager.h" />
+    <ClInclude Include="SignalHandler.h" />
+    <ClInclude Include="SignalManager.h" />
+    <ClInclude Include="SignalSource.h" />
+    <ClInclude Include="sigslot.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentCreator.h" />
@@ -128,6 +138,10 @@
     <ClInclude Include="VertexBufferObject.h" />
     <ClInclude Include="WatchSystem.h" />
     <ClInclude Include="WindowSystem.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resources\shaders\normal.frag" />
+    <None Include="resources\shaders\normal.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
