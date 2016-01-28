@@ -80,7 +80,6 @@
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="InputSignal.cpp" />
-    <ClCompile Include="InputSystem.cpp" />
     <ClCompile Include="MainEngine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
@@ -106,7 +105,6 @@
     <ClInclude Include="EngineType.h" />
     <ClInclude Include="GameLogicSystem.h" />
     <ClInclude Include="InputSignal.h" />
-    <ClInclude Include="InputSystem.h" />
     <ClInclude Include="InputType.h" />
     <ClInclude Include="ModelManager.h" />
     <ClInclude Include="Render.h" />

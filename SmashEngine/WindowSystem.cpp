@@ -7,6 +7,18 @@ namespace SmashEngine
 	{
 	}
 
+	void WindowSystem::MouseCallBack(GLFWwindow* window, int button, int action, int mods)
+	{
+	}
+
+	void WindowSystem::KeyBoardCallBack(GLFWwindow* window, int key, int scancode, int action, int mode)
+	{
+		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		{
+			glfwSetWindowShouldClose(window, GL_TRUE);
+		}
+	}
+
 	WindowSystem & WindowSystem::GetInstance()
 	{
 		static WindowSystem instance;
@@ -28,7 +40,8 @@ namespace SmashEngine
 			std::cout << "failed to create window" << std::endl;
 			glfwTerminate();
 		}
-		//glfwSetKeyCallback(window, Key_callback);
+		glfwSetKeyCallback(window, KeyBoardCallBack);
+		glfwSetMouseButtonCallback(window, MouseCallBack);
 		glewExperimental = GL_TRUE;
 		if (glewInit() != GLEW_OK)
 		{
@@ -44,7 +57,13 @@ namespace SmashEngine
 
 	void WindowSystem::Update(float dt)
 	{
-		int k = 0;
+		if (!glfwWindowShouldClose(window))
+		{
+			glfwPollEvents();
+		}else
+		{
+			
+		}
 	}
 
 	void WindowSystem::Release()

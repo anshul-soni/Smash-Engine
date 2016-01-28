@@ -21,9 +21,9 @@ namespace SmashEngine {
 				channel->connect(handler, &SignalHandler<T>::OnSignal);
 			} else {
 				// If the template does not have a mapping channel, log error and return.
-				std::stringstream message;
-				message << "Missing channel for " << typeid(T).name();
-				Logger::GetInstance().Error(message.str());
+				std::string message = "Missing channel for ";
+				message += typeid(T).name();
+				std::cout << message;
 			}
 		}
 
@@ -37,9 +37,9 @@ namespace SmashEngine {
 				channel->emit(signal);
 			} else {
 				// If the template does not have a mapping channel, log error and return.
-				std::stringstream message;
-				message << "Missing channel for " << typeid(T).name();
-				Logger::GetInstance().Error(message.str());
+				std::string message = "Missing channel for ";
+				message += typeid(T).name();
+				std::cout << message;
 			}
 		}
 
@@ -52,8 +52,9 @@ namespace SmashEngine {
 		void CreateChannel() {
 			if (HasChannel<T>()) {
 				// The channel already exists, log a warning.
-				std::stringstream message;
-				message << "Channel for " << typeid(T).name() << " has already been created";
+				std::string message = "Channel for ";
+				message += typeid(T).name();
+				message += " has already been created";
 				std::cout << message;
 			} else {
 				// The channel does not exist. Creating a new one.

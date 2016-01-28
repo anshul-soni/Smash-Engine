@@ -123,9 +123,6 @@
     <ClCompile Include="InputSignal.cpp">
       <Filter>Input</Filter>
     </ClCompile>
-    <ClCompile Include="InputSystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h">
@@ -232,9 +229,6 @@
     </ClInclude>
     <ClInclude Include="InputType.h">
       <Filter>Input</Filter>
-    </ClInclude>
-    <ClInclude Include="InputSystem.h">
-      <Filter>Systems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

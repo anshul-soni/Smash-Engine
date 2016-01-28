@@ -12,6 +12,7 @@ namespace SmashEngine
 		SYSTEM_Watch,
 		SYSTEM_Camera,
 		SYSTEM_ObjectManager,
-		SYSTEM_GameLogic
+		SYSTEM_GameLogic,
+		SYSTEM_Input
 	};
 }

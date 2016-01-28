@@ -17,6 +17,8 @@ namespace SmashEngine
 		WindowSystem();
 		const SystemType type;
 		GLFWwindow* window;
+		static void MouseCallBack(GLFWwindow* window, int button, int action, int mods);
+		static void KeyBoardCallBack(GLFWwindow* window, int key, int scancode, int action, int mode);
 		WindowSystem(WindowSystem&) = delete;
 		WindowSystem& operator=(const WindowSystem) = delete;
 	};
