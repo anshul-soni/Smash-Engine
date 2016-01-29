@@ -18,7 +18,7 @@ namespace SmashEngine
 		RegisterComponent(Transform);
 		RegisterComponent(Render);
 		ObjectFactory::GetInstance().Create("test");
-		//ObjectFactory::GetInstance().Create("cube");
+		ObjectFactory::GetInstance().Create("cube");
 	}
 
 	void GameLogicSystem::Update(float dt)

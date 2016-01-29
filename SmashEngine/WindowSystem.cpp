@@ -81,19 +81,19 @@ namespace SmashEngine
 			SignalManager::GetInstance().Signal(ENGINE_TERMINATE);
 			glfwSetWindowShouldClose(window, GL_TRUE);
 		}
-		if (key == GLFW_KEY_W &&  action == GLFW_PRESS)
+		if (key == GLFW_KEY_W &&  action == GLFW_KEY_DOWN)
 		{
 			SignalManager::GetInstance().Signal(CAMERA_UP);
 		}
-		if (key == GLFW_KEY_A &&  action == GLFW_PRESS)
+		if (key == GLFW_KEY_A &&  action == GLFW_KEY_DOWN)
 		{
 			SignalManager::GetInstance().Signal(CAMERA_LEFT);
 		}
-		if (key == GLFW_KEY_S &&  action == GLFW_PRESS)
+		if (key == GLFW_KEY_S &&  action == GLFW_KEY_DOWN)
 		{
 			SignalManager::GetInstance().Signal(CAMERA_DOWN);
 		}
-		if (key == GLFW_KEY_D &&  action == GLFW_PRESS)
+		if (key == GLFW_KEY_D &&  action == GLFW_KEY_DOWN)
 		{
 			SignalManager::GetInstance().Signal(CAMERA_RIGHT);
 		}

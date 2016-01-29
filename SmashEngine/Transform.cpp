@@ -15,26 +15,25 @@ namespace SmashEngine
 
 	void Transform::Deserialize(tinyxml2::XMLElement* pElement)
 	{
-		glm::vec3 translate, rotation, scale;
 
 		if (pElement->FirstChildElement("position") != nullptr)
 		{
-			if (pElement->FirstChildElement("position")->QueryFloatAttribute("x", &translate.x) != tinyxml2::XML_SUCCESS)
+			if (pElement->FirstChildElement("position")->QueryFloatAttribute("x", &position.x) != tinyxml2::XML_SUCCESS)
 			{
-				translate.x = 0;
+				position.x = 0;
 			}
-			if (pElement->FirstChildElement("position")->QueryFloatAttribute("y", &translate.y) != tinyxml2::XML_SUCCESS)
+			if (pElement->FirstChildElement("position")->QueryFloatAttribute("y", &position.y) != tinyxml2::XML_SUCCESS)
 			{
-				translate.y = 0;
+				position.y = 0;
 			}
-			if (pElement->FirstChildElement("position")->QueryFloatAttribute("z", &translate.z) != tinyxml2::XML_SUCCESS)
+			if (pElement->FirstChildElement("position")->QueryFloatAttribute("z", &position.z) != tinyxml2::XML_SUCCESS)
 			{
-				translate.z = 0;
+				position.z = 0;
 			}
 		}
 		else
 		{
-			translate = glm::vec3(0);
+			position = glm::vec3(0);
 		}
 		if (pElement->FirstChildElement("rotation") != nullptr)
 		{
