@@ -110,10 +110,6 @@ namespace SmashEngine
 			auto oldIndex = materialIndices[i];
 			materialIndices[i] = materialRemap[oldIndex];
 		}
-		//remove this
-		//glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
-		//glPointSize(10);
-		//remove this
 		glGenVertexArrays(1, &VAO);
 		glBindVertexArray(VAO);
 		vboModelData->BindVBO();
@@ -122,10 +118,10 @@ namespace SmashEngine
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(aiVector3D) + sizeof(aiVector2D), 0);
 
 		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(aiVector3D) + sizeof(aiVector2D), reinterpret_cast<void*>(sizeof(aiVector3D)));
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(aiVector3D) + sizeof(aiVector2D), (void*)(sizeof(aiVector3D)));
 
 		glEnableVertexAttribArray(2);
-		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(aiVector3D) + sizeof(aiVector2D), reinterpret_cast<void*>(sizeof(aiVector3D) + sizeof(aiVector2D)));
+		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(aiVector3D) + sizeof(aiVector2D), (void*)(sizeof(aiVector3D) + sizeof(aiVector2D)));
 		return bLoaded = true;
 	}
 
@@ -139,13 +135,7 @@ namespace SmashEngine
 			auto matIndex = materialIndices[i];
 			if (textures.size()>0)
 				textures[matIndex]->BindTexture();
-			//uncomment this
 			glDrawArrays(GL_TRIANGLES, meshStartIndices[i], meshSizes[i]);
-			//uncomment this
-
-			//remove this
-			//glDrawArrays(GL_POINTS, 0, 1);
-			//remove this
 		}
 	}
 

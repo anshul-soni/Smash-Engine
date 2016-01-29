@@ -24,7 +24,8 @@ namespace SmashEngine
 		glm::mat4 projectionMatrix;
 		glm::mat4 viewMatrix;
 		glm::vec3 position;
-		glm::vec3 rotation;
+		float horizontalAngle;
+		float verticalAngle;
 		float cameraSpeed;
 		float deltaTime;
 		glm::vec3 right;

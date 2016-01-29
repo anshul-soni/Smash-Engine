@@ -34,8 +34,8 @@ void main()
 	//color.rgb = materialAmbientColor +
 	//		materialDiffuseColor*lightColor*lightPower*cosTheta/(distance*distance)+
 	//		materialSpecularColor*lightColor*lightPower*pow(cosAlpha,5)/(distance*distance);
-	//color.rgb = materialAmbientColor +
-	//		materialDiffuseColor+
-	//		materialSpecularColor;
-	color.rgba = vec4(1,0,0,0.3);
+	color.rgb = materialAmbientColor +
+			materialDiffuseColor+
+			materialSpecularColor;
+	//color.rgba = vec4(1,0,0,0.3);
 }

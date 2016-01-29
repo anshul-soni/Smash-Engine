@@ -11,15 +11,17 @@ namespace SmashEngine
 	}
 	CameraSystem::CameraSystem() :
 		type(SYSTEM_Camera),
-		fov(45),
+		fov(45.0f),
 		projectionMatrix(glm::mat4(1)),
 		viewMatrix(glm::mat4(1)),
-		position(glm::vec3(0,0,5)),
+		position(glm::vec3(0, 0, 5)),
 		cameraSpeed(0.005f),
 		deltaTime(0),
 		right(glm::vec3(1)),
 		up(glm::vec3(1)),
-		direction(glm::vec3(1))
+		direction(glm::vec3(1)),
+		horizontalAngle(3.14f),
+		verticalAngle(0.0f)
 	{
 	}
 
@@ -32,9 +34,9 @@ namespace SmashEngine
 	{
 		deltaTime = dt;
 
-		direction = glm::vec3(cos(rotation.y)*sin(rotation.x), sin(rotation.y), cos(rotation.y)*cos(rotation.x));
+		direction = glm::vec3(cos(verticalAngle)*sin(horizontalAngle), sin(verticalAngle), cos(verticalAngle)*cos(horizontalAngle));
 
-		right = glm::vec3(sin(rotation.x - 3.14f / 2.0f), 0, cos(rotation.x - 3.14f / 2.0f));
+		right = glm::vec3(sin(horizontalAngle - 3.14f / 2.0f), 0, cos(horizontalAngle - 3.14f / 2.0f));
 
 		up = glm::cross(right, direction);
 

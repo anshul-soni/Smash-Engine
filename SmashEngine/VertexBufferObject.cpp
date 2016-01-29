@@ -24,6 +24,7 @@ namespace SmashEngine
 		dataUploaded = false;
 		data.clear();
 	}
+
 	void* VertexBufferObject::MapBufferToMemory(int uh)const
 	{
 		if (!dataUploaded)
@@ -31,6 +32,7 @@ namespace SmashEngine
 		auto res = glMapBuffer(bufferType, uh);
 		return res;
 	}
+
 	void* VertexBufferObject::MapSubBufferToMemory(int uh, unsigned int offset, unsigned int length)const
 	{
 		if (!dataUploaded)
@@ -42,11 +44,13 @@ namespace SmashEngine
 	{
 		glUnmapBuffer(bufferType);
 	}
+
 	void VertexBufferObject::BindVBO(int bufferType)
 	{
 		this->bufferType = bufferType;
 		glBindBuffer(bufferType, buffer);
 	}
+
 	void VertexBufferObject::UploadDataToGPU(int uh)
 	{
 		glBufferData(bufferType, data.size(), &data[0], uh);
@@ -66,14 +70,10 @@ namespace SmashEngine
 		return reinterpret_cast<void*>(data[0]);
 	}
 
-
-
 	unsigned int VertexBufferObject::GetBufferID()const
 	{
 		return buffer;
 	}
-
-
 
 	int VertexBufferObject::GetCurrentSize()const
 	{
