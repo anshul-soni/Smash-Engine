@@ -52,6 +52,9 @@
     <Filter Include="Signal\SignalChannels">
       <UniqueIdentifier>{ec1882b7-2b5f-48b5-9ea0-10354ce0f1ea}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Editor">
+      <UniqueIdentifier>{0f94d307-1860-4efc-884e-b772a481fb0d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -131,6 +134,21 @@
     </ClCompile>
     <ClCompile Include="Physics.cpp">
       <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="EditorSystem.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_demo.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_draw.cpp">
+      <Filter>Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="imgui_impl_glfw_gl3.cpp">
+      <Filter>Editor</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -257,6 +275,21 @@
     <ClInclude Include="PhysicsState.h">
       <Filter>Physics</Filter>
     </ClInclude>
+    <ClInclude Include="EditorSystem.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="imconfig.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_impl_glfw_gl3.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="imgui_internal.h">
+      <Filter>Editor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\normal.frag">
@@ -264,6 +297,9 @@
     </None>
     <None Include="resources\shaders\normal.vert">
       <Filter>Shaders</Filter>
+    </None>
+    <None Include="imgui.ini">
+      <Filter>Editor</Filter>
     </None>
   </ItemGroup>
 </Project>

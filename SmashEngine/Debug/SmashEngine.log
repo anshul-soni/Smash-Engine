@@ -1,14 +1,49 @@
-﻿Build started 1/29/2016 5:25:31 PM.
+﻿Build started 1/29/2016 7:56:42 PM.
      1>Project "C:\Users\anshul.soni\Documents\SmashEngine\SmashEngine\SmashEngine.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\SmashEngine.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Physics.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Debug\SmashEngine.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Body.cpp CameraSystem.cpp EditorSystem.cpp GameLogicSystem.cpp GameObject.cpp Graphics.cpp imgui.cpp imgui_demo.cpp imgui_draw.cpp imgui_impl_glfw_gl3.cpp InputSignal.cpp MainEngine.cpp main.cpp Model.cpp ModelManager.cpp ObjectFactory.cpp ObjectManager.cpp Physics.cpp Render.cpp ResourcePath.cpp Shader.cpp ShaderManager.cpp SignalManager.cpp stdafx.cpp Texture.cpp TextureManager.cpp tinyxml2.cpp Transform.cpp VertexBufferObject.cpp WatchSystem.cpp WindowSystem.cpp
+         WindowSystem.cpp
+         WatchSystem.cpp
+         VertexBufferObject.cpp
+         Transform.cpp
+         tinyxml2.cpp
+         TextureManager.cpp
+         Texture.cpp
+         stdafx.cpp
+         SignalManager.cpp
+         ShaderManager.cpp
+         Shader.cpp
+         ResourcePath.cpp
+         Render.cpp
          Physics.cpp
+         ObjectManager.cpp
+         ObjectFactory.cpp
+         ModelManager.cpp
+         Model.cpp
+         main.cpp
+         MainEngine.cpp
+         InputSignal.cpp
+         imgui_impl_glfw_gl3.cpp
+         imgui_draw.cpp
+         imgui_demo.cpp
+         imgui.cpp
+         Graphics.cpp
+         GameObject.cpp
+         GameLogicSystem.cpp
+         EditorSystem.cpp
+         CameraSystem.cpp
+         Body.cpp
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\anshul.soni\Documents\SmashEngine\Debug\SmashEngine.exe" /INCREMENTAL /NOLOGO opengl32.lib glfw3.lib glew32s.lib glew32.lib SOIL.lib assimpd.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\anshul.soni\Documents\SmashEngine\Debug\SmashEngine.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\anshul.soni\Documents\SmashEngine\Debug\SmashEngine.lib" /MACHINE:X86 Debug\Body.obj
          Debug\CameraSystem.obj
+         Debug\EditorSystem.obj
          Debug\GameLogicSystem.obj
          Debug\GameObject.obj
          Debug\Graphics.obj
+         Debug\imgui.obj
+         Debug\imgui_demo.obj
+         Debug\imgui_draw.obj
+         Debug\imgui_impl_glfw_gl3.obj
          Debug\InputSignal.obj
          Debug\MainEngine.obj
          Debug\main.obj
@@ -30,9 +65,10 @@
          Debug\VertexBufferObject.obj
          Debug\WatchSystem.obj
          Debug\WindowSystem.obj
+     1>LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
          SmashEngine.vcxproj -> C:\Users\anshul.soni\Documents\SmashEngine\Debug\SmashEngine.exe
      1>Done Building Project "C:\Users\anshul.soni\Documents\SmashEngine\SmashEngine\SmashEngine.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.20
+Time Elapsed 00:00:24.89

@@ -7,6 +7,7 @@
 #include "ObjectFactory.h"
 #include "GameLogicSystem.h"
 #include "SignalManager.h"
+#include "EditorSystem.h"
 
 namespace SmashEngine
 {
@@ -31,6 +32,7 @@ namespace SmashEngine
 			CameraSystem::GetInstance().Update(WatchSystem::GetInstance().Getdt());
 			ObjectFactory::GetInstance().Update(WatchSystem::GetInstance().Getdt());
 			ObjectManager::GetInstance().Update(WatchSystem::GetInstance().Getdt());
+			//EditorSystem::GetInstance().Update(WatchSystem::GetInstance().Getdt());
 			GameLogicSystem::GetInstance().Update(WatchSystem::GetInstance().Getdt());
 		}
 	}
@@ -48,6 +50,7 @@ namespace SmashEngine
 		CameraSystem::GetInstance().Init();
 		ObjectFactory::GetInstance().Init();
 		ObjectManager::GetInstance().Init();
+		//EditorSystem::GetInstance().Init();
 		GameLogicSystem::GetInstance().Init();
 	}
 

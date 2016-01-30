@@ -1,0 +1,40 @@
+#include "stdafx.h"
+#include "EditorSystem.h"
+#include "imgui_impl_glfw_gl3.h"
+#include "WindowSystem.h"
+
+namespace SmashEngine
+{
+	EditorSystem& EditorSystem::GetInstance()
+	{
+		static EditorSystem instance;
+		return instance;
+	}
+
+	void EditorSystem::Init()
+	{
+		ImGui_ImplGlfwGL3_Init(WindowSystem::GetInstance().GetWindow(), true);
+	}
+
+	void EditorSystem::Update(float dt)
+	{
+		ImGui::Render();
+	}
+
+	SystemType EditorSystem::GetType() const
+	{
+		return type;
+	}
+
+	void EditorSystem::Release()
+	{
+	}
+
+	EditorSystem::~EditorSystem()
+	{
+	}
+
+	EditorSystem::EditorSystem() :type(SYSTEM_Editor)
+	{
+	}
+}

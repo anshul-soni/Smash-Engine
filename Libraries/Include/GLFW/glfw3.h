@@ -82,7 +82,6 @@ extern "C" {
  */
 #ifndef APIENTRY
  #ifdef _WIN32
-  #define APIENTRY __stdcall
  #else
   #define APIENTRY
  #endif

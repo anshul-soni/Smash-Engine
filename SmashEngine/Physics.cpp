@@ -86,9 +86,13 @@ namespace SmashEngine
 			auto a = force*(1 / bodyComponent->GetMass());;
 			auto position = transformComponent->GetPosition() + bodyComponent->GetVelocity()*debugDt;
 			auto velocity = bodyComponent->GetVelocity() + a*debugDt;
-			velocity = velocity*damping;
+			velocity *= std::pow(damping, debugDt);
 			transformComponent->SetPosition(position);
-			bodyComponent->SetVelocity(velocity);
+			//Dont se the velocity of the object
+			if (state != PHYSICS_FORWARD && state != PHYSICS_REVERSE)
+			{
+				bodyComponent->SetVelocity(velocity);
+			}
 		}
 		switch (state)
 		{

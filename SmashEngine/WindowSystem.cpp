@@ -4,7 +4,6 @@
 #include "EngineState.h"
 #include "CameraSignal.h"
 #include "DebugSignal.h"
-
 namespace SmashEngine
 {
 	WindowSystem::WindowSystem() :type(SYSTEM_Window), window(nullptr)
