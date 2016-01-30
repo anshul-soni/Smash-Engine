@@ -75,6 +75,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Body.cpp" />
     <ClCompile Include="CameraSystem.cpp" />
     <ClCompile Include="GameLogicSystem.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -86,6 +87,7 @@
     <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="ResourcePath.cpp" />
     <ClCompile Include="Shader.cpp" />
@@ -101,14 +103,18 @@
     <ClCompile Include="WindowSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Body.h" />
     <ClInclude Include="CameraSignal.h" />
     <ClInclude Include="CameraSystem.h" />
+    <ClInclude Include="DebugSignal.h" />
     <ClInclude Include="EngineState.h" />
     <ClInclude Include="EngineType.h" />
     <ClInclude Include="GameLogicSystem.h" />
     <ClInclude Include="InputSignal.h" />
     <ClInclude Include="InputType.h" />
     <ClInclude Include="ModelManager.h" />
+    <ClInclude Include="Physics.h" />
+    <ClInclude Include="PhysicsState.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="ResourcePath.h" />
     <ClInclude Include="ResourceType.h" />

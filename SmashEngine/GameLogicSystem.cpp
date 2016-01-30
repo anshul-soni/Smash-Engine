@@ -3,6 +3,7 @@
 #include "ComponentCreator.h"
 #include "Transform.h"
 #include "Render.h"
+#include "Body.h"
 
 namespace SmashEngine
 {
@@ -17,6 +18,7 @@ namespace SmashEngine
 		//component you register
 		RegisterComponent(Transform);
 		RegisterComponent(Render);
+		RegisterComponent(Body);
 		ObjectFactory::GetInstance().Create("test");
 		ObjectFactory::GetInstance().Create("cube");
 	}

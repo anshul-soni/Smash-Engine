@@ -11,7 +11,7 @@ namespace SmashEngine
 		Render();
 		void Initialize()override;
 		void Deserialize(tinyxml2::XMLElement* pElement)override;
-		void Update(float dt)override;
+		void Draw();
 		void Destroy()override;
 		void SetShader(const std::string& key);
 		void SetModel(const std::string& key);

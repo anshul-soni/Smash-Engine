@@ -24,16 +24,12 @@ namespace SmashEngine
 			SetModel(pElement->FirstChildElement("model")->GetText());
 	}
 
-	void Render::Update(float dt)
+	void Render::Draw()
 	{
 		auto Projection = CameraSystem::GetInstance().GetProjectionMatrix();
 		auto View = CameraSystem::GetInstance().GetViewMatrix();
 		auto Model = glm::mat4(1.0f);
 		auto MVP = Projection*View;
-
-
-		//For Wireframe uncomment next statement
-		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 		model->BindVAO();
 		auto matrixID = glGetUniformLocation(shader->Program, "MVP");
 		auto viewMatrixID = glGetUniformLocation(shader->Program, "V");
@@ -49,7 +45,7 @@ namespace SmashEngine
 		glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
 		glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, &Model[0][0]);
 		glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, &View[0][0]);
-		model->Render(dt);
+		model->Render();
 
 	}
 

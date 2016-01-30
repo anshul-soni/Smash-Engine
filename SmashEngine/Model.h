@@ -9,7 +9,7 @@ namespace SmashEngine
 	public:
 		explicit Model(const std::string& filePath);
 		bool LoadModel();
-		void Render(float dt);
+		void Render();
 		void BindVAO()const;
 		~Model();
 	private:

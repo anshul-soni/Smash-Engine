@@ -20,64 +20,59 @@ namespace SmashEngine
 		{
 			if (pElement->FirstChildElement("position")->QueryFloatAttribute("x", &position.x) != tinyxml2::XML_SUCCESS)
 			{
-				position.x = 0;
+				std::cout << "error reading position" << std::endl;
 			}
 			if (pElement->FirstChildElement("position")->QueryFloatAttribute("y", &position.y) != tinyxml2::XML_SUCCESS)
 			{
-				position.y = 0;
+				std::cout << "error reading position" << std::endl;
 			}
 			if (pElement->FirstChildElement("position")->QueryFloatAttribute("z", &position.z) != tinyxml2::XML_SUCCESS)
 			{
-				position.z = 0;
+				std::cout << "error reading position" << std::endl;
 			}
-		}
-		else
+		}else
 		{
-			position = glm::vec3(0);
+			std::cout << "error reading position" << std::endl;
 		}
 		if (pElement->FirstChildElement("rotation") != nullptr)
 		{
 			if (pElement->FirstChildElement("rotation")->QueryFloatAttribute("x", &rotation.x) != tinyxml2::XML_SUCCESS)
 			{
-				rotation.x = 0;
+				std::cout << "error reading rotation" << std::endl;
 			}
 			if (pElement->FirstChildElement("rotation")->QueryFloatAttribute("y", &rotation.y) != tinyxml2::XML_SUCCESS)
 			{
-				rotation.y = 0;
+				std::cout << "error reading rotation" << std::endl;
 			}
 			if (pElement->FirstChildElement("rotation")->QueryFloatAttribute("z", &rotation.z) != tinyxml2::XML_SUCCESS)
 			{
-				rotation.z = 0;
+				std::cout << "error reading rotation" << std::endl;
 			}
 		}
 		else
 		{
-			rotation = glm::vec3(0);
+			std::cout << "error reading rotation" << std::endl;
 		}
 		if (pElement->FirstChildElement("scale") != nullptr)
 		{
 			if (pElement->FirstChildElement("scale")->QueryFloatAttribute("x", &scale.x) != tinyxml2::XML_SUCCESS)
 			{
-				scale.x = 1;
+				std::cout << "error reading scale" << std::endl;
 			}
 			if (pElement->FirstChildElement("scale")->QueryFloatAttribute("y", &scale.y) != tinyxml2::XML_SUCCESS)
 			{
-				scale.y = 1;
+				std::cout << "error reading scale" << std::endl;
 			}
 			if (pElement->FirstChildElement("scale")->QueryFloatAttribute("z", &scale.z) != tinyxml2::XML_SUCCESS)
 			{
-				scale.z = 1;
+				std::cout << "error reading scale" << std::endl;
 			}
-		}
-		else
+		}else
 		{
-			scale = glm::vec3(1);
+			std::cout << "error reading scale" << std::endl;
 		}
 	}
 
-	void Transform::Update(float dt)
-	{
-	}
 
 	void Transform::Destroy()
 	{

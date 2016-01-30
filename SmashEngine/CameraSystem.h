@@ -1,7 +1,6 @@
 #pragma once
 #include "System.h"
 #include "SignalHandler.h"
-#include "InputSignal.h"
 #include "CameraSignal.h"
 
 namespace SmashEngine

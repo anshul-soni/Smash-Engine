@@ -19,21 +19,17 @@ namespace SmashEngine
 
 	void ObjectManager::Update(float dt)
 	{
-		for (auto object : GameObjects)
-		{
-			object.second->Update(dt);
-		}
-		for (auto object : ObjectsToBeDeleted)
+		for (auto object : objectsToBeDeleted)
 		{
 			//make sure that the object exists and was not already deleted
-			if(GameObjects.find(object->GetId())!=GameObjects.end())
+			if(gameObjects.find(object->GetId())!=gameObjects.end())
 			{
 				auto id = object->GetId();
 				delete object;
-				GameObjects.erase(id);
+				gameObjects.erase(id);
 			}
 		}
-		ObjectsToBeDeleted.clear();
+		objectsToBeDeleted.clear();
 	}
 
 	void ObjectManager::Release()
@@ -42,34 +38,39 @@ namespace SmashEngine
 
 	void ObjectManager::AddObject(GameObject* object)
 	{
-		GameObjects[object->GetId()] = object;
+		gameObjects[object->GetId()] = object;
 	}
 
 	void ObjectManager::DeleteObject(GameObject* object)
 	{
-		if (GameObjects.find(object->GetId())!=GameObjects.end())
+		if (gameObjects.find(object->GetId())!=gameObjects.end())
 		{
-			ObjectsToBeDeleted.insert(GameObjects[object->GetId()]);
+			objectsToBeDeleted.insert(gameObjects[object->GetId()]);
 		}
 	}
 
 	void ObjectManager::DeleteObject(const std::string objectName)
 	{
-		for (auto object:GameObjects)
+		for (auto object:gameObjects)
 		{
 			if (object.second->GetName()==objectName)
 			{
-				ObjectsToBeDeleted.insert(object.second);
+				objectsToBeDeleted.insert(object.second);
 			}
 		}
 	}
 
 	void ObjectManager::DeleteObject(const unsigned objectId)
 	{
-		if (GameObjects.find(objectId) != GameObjects.end())
+		if (gameObjects.find(objectId) != gameObjects.end())
 		{
-			ObjectsToBeDeleted.insert(GameObjects[objectId]);
+			objectsToBeDeleted.insert(gameObjects[objectId]);
 		}
+	}
+
+	const std::unordered_map<unsigned, GameObject*>& ObjectManager::GetObjects() const
+	{
+		return gameObjects;
 	}
 
 	SystemType ObjectManager::GetType() const

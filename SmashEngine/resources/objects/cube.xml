@@ -8,4 +8,8 @@
 		<model>cube.obj</model>
 		<shader>normal</shader>
 	</Component>
+	<Component type = "Body">
+		<velocity x="0.0f" y="0.0f" z="0.0f"/>
+		<mass>0.1</mass>
+	</Component>
 </GameObject>

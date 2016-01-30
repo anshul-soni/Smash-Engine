@@ -3,10 +3,11 @@
 #include "SignalManager.h"
 #include "EngineState.h"
 #include "CameraSignal.h"
+#include "DebugSignal.h"
 
 namespace SmashEngine
 {
-	WindowSystem::WindowSystem() :type(SYSTEM_Window)
+	WindowSystem::WindowSystem() :type(SYSTEM_Window), window(nullptr)
 	{
 	}
 
@@ -26,7 +27,7 @@ namespace SmashEngine
 
 		this->window = glfwCreateWindow(1024, 768, "Smash Engine", nullptr, nullptr);
 		glfwMakeContextCurrent(window);
-		if (window == NULL)
+		if (window == nullptr)
 		{
 			std::cout << "failed to create window" << std::endl;
 			glfwTerminate();
@@ -81,21 +82,37 @@ namespace SmashEngine
 			SignalManager::GetInstance().Signal(ENGINE_TERMINATE);
 			glfwSetWindowShouldClose(window, GL_TRUE);
 		}
-		if (key == GLFW_KEY_W &&  action == GLFW_KEY_DOWN)
+		if (key == GLFW_KEY_W &&  action == GLFW_REPEAT)
 		{
 			SignalManager::GetInstance().Signal(CAMERA_UP);
 		}
-		if (key == GLFW_KEY_A &&  action == GLFW_KEY_DOWN)
+		if (key == GLFW_KEY_A &&  action == GLFW_REPEAT)
 		{
 			SignalManager::GetInstance().Signal(CAMERA_LEFT);
 		}
-		if (key == GLFW_KEY_S &&  action == GLFW_KEY_DOWN)
+		if (key == GLFW_KEY_S &&  action == GLFW_REPEAT)
 		{
 			SignalManager::GetInstance().Signal(CAMERA_DOWN);
 		}
-		if (key == GLFW_KEY_D &&  action == GLFW_KEY_DOWN)
+		if (key == GLFW_KEY_D &&  action == GLFW_REPEAT)
 		{
 			SignalManager::GetInstance().Signal(CAMERA_RIGHT);
+		}
+		if (key == GLFW_KEY_1 && action == GLFW_PRESS)
+		{
+			SignalManager::GetInstance().Signal(DEBUG_TOOGLE);
+		}
+		if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+		{
+			SignalManager::GetInstance().Signal(DEBUG_TOOGLE_PLAY);
+		}
+		if (key == GLFW_KEY_RIGHT && (action == GLFW_PRESS|| action == GLFW_REPEAT))
+		{
+			SignalManager::GetInstance().Signal(DEBUG_FORWARD);
+		}
+		if (key == GLFW_KEY_LEFT && (action == GLFW_PRESS || action == GLFW_REPEAT))
+		{
+			SignalManager::GetInstance().Signal(DEBUG_REVERSE);
 		}
 	}
 

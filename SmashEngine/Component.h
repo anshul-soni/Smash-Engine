@@ -13,7 +13,6 @@ namespace SmashEngine
 		Component() :typeId(TYPE_None), object(nullptr){};
 		virtual void	Initialize(){}
 		virtual void	Deserialize(tinyxml2::XMLElement* pElement){}
-		virtual void	Update(float dt){}
 		virtual void	Destroy(){}
 		GameObject*		GetOwner()const{ return object; }
 	private:

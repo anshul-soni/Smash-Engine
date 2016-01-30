@@ -3,6 +3,7 @@
 #include "WindowSystem.h"
 #include "Graphics.h"
 #include "WatchSystem.h"
+#include "Physics.h"
 
 int main()
 {
@@ -13,6 +14,12 @@ int main()
 	auto graphicsEngine = new SmashEngine::Graphics();
 	//Insert the graphics engine into the main engine
 	engine->InsertEngine(graphicsEngine);
+
+	//Create an instance of the graphic engine here
+	auto physicsEngine = new SmashEngine::Physics();
+	//Insert the graphics engine into the main engine
+	engine->InsertEngine(physicsEngine);
+
 	//Initialize All the Engines and Systems
 	engine->Init();
 	//Update All the Engines and Systems

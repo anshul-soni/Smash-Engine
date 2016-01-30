@@ -11,7 +11,6 @@ namespace SmashEngine
 
 		void				Initialize();
 		void				Destroy();
-		void				Update(float dt);
 		Component*			GetComponent(ComponentType typeID);
 		void				AddComponent(ComponentType typeID, Component *component);
 		unsigned int		GetId()const;

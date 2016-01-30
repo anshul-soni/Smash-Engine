@@ -2,21 +2,28 @@
 #include "Engine.h"
 #include "SignalHandler.h"
 #include "DebugSignal.h"
+#include "PhysicsState.h"
 
 namespace SmashEngine
 {
-	class Graphics:public Engine,
+	class GameObject;
+
+	class Physics:public Engine,
 		public SignalHandler<DebugSignal>
 	{
 	public:
-		Graphics();
+		Physics();
 		void Update(float dt)override;
-		void Init()override;
 		void OnSignal(DebugSignal signal)override;
+		void Init()override;
 		EngineType GetType()const override;
-		~Graphics();
 	private:
+		void CalculatePosition(GameObject& objt);
 		const EngineType type;
-		bool debugDraw;
+		float fixedDt;
+		float debugDt;
+		float gravity;
+		float damping;
+		PhysicsState state;
 	};
 }

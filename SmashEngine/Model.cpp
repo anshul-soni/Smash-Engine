@@ -125,7 +125,7 @@ namespace SmashEngine
 		return bLoaded = true;
 	}
 
-	void Model::Render(float dt)
+	void Model::Render()
 	{
 		if (!bLoaded)
 			return;

@@ -24,14 +24,6 @@ namespace SmashEngine
 	{
 	}
 
-	void GameObject::Update(float dt)
-	{
-		for (auto component : components)
-		{
-			component.second->Update(dt);
-		}
-	}
-
 	Component* GameObject::GetComponent(ComponentType typeID)
 	{
 		if (components.find(typeID)!=components.end())

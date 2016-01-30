@@ -49,6 +49,9 @@
     <Filter Include="Input">
       <UniqueIdentifier>{96d0bcdd-feb4-4f04-a572-5a4a045d7d85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Signal\SignalChannels">
+      <UniqueIdentifier>{ec1882b7-2b5f-48b5-9ea0-10354ce0f1ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -122,6 +125,12 @@
     </ClCompile>
     <ClCompile Include="InputSignal.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Body.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="Physics.cpp">
+      <Filter>Physics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -234,7 +243,19 @@
       <Filter>Signal</Filter>
     </ClInclude>
     <ClInclude Include="CameraSignal.h">
-      <Filter>Input</Filter>
+      <Filter>Signal\SignalChannels</Filter>
+    </ClInclude>
+    <ClInclude Include="DebugSignal.h">
+      <Filter>Signal\SignalChannels</Filter>
+    </ClInclude>
+    <ClInclude Include="Body.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="Physics.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsState.h">
+      <Filter>Physics</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
