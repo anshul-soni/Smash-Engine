@@ -14,11 +14,15 @@ namespace SmashEngine
 	void EditorSystem::Init()
 	{
 		ImGui_ImplGlfwGL3_Init(WindowSystem::GetInstance().GetWindow(), true);
+
+		ImGui_ImplGlfwGL3_NewFrame();
 	}
 
 	void EditorSystem::Update(float dt)
 	{
+		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		ImGui::Render();
+		ImGui_ImplGlfwGL3_NewFrame();
 	}
 
 	SystemType EditorSystem::GetType() const

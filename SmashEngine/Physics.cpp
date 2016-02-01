@@ -4,6 +4,7 @@
 #include "ObjectManager.h"
 #include "Transform.h"
 #include "SignalManager.h"
+#include "imgui.h"
 
 namespace SmashEngine
 {
@@ -110,6 +111,17 @@ namespace SmashEngine
 			debugDt = 0.0f;
 			state = PHYSICS_PAUSE;
 			break;
-		}
+		}	
+		auto draw = true;
+		ImGui::Begin("Physics", &draw, ImVec2(350, 350), 0.5);
+		ImGui::Text("Use W,A,S and D to move the camera around");
+		ImGui::Text("Use Q and E to Rotate the camera");
+		ImGui::Text("Use +,- to zoom in/out");
+		ImGui::Text("Use Space to Toogle play/pause");
+		ImGui::Text("Left arrow key for previous frame(when paused)");
+		ImGui::Text("Right arrow key for next frame(when paused)");
+		ImGui::Text("Use 1 to toogle debug draw");
+		ImGui::InputFloat("Current dt", &debugDt, ImGuiInputTextFlags_ReadOnly);
+		ImGui::End();
 	}
 }

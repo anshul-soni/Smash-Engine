@@ -71,6 +71,12 @@ namespace SmashEngine
 		case CAMERA_ZOOMOUT:
 			position -= direction*deltaTime*cameraSpeed;
 			break;
+		case CAMERA_ROTATE_LEFT:
+			horizontalAngle += deltaTime*cameraSpeed;
+			break;
+		case CAMERA_ROTATE_RIGHT:
+			horizontalAngle -= deltaTime*cameraSpeed;
+			break;
 		default:
 			break;
 		}

@@ -76,46 +76,7 @@ namespace SmashEngine
 	}
 	void WindowSystem::KeyBoardCallBack(GLFWwindow* window, int key, int scancode, int action, int mode)
 	{
-		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-		{
-			SignalManager::GetInstance().Signal(ENGINE_TERMINATE);
-			glfwSetWindowShouldClose(window, GL_TRUE);
-		}
-		if (key == GLFW_KEY_W &&  action == GLFW_REPEAT)
-		{
-			SignalManager::GetInstance().Signal(CAMERA_UP);
-		}
-		if (key == GLFW_KEY_A &&  action == GLFW_REPEAT)
-		{
-			SignalManager::GetInstance().Signal(CAMERA_LEFT);
-		}
-		if (key == GLFW_KEY_S &&  action == GLFW_REPEAT)
-		{
-			SignalManager::GetInstance().Signal(CAMERA_DOWN);
-		}
-		if (key == GLFW_KEY_D &&  action == GLFW_REPEAT)
-		{
-			SignalManager::GetInstance().Signal(CAMERA_RIGHT);
-		}
-		if (key == GLFW_KEY_1 && action == GLFW_PRESS)
-		{
-			SignalManager::GetInstance().Signal(DEBUG_TOOGLE);
-		}
-		if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-		{
-			SignalManager::GetInstance().Signal(DEBUG_TOOGLE_PLAY);
-		}
-		if (key == GLFW_KEY_RIGHT && (action == GLFW_PRESS|| action == GLFW_REPEAT))
-		{
-			SignalManager::GetInstance().Signal(DEBUG_FORWARD);
-		}
-		if (key == GLFW_KEY_LEFT && (action == GLFW_PRESS || action == GLFW_REPEAT))
-		{
-			SignalManager::GetInstance().Signal(DEBUG_REVERSE);
-		}
 	}
-
-
 	void WindowSystem::MouseCallBack(GLFWwindow* window, int button, int action, int mods)
 	{
 	}

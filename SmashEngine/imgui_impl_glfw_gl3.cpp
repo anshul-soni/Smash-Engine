@@ -7,6 +7,11 @@
 // GL3W/GLFW
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include "DebugSignal.h"
+#include "SignalManager.h"
+#include "CameraSignal.h"
+#include "EngineState.h"
+#include "WindowSystem.h"
 #ifdef _WIN32
 #undef APIENTRY
 #define GLFW_EXPOSE_NATIVE_WIN32
@@ -146,6 +151,61 @@ void ImGui_ImplGlfwGL3_KeyCallback(GLFWwindow*, int key, int, int action, int mo
     io.KeyCtrl = io.KeysDown[GLFW_KEY_LEFT_CONTROL] || io.KeysDown[GLFW_KEY_RIGHT_CONTROL];
     io.KeyShift = io.KeysDown[GLFW_KEY_LEFT_SHIFT] || io.KeysDown[GLFW_KEY_RIGHT_SHIFT];
     io.KeyAlt = io.KeysDown[GLFW_KEY_LEFT_ALT] || io.KeysDown[GLFW_KEY_RIGHT_ALT];
+
+	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+	{
+		SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::ENGINE_TERMINATE);
+		glfwSetWindowShouldClose(SmashEngine::WindowSystem::GetInstance().GetWindow(), GL_TRUE);
+	}
+	if (key == GLFW_KEY_W &&  action == GLFW_REPEAT)
+	{
+		SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_UP);
+	}
+	if (key == GLFW_KEY_A &&  action == GLFW_REPEAT)
+	{
+		SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_LEFT);
+	}
+	if (key == GLFW_KEY_S &&  action == GLFW_REPEAT)
+	{
+		SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_DOWN);
+	}
+	if (key == GLFW_KEY_D &&  action == GLFW_REPEAT)
+	{
+		SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_RIGHT);
+	}
+	if (key == GLFW_KEY_KP_ADD &&  action == GLFW_REPEAT)
+	{
+		SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_ZOOMIN);
+	}
+	if (key == GLFW_KEY_KP_SUBTRACT &&  action == GLFW_REPEAT)
+	{
+		SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_ZOOMOUT);
+	}
+	if (key == GLFW_KEY_Q &&  action == GLFW_REPEAT)
+	{
+		SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_ROTATE_LEFT);
+	}
+	if (key == GLFW_KEY_E &&  action == GLFW_REPEAT)
+	{
+		SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_ROTATE_RIGHT);
+	}
+	if (key == GLFW_KEY_1 && action == GLFW_PRESS)
+	{
+		SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::DEBUG_TOOGLE);
+	}
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+	{
+		SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::DEBUG_TOOGLE_PLAY);
+	}
+	if (key == GLFW_KEY_RIGHT && (action == GLFW_PRESS || action == GLFW_REPEAT))
+	{
+		SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::DEBUG_FORWARD);
+	}
+	if (key == GLFW_KEY_LEFT && (action == GLFW_PRESS || action == GLFW_REPEAT))
+	{
+		SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::DEBUG_REVERSE);
+	}
+
 }
 
 void ImGui_ImplGlfwGL3_CharCallback(GLFWwindow*, unsigned int c)
