@@ -97,6 +97,8 @@
     <ClCompile Include="ResourcePath.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
+    <ClCompile Include="Shape.cpp" />
+    <ClCompile Include="ShapeManager.cpp" />
     <ClCompile Include="SignalManager.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -131,6 +133,8 @@
     <ClInclude Include="ResourceType.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderManager.h" />
+    <ClInclude Include="Shape.h" />
+    <ClInclude Include="ShapeManager.h" />
     <ClInclude Include="SignalHandler.h" />
     <ClInclude Include="SignalManager.h" />
     <ClInclude Include="SignalSource.h" />

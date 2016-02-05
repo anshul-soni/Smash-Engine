@@ -1,16 +1,19 @@
 #pragma once
 #include "VertexBufferObject.h"
 #include "Texture.h"
+#include "Drawable.h"
 
 namespace SmashEngine
 {
-	class Model
+	class Model:public Drawable
 	{
 	public:
 		explicit Model(const std::string& filePath);
-		bool LoadModel();
-		void Render();
-		void BindVAO()const;
+		bool LoadModel()override;
+		void Render()override;
+		void BindVAO()const override;
+		Shader& GetShader()override;
+		void SetShader(const std::string& shader)override;
 		~Model();
 	private:
 		const std::string key;
@@ -22,6 +25,7 @@ namespace SmashEngine
 		std::vector<int> meshSizes;
 		std::vector<int> materialIndices;
 		int numMaterial;
+		Shader* shader;
 		Model() = delete;
 	};
 }

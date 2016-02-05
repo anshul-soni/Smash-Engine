@@ -150,6 +150,12 @@
     <ClCompile Include="imgui_impl_glfw_gl3.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="ShapeManager.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h">
@@ -292,6 +298,12 @@
     </ClInclude>
     <ClInclude Include="Drawable.h">
       <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Shape.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ShapeManager.h">
+      <Filter>Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -31,7 +31,8 @@ static int          g_AttribLocationPosition = 0, g_AttribLocationUV = 0, g_Attr
 static unsigned int g_VboHandle = 0, g_VaoHandle = 0, g_ElementsHandle = 0;
 static double		g_XOffSet = 0.0f;
 static double		g_YOffSet = 0.0f;
-static bool			isPressed = false;
+static bool			isLeftPressed = false;
+static bool			isRightPressed = false;
 // This is the main rendering function that you have to implement and provide to ImGui (via setting up 'RenderDrawListsFn' in the ImGuiIO structure)
 // If text or lines are blurry when integrating ImGui in your engine:
 // - in your Render function, try translating your projection matrix by (0.5f,0.5f) or (0.375f,0.375f)
@@ -136,16 +137,24 @@ void ImGui_ImplGlfwGL3_MouseButtonCallback(GLFWwindow* window, int button, int a
         g_MousePressed[button] = true;
 	if (action == GLFW_PRESS && button == 1)
 	{
-		isPressed = true;
+		isRightPressed = true;
 	}
 	if (action == GLFW_RELEASE && button == 1)
 	{
-		isPressed = false;
+		isRightPressed = false;
+	}
+	if (action == GLFW_PRESS && button == 0)
+	{
+		isLeftPressed = true;
+	}
+	if (action == GLFW_RELEASE && button == 0)
+	{
+		isLeftPressed = false;
 	}
 }
 void ImGui_ImplGlfwGL3_CursorPositionCallback(GLFWwindow* window, double xoffset, double yoffset)
 {
-	if (isPressed)
+	if (isRightPressed)
 	{
 		std::cout << g_XOffSet << std::endl;
 		std::cout << xoffset << std::endl;
@@ -164,6 +173,29 @@ void ImGui_ImplGlfwGL3_CursorPositionCallback(GLFWwindow* window, double xoffset
 		if (yoffset -  g_YOffSet < 0)
 		{
 			SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_ROTATE_UP);
+		}
+		g_XOffSet = xoffset;
+		g_YOffSet = yoffset;
+	}
+	if (isLeftPressed)
+	{
+		std::cout << g_XOffSet << std::endl;
+		std::cout << xoffset << std::endl;
+		if (g_XOffSet - xoffset > 0)
+		{
+			SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_RIGHT);
+		}
+		if (g_XOffSet - xoffset < 0)
+		{
+			SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_LEFT);
+		}
+		if (yoffset - g_YOffSet > 0)
+		{
+			SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_UP);
+		}
+		if (yoffset - g_YOffSet < 0)
+		{
+			SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_DOWN);
 		}
 		g_XOffSet = xoffset;
 		g_YOffSet = yoffset;

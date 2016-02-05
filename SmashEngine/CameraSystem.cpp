@@ -15,7 +15,7 @@ namespace SmashEngine
 		projectionMatrix(glm::mat4(1)),
 		viewMatrix(glm::mat4(1)),
 		position(glm::vec3(0, 0, 5)),
-		cameraSpeed(1.0f),
+		cameraSpeed(5.0f),
 		deltaTime(0),
 		right(glm::vec3(1)),
 		up(glm::vec3(1)),
@@ -66,22 +66,22 @@ namespace SmashEngine
 			position += right*deltaTime*cameraSpeed;
 			break;
 		case CAMERA_ZOOMIN:
-			position += direction*deltaTime*(cameraSpeed*10);
+			position += direction*deltaTime*(cameraSpeed*4);
 			break;
 		case CAMERA_ZOOMOUT:
-			position -= direction*deltaTime*(cameraSpeed*10);
+			position -= direction*deltaTime*(cameraSpeed*4);
 			break;
 		case CAMERA_ROTATE_LEFT:
-			horizontalAngle += deltaTime*cameraSpeed;
+			horizontalAngle += deltaTime*cameraSpeed/5;
 			break;
 		case CAMERA_ROTATE_RIGHT:
-			horizontalAngle -= deltaTime*cameraSpeed;
+			horizontalAngle -= deltaTime*cameraSpeed/5;
 			break;
 		case CAMERA_ROTATE_UP:
-			verticalAngle += deltaTime*cameraSpeed;
+			verticalAngle += deltaTime*cameraSpeed/5;
 			break;
 		case CAMERA_ROTATE_DOWN:
-			verticalAngle -= deltaTime*cameraSpeed;
+			verticalAngle -= deltaTime*cameraSpeed/5;
 			break;
 		default:
 			break;

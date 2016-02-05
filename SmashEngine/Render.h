@@ -13,11 +13,8 @@ namespace SmashEngine
 		void Deserialize(tinyxml2::XMLElement* pElement)override;
 		void Draw();
 		void Destroy()override;
-		void SetShader(const std::string& key);
-		void SetModel(const std::string& key);
 		~Render();
 	private:
-		Shader* shader;
-		Model* model;
+		Drawable* drawableComponent;
 	};
 }

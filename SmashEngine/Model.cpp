@@ -2,6 +2,7 @@
 #include "Model.h"
 #include "TextureManager.h"
 #include "ResourcePath.h"
+#include "ShaderManager.h"
 
 namespace SmashEngine
 {
@@ -142,6 +143,16 @@ namespace SmashEngine
 	void Model::BindVAO()const
 	{
 		glBindVertexArray(VAO);
+	}
+
+	Shader& Model::GetShader()
+	{
+		return *shader;
+	}
+
+	void Model::SetShader(const std::string& shader)
+	{
+		this->shader = ShaderManager::GetInstance().GetShader(shader);
 	}
 
 	Model::~Model()
