@@ -37,5 +37,5 @@ void main()
 	color.rgb = materialAmbientColor +
 			materialDiffuseColor+
 			materialSpecularColor;
-	//color.rgba = vec4(1,0,0,0.3);
+	color.rgba = vec4(1,0,0,0.3);
 }

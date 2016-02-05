@@ -290,6 +290,9 @@
     <ClInclude Include="imgui_internal.h">
       <Filter>Editor</Filter>
     </ClInclude>
+    <ClInclude Include="Drawable.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="resources\shaders\normal.frag">

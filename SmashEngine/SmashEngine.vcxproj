@@ -112,6 +112,7 @@
     <ClInclude Include="CameraSignal.h" />
     <ClInclude Include="CameraSystem.h" />
     <ClInclude Include="DebugSignal.h" />
+    <ClInclude Include="Drawable.h" />
     <ClInclude Include="EditorSystem.h" />
     <ClInclude Include="EngineState.h" />
     <ClInclude Include="EngineType.h" />

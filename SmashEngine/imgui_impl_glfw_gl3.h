@@ -16,5 +16,6 @@ IMGUI_API bool        ImGui_ImplGlfwGL3_CreateDeviceObjects();
 // You can also handle inputs yourself and use those as a reference.
 IMGUI_API void        ImGui_ImplGlfwGL3_MouseButtonCallback(GLFWwindow* window, int button, int action, int mods);
 IMGUI_API void        ImGui_ImplGlfwGL3_ScrollCallback(GLFWwindow* window, double xoffset, double yoffset);
+IMGUI_API void        ImGui_ImplGlfwGL3_CursorPositionCallback(GLFWwindow* window, double xoffset, double yoffset);
 IMGUI_API void        ImGui_ImplGlfwGL3_KeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods);
 IMGUI_API void        ImGui_ImplGlfwGL3_CharCallback(GLFWwindow* window, unsigned int c);
