@@ -21,7 +21,7 @@ namespace SmashEngine
 		RegisterComponent(Transform);
 		RegisterComponent(Render);
 		RegisterComponent(Body);
-		ObjectFactory::GetInstance().Create("test");
+		//ObjectFactory::GetInstance().Create("test");
 		ObjectFactory::GetInstance().Create("cube");
 	}
 
@@ -29,6 +29,7 @@ namespace SmashEngine
 	{
 		//Signal to draw debug points
 		SignalManager::GetInstance().Signal(DrawSignal(glm::vec3(0)));
+		SignalManager::GetInstance().Signal(DrawSignal(glm::vec3(0,1,0), glm::vec3(1)));
 	}
 
 	void GameLogicSystem::Release()

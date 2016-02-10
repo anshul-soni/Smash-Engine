@@ -10,12 +10,10 @@
 
 namespace SmashEngine
 {
-	Graphics::Graphics() :type(ENGINE_Graphics), debugDraw(false), contactSphere(nullptr)
+	Graphics::Graphics() :type(ENGINE_Graphics), debugDraw(false), contactSphere(nullptr), debugShader(nullptr)
 	{
 		SignalManager::GetInstance().Connect<DebugSignal>(this);
 		SignalManager::GetInstance().Connect<DrawSignal>(this);
-
-		points.push_back(glm::vec3(0));
 	}
 
 		
@@ -83,13 +81,17 @@ namespace SmashEngine
 
 	void Graphics::DrawLines()
 	{
+		for (auto line :lines)
+		{
+			debugDrawLine(line.first, line.second,glm::vec3(1,0,0));
+		}
 	}
 
 	void Graphics::DrawPoints()
 	{
 		if(contactSphere == nullptr)
 		{
-			contactSphere = ModelManager::GetInstance().GetModel("sphere.obj");
+			contactSphere = ModelManager::GetInstance().GetModel("sphere");
 			contactSphere->SetShader("model");
 		}
 
@@ -119,5 +121,52 @@ namespace SmashEngine
 				contactSphere->Render();
 			}
 		}
+	}
+	void Graphics::debugDrawLine(glm::vec3 startPoint, glm::vec3 endPoint, glm::vec3 color)
+	{
+		if (debugShader==nullptr)
+		{
+			debugShader = ShaderManager::GetInstance().GetShader("shape");
+		}
+		GLint transformLocation;
+		GLfloat lineCoordinates[] = { startPoint.x, startPoint.y,startPoint.z,
+			endPoint.x, endPoint.y,endPoint.z };
+		GLuint vertexArray, vertexBuffer;
+
+		glLineWidth(1.0f);
+
+		glGenVertexArrays(1, &vertexArray);
+		glGenBuffers(1, &vertexBuffer);
+
+		glBindVertexArray(vertexArray);
+		glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
+
+		debugShader->Use();
+
+		//Copies the Vertex data into the buffer
+		glBufferData(GL_ARRAY_BUFFER, sizeof(lineCoordinates), lineCoordinates, GL_STATIC_DRAW);
+
+		glVertexAttribPointer(
+			0,										// attribute 0. No particular reason for 0, but must match the layout in the shader.
+			3,										// size
+			GL_FLOAT,								// type
+			GL_FALSE,								// normalized?
+			3 * sizeof(GLfloat),					// stride
+			static_cast<void*>(nullptr)				// array buffer offset
+			);
+
+
+		//Sends the sprite's color information in the the shader 
+		auto colorLocation = glGetUniformLocation(debugShader->Program, "fragmentColor");
+		glUniform4f(colorLocation, color.x, color.y, color.z, 1.0f);
+
+		//Activates Vertex Position Information
+		glEnableVertexAttribArray(0);
+
+		// Draw the line
+		glDrawArrays(GL_LINES, 0, 2);
+
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindVertexArray(0);
 	}
 }

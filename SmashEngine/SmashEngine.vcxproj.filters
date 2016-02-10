@@ -150,12 +150,6 @@
     <ClCompile Include="imgui_impl_glfw_gl3.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
-    <ClCompile Include="Shape.cpp">
-      <Filter>Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="ShapeManager.cpp">
-      <Filter>Resources</Filter>
-    </ClCompile>
     <ClCompile Include="DrawSignal.cpp">
       <Filter>Signal\SignalChannels</Filter>
     </ClCompile>
@@ -301,12 +295,6 @@
     </ClInclude>
     <ClInclude Include="Drawable.h">
       <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="ShapeManager.h">
-      <Filter>Resources</Filter>
     </ClInclude>
     <ClInclude Include="DrawSignal.h">
       <Filter>Signal\SignalChannels</Filter>
