@@ -5,7 +5,7 @@
 		<rotation  x="0.0f" y="0.0f" z="0.0f"/>
 	</Component>
 	<Component type = "Render">
-		<model>cube.obj</model>
+		<model>cube</model>
 		<texture>cube.png</texture>
 		<shader>model</shader>
 	</Component>
