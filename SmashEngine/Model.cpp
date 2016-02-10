@@ -98,8 +98,6 @@ namespace SmashEngine
 				}
 				else
 				{
-					Texture newTex;
-					newTex.LoadTexture2D(fullPath);
 					materialRemap[i] = static_cast<int>(textures.size());
 					textures.push_back(TextureManager::GetInstance().GetTexture(fullPath));
 					std::cout << "texture loaded" << fullPath << std::endl;
@@ -123,6 +121,7 @@ namespace SmashEngine
 
 		glEnableVertexAttribArray(2);
 		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(aiVector3D) + sizeof(aiVector2D), (void*)(sizeof(aiVector3D) + sizeof(aiVector2D)));
+		glBindVertexArray(0);
 		return bLoaded = true;
 	}
 
@@ -148,6 +147,12 @@ namespace SmashEngine
 	Shader& Model::GetShader()
 	{
 		return *shader;
+	}
+
+	void Model::SetTexture(const std::string& filePath)
+	{
+
+		textures.push_back(TextureManager::GetInstance().GetTexture(filePath));
 	}
 
 	void Model::SetShader(const std::string& shader)

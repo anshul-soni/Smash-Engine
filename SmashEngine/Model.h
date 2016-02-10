@@ -13,6 +13,7 @@ namespace SmashEngine
 		void Render()override;
 		void BindVAO()const override;
 		Shader& GetShader()override;
+		void SetTexture(const std::string& filePath);
 		void SetShader(const std::string& shader)override;
 		~Model();
 	private:

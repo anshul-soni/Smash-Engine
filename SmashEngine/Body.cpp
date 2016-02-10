@@ -5,7 +5,7 @@ namespace SmashEngine
 {
 	Body::Body() :
 		type(TYPE_Body), 
-		mass(0.0f), 
+		inverseMass(0.0f), 
 		velocity(glm::vec3(0)), 
 		force(glm::vec3(0))
 	{
@@ -34,10 +34,10 @@ namespace SmashEngine
 		}
 		if (pElement->FirstChildElement("mass") != nullptr)
 		{
-			pElement->FirstChildElement("mass")->QueryFloatText(&mass);
+			pElement->FirstChildElement("mass")->QueryFloatText(&inverseMass);
 		}else
 		{
-			std::cout << "error reading mass" << std::endl;
+			std::cout << "error reading inverseMass" << std::endl;
 		}
 	}
 
@@ -67,6 +67,6 @@ namespace SmashEngine
 
 	float Body::GetMass()const
 	{
-		return mass;
+		return inverseMass;
 	}
 }

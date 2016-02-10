@@ -19,11 +19,8 @@ namespace SmashEngine
 	private:
 		Shapes key;
 		bool bLoaded;
-		VertexBufferObject* vboModelData;
-		unsigned int VAO;
+		GLuint vertexBuffer;
+		GLuint colorBuffer;
 		Shader* shader;
-		GLuint	vboVertices;
-		GLuint 	vboColors;
-		GLuint	iboElements;
 	};
 }

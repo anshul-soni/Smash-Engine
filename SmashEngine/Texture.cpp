@@ -1,5 +1,6 @@
 #include "stdafx.h"
 #include "Texture.h"
+#include "ResourcePath.h"
 
 namespace SmashEngine
 {
@@ -11,16 +12,16 @@ namespace SmashEngine
 	{
 	};
 
-	Texture::Texture(const std::string& path)
+	Texture::Texture(const std::string& path) :path(ResourcePath::GetInstance().GetPath(RESOURCE_Texture,path))
 	{
-		LoadTexture2D(path);
+		LoadTexture2D();
 	};
 
 	Texture::~Texture() {
 		glDeleteTextures(1, &id);
 	}
 
-	bool Texture::LoadTexture2D(const std::string& path){
+	void Texture::LoadTexture2D(){
 		// Get the bytes for the texture.
 		auto image = SOIL_load_image(
 			path.c_str(),
@@ -29,7 +30,7 @@ namespace SmashEngine
 			&channels,
 			SOIL_LOAD_RGBA);
 		if (image == nullptr)
-			return false;
+			return;
 		GLuint id;
 		// Create OpenGL texture and load bytes into it.
 		glGenTextures(1, &id);
@@ -46,7 +47,6 @@ namespace SmashEngine
 		// Return new texture.
 		this->id = id;
 		this->path = path;
-		return true;
 	}
 
 	void Texture::BindTexture() const {

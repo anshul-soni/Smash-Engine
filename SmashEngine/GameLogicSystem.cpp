@@ -4,6 +4,8 @@
 #include "Transform.h"
 #include "Render.h"
 #include "Body.h"
+#include "SignalManager.h"
+#include "DrawSignal.h"
 
 namespace SmashEngine
 {
@@ -25,6 +27,8 @@ namespace SmashEngine
 
 	void GameLogicSystem::Update(float dt)
 	{
+		//Signal to draw debug points
+		SignalManager::GetInstance().Signal(DrawSignal(glm::vec3(0)));
 	}
 
 	void GameLogicSystem::Release()

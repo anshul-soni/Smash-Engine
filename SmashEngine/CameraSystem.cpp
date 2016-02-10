@@ -15,7 +15,7 @@ namespace SmashEngine
 		projectionMatrix(glm::mat4(1)),
 		viewMatrix(glm::mat4(1)),
 		position(glm::vec3(0, 0, 5)),
-		cameraSpeed(5.0f),
+		cameraSpeed(10.0f),
 		deltaTime(0),
 		right(glm::vec3(1)),
 		up(glm::vec3(1)),

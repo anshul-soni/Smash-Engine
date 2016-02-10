@@ -23,7 +23,8 @@ namespace SmashEngine
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
-
+		auto monitor = glfwGetPrimaryMonitor();
+		auto mode = glfwGetVideoMode(monitor);
 		this->window = glfwCreateWindow(1024, 768, "Smash Engine", nullptr, nullptr);
 		glfwMakeContextCurrent(window);
 		if (window == nullptr)

@@ -6,7 +6,8 @@
 	</Component>
 	<Component type = "Render">
 		<model>cube.obj</model>
-		<shader>normal</shader>
+		<texture>cube.png</texture>
+		<shader>model</shader>
 	</Component>
 	<Component type = "Body">
 		<velocity x="0.0f" y="0.0f" z="0.0f"/>

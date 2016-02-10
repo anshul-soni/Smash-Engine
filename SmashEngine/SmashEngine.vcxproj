@@ -77,6 +77,7 @@
   <ItemGroup>
     <ClCompile Include="Body.cpp" />
     <ClCompile Include="CameraSystem.cpp" />
+    <ClCompile Include="DrawSignal.cpp" />
     <ClCompile Include="EditorSystem.cpp" />
     <ClCompile Include="GameLogicSystem.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -115,6 +116,7 @@
     <ClInclude Include="CameraSystem.h" />
     <ClInclude Include="DebugSignal.h" />
     <ClInclude Include="Drawable.h" />
+    <ClInclude Include="DrawSignal.h" />
     <ClInclude Include="EditorSystem.h" />
     <ClInclude Include="EngineState.h" />
     <ClInclude Include="EngineType.h" />
@@ -162,8 +164,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />
-    <None Include="resources\shaders\normal.frag" />
-    <None Include="resources\shaders\normal.vert" />
+    <None Include="resources\shaders\model.frag" />
+    <None Include="resources\shaders\model.vert" />
+    <None Include="resources\shaders\shape.frag" />
+    <None Include="resources\shaders\shape.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -35,7 +35,7 @@ namespace SmashEngine
 			resourcePath += ".vert";
 			break;
 		case RESOURCE_Texture:
-			resourcePath += "model/";
+			resourcePath += "textures/";
 			resourcePath += key;
 			break;
 		default:

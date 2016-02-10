@@ -156,8 +156,6 @@ void ImGui_ImplGlfwGL3_CursorPositionCallback(GLFWwindow* window, double xoffset
 {
 	if (isRightPressed)
 	{
-		std::cout << g_XOffSet << std::endl;
-		std::cout << xoffset << std::endl;
 		if (g_XOffSet - xoffset > 0)
 		{
 			SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_ROTATE_LEFT);
@@ -179,8 +177,6 @@ void ImGui_ImplGlfwGL3_CursorPositionCallback(GLFWwindow* window, double xoffset
 	}
 	if (isLeftPressed)
 	{
-		std::cout << g_XOffSet << std::endl;
-		std::cout << xoffset << std::endl;
 		if (g_XOffSet - xoffset > 0)
 		{
 			SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::CAMERA_RIGHT);

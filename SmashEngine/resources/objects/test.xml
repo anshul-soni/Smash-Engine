@@ -5,8 +5,9 @@
 		<rotation  x="0.0f" y="0.0f" z="0.0f"/>
 	</Component>
 	<Component type = "Render">
-		<!-- <model>floor/CobbleStones2.obj</model> -->
+		<!-- <model>cube.obj</model> -->
+		<shader>shape</shader>
+		<!-- <texture>cube.png</texture> -->
 		<shape>cube</shape>
-		<shader>normal</shader>
 	</Component>
 </GameObject>

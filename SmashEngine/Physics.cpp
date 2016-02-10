@@ -10,7 +10,7 @@ namespace SmashEngine
 {
 	Physics::Physics() :
 		type(ENGINE_Physics), 
-		fixedDt(0.01f), 
+		fixedDt(0.000f), 
 		debugDt(fixedDt), 
 		gravity(10), 
 		damping(0.99f), 

@@ -156,6 +156,9 @@
     <ClCompile Include="ShapeManager.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
+    <ClCompile Include="DrawSignal.cpp">
+      <Filter>Signal\SignalChannels</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h">
@@ -305,16 +308,25 @@
     <ClInclude Include="ShapeManager.h">
       <Filter>Resources</Filter>
     </ClInclude>
+    <ClInclude Include="DrawSignal.h">
+      <Filter>Signal\SignalChannels</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="resources\shaders\normal.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="resources\shaders\normal.vert">
-      <Filter>Shaders</Filter>
-    </None>
     <None Include="imgui.ini">
       <Filter>Editor</Filter>
+    </None>
+    <None Include="resources\shaders\shape.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="resources\shaders\shape.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="resources\shaders\model.vert">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="resources\shaders\model.frag">
+      <Filter>Shaders</Filter>
     </None>
   </ItemGroup>
 </Project>

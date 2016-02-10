@@ -1,6 +1,10 @@
 #version 330 core
-out vec4 color; 
-void main() 
-{ 
-	color.rgba = vec4(1,0,0,0.3);
+in vec3 fragmentColor;
+
+out vec3 color;
+
+void main()
+{
+	color = fragmentColor;
+
 }

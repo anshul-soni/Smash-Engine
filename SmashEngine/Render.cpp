@@ -23,6 +23,11 @@ namespace SmashEngine
 		{
 			drawableComponent = ModelManager::GetInstance().GetModel(pElement->FirstChildElement("model")->GetText());
 		}
+		if (pElement->FirstChildElement("texture"))
+		{
+			auto model = static_cast<Model*>(drawableComponent);
+			model->SetTexture(pElement->FirstChildElement("texture")->GetText());
+		}
 		if (pElement->FirstChildElement("shape"))
 		{
 			drawableComponent = ShapeManager::GetInstance().GetShape(pElement->FirstChildElement("shape")->GetText());

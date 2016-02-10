@@ -4,6 +4,7 @@
 #include "EngineState.h"
 #include "CameraSignal.h"
 #include "DebugSignal.h"
+#include "DrawSignal.h"
 
 
 namespace SmashEngine {
@@ -18,6 +19,7 @@ namespace SmashEngine {
 		CreateChannel<EngineStateSignal>();
 		CreateChannel<CameraSignal>();
 		CreateChannel<DebugSignal>();
+		CreateChannel<DrawSignal>();
 	}
 
 	SignalManager::~SignalManager() {

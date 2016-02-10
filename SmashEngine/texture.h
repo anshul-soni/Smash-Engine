@@ -11,12 +11,12 @@ namespace SmashEngine
 		int GetWidth() const;
 		int GetHeight() const;
 		int GetTextureID() const;
-		bool LoadTexture2D(const std::string& path);
 		std::string& GetPath();
 		~Texture();
 	private:
 		GLuint id;
 
+		void LoadTexture2D();
 		int width;
 		int height;
 		int channels;
