@@ -24,7 +24,8 @@ namespace SmashEngine
 		Model* contactSphere;
 		void DrawLines();
 		void DrawPoints();
-		void debugDrawLine(glm::vec3 startPoint, glm::vec3 endPoint, glm::vec3 color);
+		void DrawWirframe();
+		void DebugDrawLine(glm::vec3 startPoint, glm::vec3 endPoint, glm::vec3 color);
 		std::vector<const glm::vec3> points;
 		std::vector<const std::pair<glm::vec3,glm::vec3>> lines;
 		GLuint line_Buffer;
