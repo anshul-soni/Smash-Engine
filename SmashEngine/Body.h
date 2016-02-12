@@ -16,18 +16,35 @@ namespace SmashEngine
 		void Deserialize(tinyxml2::XMLElement* pElement)override;
 		void Destroy()override;
 		void SetVelocity(const glm::vec3& velocity);
+		void SetAngularVelocity(const glm::vec3& omega);
 		void SetForce(const glm::vec3& force);
+		void SetTorque(const glm::vec3& torque);
 		void SetCollider(const std::string& colliderType);
+		void SetAngularMomentum(const glm::vec3& angularMomentum);
+		void SetLinearMomentum(const glm::vec3& linearMomentum);
 		const glm::vec3& GetVelocity()const;
 		const glm::vec3& GetForce()const;
-		float GetMass()const;
+		float GetInverseMass()const;
 	private:
 		const ComponentType type;
-		Collider collider;
+		//constant quantities
 		float inverseMass;
+		glm::mat3 inertiaTensorLocal;
+		glm::mat3 inverseInertiaTensorLocal;
+		Collider collider;
+
+		//State variables
+		//Rotation is stored in transform
+		glm::vec3 linearMomentum;
+		glm::vec3 angularMomentum;
+
+		//Derived quantities(auxilary variables)
+		glm::mat3 inverseInertialTensor;
 		glm::vec3 velocity;
+		glm::vec3 omega;
+
+		//computed quantitites
 		glm::vec3 force;
-		glm::mat3 intertiaTensor;
-		glm::mat3 inverseIntertiaTensor;
+		glm::vec3 torque;
 	};
 }

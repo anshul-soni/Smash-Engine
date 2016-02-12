@@ -18,6 +18,7 @@ namespace SmashEngine
 		void Init()override;
 		EngineType GetType()const override;
 	private:
+		void CalculateAuxilaryVariables(GameObject& object);
 		void CalculatePosition(GameObject& objt);
 		const EngineType type;
 		float fixedDt;

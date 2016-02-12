@@ -75,16 +75,21 @@ namespace SmashEngine
 		return type;
 	}
 
+	void Physics::CalculateAuxilaryVariables(GameObject& object)
+	{
+
+	}
+
 	void Physics::CalculatePosition(GameObject& obj)
 	{
 		if (state != PHYSICS_PAUSE)
 		{
 			auto transformComponent = obj.has(Transform);
 			auto bodyComponent = obj.has(Body);
-			auto gravitationalForce = glm::vec3(0, -gravity*bodyComponent->GetMass(), 0);
+			auto gravitationalForce = glm::vec3(0, -gravity*bodyComponent->GetInverseMass(), 0);
 			//accumulate the total force
 			auto force = gravitationalForce + bodyComponent->GetForce();
-			auto a = force*(1 / bodyComponent->GetMass());;
+			auto a = force*(1 / bodyComponent->GetInverseMass());;
 			auto position = transformComponent->GetPosition() + bodyComponent->GetVelocity()*debugDt;
 			auto velocity = bodyComponent->GetVelocity() + a*debugDt;
 			velocity *= std::pow(damping, debugDt);

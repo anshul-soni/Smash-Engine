@@ -65,7 +65,7 @@ namespace SmashEngine
 		return force;
 	}
 
-	float Body::GetMass()const
+	float Body::GetInverseMass()const
 	{
 		return inverseMass;
 	}

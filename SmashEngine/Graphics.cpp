@@ -26,7 +26,7 @@ namespace SmashEngine
 		points.clear();
 		DrawLines();
 		lines.clear();
-		DrawWirframe();
+		DrawWireframe();
 		if (debugDraw)
 		{
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
@@ -189,7 +189,7 @@ namespace SmashEngine
 
 		
 	}
-	void Graphics::DrawWirframe()
+	void Graphics::DrawWireframe()
 	{
 		if (debugShader == nullptr)
 		{
