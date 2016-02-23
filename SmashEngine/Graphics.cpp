@@ -198,7 +198,8 @@ namespace SmashEngine
 		GLfloat lineCoordinates[] = { 10.0f,0.0f,10.0f,
 			-10.0f, 0.0f, 10.0f,
 			-10.0f, 0.0f, -10.0f,
-			10.0f, 0.0f, -10.0f, };
+			10.0f, 0.0f, -10.0f, 
+			10.0f, 0.0f, 10.0f };
 		GLuint vertexArray, vertexBuffer;
 
 		glLineWidth(2.0f);
@@ -225,7 +226,7 @@ namespace SmashEngine
 
 
 		//Sends the sprite's color information in the the shader 
-		auto colorLocation = glGetUniformLocation(debugShader->Program, "fragmentColor");
+		auto colorLocation = glGetUniformLocation(debugShader->Program, "vertexColor");
 		glUniform4f(colorLocation, 1,0,0, 1.0f);
 
 		//Activates Vertex Position Information

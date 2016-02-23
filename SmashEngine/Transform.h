@@ -14,10 +14,12 @@ namespace SmashEngine
 		const glm::vec3& GetPosition()const;
 		const glm::vec3& GetRotation()const;
 		const glm::vec3& GetScale()const;
+		const glm::mat4& GetRotationMatrix()const;
 
 		void SetPosition(const glm::vec3& position);
-		void SetRotation(const glm::vec3& position);
-		void SetScale(const glm::vec3& position);
+		void SetRotation(const glm::vec3& rotation);
+		void SetScale(const glm::vec3& scale);
+		void SetRotationMatrix(const glm::mat4& rotation);
 
 		void SetPosition(const float x, const float y, const float z);
 		void SetRotation(const float x, const float y, const float z);
@@ -28,6 +30,6 @@ namespace SmashEngine
 		glm::vec3 position;
 		glm::vec3 rotation;
 		glm::vec3 scale;
-		glm::mat3 rotationMatrix;
+		glm::mat4 rotationMatrix;
 	};
 }

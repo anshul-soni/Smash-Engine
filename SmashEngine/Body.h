@@ -1,6 +1,6 @@
 #pragma once
 #include "Component.h"
-
+#include "Transform.h"
 namespace SmashEngine
 {
 	enum Collider
@@ -19,12 +19,15 @@ namespace SmashEngine
 		void SetAngularVelocity(const glm::vec3& omega);
 		void SetForce(const glm::vec3& force);
 		void SetTorque(const glm::vec3& torque);
+		void SetOrientation(const glm::quat& torque);
 		void SetCollider(const std::string& colliderType);
 		void SetAngularMomentum(const glm::vec3& angularMomentum);
 		void SetLinearMomentum(const glm::vec3& linearMomentum);
 		const glm::vec3& GetVelocity()const;
 		const glm::vec3& GetForce()const;
+		const glm::quat& GetOrientation()const;
 		float GetInverseMass()const;
+		void CalculateAuxilaryVariables(Transform& transform,float dt);
 	private:
 		const ComponentType type;
 		//constant quantities
@@ -46,5 +49,10 @@ namespace SmashEngine
 		//computed quantitites
 		glm::vec3 force;
 		glm::vec3 torque;
+
+		glm::quat orientation;
+
+		float damping;
+		float angularDamping;
 	};
 }

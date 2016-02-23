@@ -10,11 +10,11 @@ namespace SmashEngine
 {
 	Physics::Physics() :
 		type(ENGINE_Physics), 
-		fixedDt(0.000f), 
+		fixedDt(0.01f), 
 		debugDt(fixedDt), 
-		gravity(10), 
+		gravity(-10), 
 		damping(0.99f), 
-		state(PHYSICS_PLAY)
+		state(PHYSICS_PAUSE)
 	{
 		SignalManager::GetInstance().Connect<DebugSignal>(this);
 	}
@@ -26,7 +26,9 @@ namespace SmashEngine
 			auto bodyComponent = object.second->has(Body);
 			if (bodyComponent != nullptr)
 			{
-				CalculatePosition(*object.second);
+				//CalculatePosition(*object.second);
+				auto transformComponent = object.second->has(Transform);
+				bodyComponent->CalculateAuxilaryVariables(*transformComponent, debugDt);
 			}
 		}
 	}
@@ -86,7 +88,7 @@ namespace SmashEngine
 		{
 			auto transformComponent = obj.has(Transform);
 			auto bodyComponent = obj.has(Body);
-			auto gravitationalForce = glm::vec3(0, -gravity*bodyComponent->GetInverseMass(), 0);
+			auto gravitationalForce = glm::vec3(0, gravity*bodyComponent->GetInverseMass(), 0);
 			//accumulate the total force
 			auto force = gravitationalForce + bodyComponent->GetForce();
 			auto a = force*(1 / bodyComponent->GetInverseMass());;
@@ -94,7 +96,7 @@ namespace SmashEngine
 			auto velocity = bodyComponent->GetVelocity() + a*debugDt;
 			velocity *= std::pow(damping, debugDt);
 			transformComponent->SetPosition(position);
-			//Dont se the velocity of the object
+			//Dont set the velocity of the object
 			if (state != PHYSICS_FORWARD && state != PHYSICS_REVERSE)
 			{
 				bodyComponent->SetVelocity(velocity);

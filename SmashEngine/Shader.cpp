@@ -32,6 +32,7 @@ namespace SmashEngine
 		}
 		catch (std::ifstream::failure e)
 		{
+			std::cout << shaderKey << std::endl;
 			std::cout << "ERROR::SHADER::FILE_NOT_READ_SUCCESSFULLY" << std::endl;
 		}
 		const GLchar* vShaderCode = vertexCode.c_str();
@@ -50,6 +51,7 @@ namespace SmashEngine
 		if (!success)
 		{
 			glGetShaderInfoLog(vertex, 512, nullptr, infoLog);
+			std::cout << shaderKey << std::endl;
 			std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED \n" << infoLog << std::endl;
 		};
 
@@ -62,6 +64,7 @@ namespace SmashEngine
 		if (!success)
 		{
 			glGetShaderInfoLog(fragment, 512, nullptr, infoLog);
+			std::cout << shaderKey << std::endl;
 			std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED \n" << infoLog << std::endl;
 		};
 
@@ -74,6 +77,7 @@ namespace SmashEngine
 		if (!success)
 		{
 			glGetProgramInfoLog(this->Program, 512, nullptr, infoLog);
+			std::cout << shaderKey << std::endl;
 			std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED \n" << infoLog << std::endl;
 
 		}

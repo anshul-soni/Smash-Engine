@@ -21,7 +21,7 @@ namespace SmashEngine
 		RegisterComponent(Transform);
 		RegisterComponent(Render);
 		RegisterComponent(Body);
-		//ObjectFactory::GetInstance().Create("test");
+		ObjectFactory::GetInstance().Create("test");
 		ObjectFactory::GetInstance().Create("cube");
 	}
 
