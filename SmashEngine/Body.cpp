@@ -12,11 +12,12 @@ namespace SmashEngine
 		inertiaTensorLocal(0),
 		inverseInertiaTensorLocal(0),
 		inverseInertialTensor(0),
-		omega(0),
+		omega(5),
 		torque(0),
 		orientation(glm::quat(0,0,0,0)),
 		damping(0.99f),
-		angularDamping(0.99f)
+		angularDamping(0.99f),
+		colliderType(nullptr)
 	{
 	}
 
@@ -79,7 +80,7 @@ namespace SmashEngine
 		return inverseMass;
 	}
 
-	void Body::CalculateAuxilaryVariables(Transform& transform,float dt)
+	void Body::CalculateAuxilaryVariables(Transform* transform,float dt)
 	{
 		auto acceleration = force * inverseMass + GRAVITY;
 
@@ -91,9 +92,9 @@ namespace SmashEngine
 		velocity += acceleration * dt;
 		omega += alpha * dt;
 
-		auto position = transform.GetPosition();
+		auto position = transform->GetPosition();
 		position += velocity * dt;
-		transform.SetPosition(position);
+		transform->SetPosition(position);
 
 		auto dq = glm::quat(0, omega) * dt;
 		orientation += dq * orientation * 0.5f;
@@ -101,7 +102,7 @@ namespace SmashEngine
 		velocity *= damping;
 		omega *= angularDamping;
 
-		transform.SetRotationMatrix(glm::toMat4(orientation));
+		transform->SetRotationMatrix(glm::toMat4(orientation));
 
 		force = glm::vec3(0, 0, 0);
 		torque = glm::vec3(0, 0, 0);

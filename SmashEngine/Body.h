@@ -1,13 +1,11 @@
 #pragma once
 #include "Component.h"
 #include "Transform.h"
+#include "Collider.h"
+
 namespace SmashEngine
 {
-	enum Collider
-	{
-		COLLIDER_Cube = 0,
-		COLLIDER_Sphere
-	};
+
 	class Body:public Component
 	{
 	public:
@@ -16,25 +14,20 @@ namespace SmashEngine
 		void Deserialize(tinyxml2::XMLElement* pElement)override;
 		void Destroy()override;
 		void SetVelocity(const glm::vec3& velocity);
-		void SetAngularVelocity(const glm::vec3& omega);
 		void SetForce(const glm::vec3& force);
-		void SetTorque(const glm::vec3& torque);
-		void SetOrientation(const glm::quat& torque);
-		void SetCollider(const std::string& colliderType);
-		void SetAngularMomentum(const glm::vec3& angularMomentum);
-		void SetLinearMomentum(const glm::vec3& linearMomentum);
+		void SetCollider(Collider* collider);
 		const glm::vec3& GetVelocity()const;
 		const glm::vec3& GetForce()const;
 		const glm::quat& GetOrientation()const;
 		float GetInverseMass()const;
-		void CalculateAuxilaryVariables(Transform& transform,float dt);
+		void CalculateAuxilaryVariables(Transform* transform,float dt);
 	private:
 		const ComponentType type;
 		//constant quantities
 		float inverseMass;
 		glm::mat3 inertiaTensorLocal;
 		glm::mat3 inverseInertiaTensorLocal;
-		Collider collider;
+		Collider* collider;
 
 		//State variables
 		//Rotation is stored in transform
@@ -54,5 +47,7 @@ namespace SmashEngine
 
 		float damping;
 		float angularDamping;
+
+		Collider colliderType;
 	};
 }

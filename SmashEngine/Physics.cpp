@@ -28,7 +28,7 @@ namespace SmashEngine
 			{
 				//CalculatePosition(*object.second);
 				auto transformComponent = object.second->has(Transform);
-				bodyComponent->CalculateAuxilaryVariables(*transformComponent, debugDt);
+				bodyComponent->CalculateAuxilaryVariables(transformComponent, debugDt);
 			}
 		}
 	}

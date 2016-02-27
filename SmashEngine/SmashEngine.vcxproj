@@ -77,6 +77,7 @@
   <ItemGroup>
     <ClCompile Include="Body.cpp" />
     <ClCompile Include="CameraSystem.cpp" />
+    <ClCompile Include="Collider.cpp" />
     <ClCompile Include="DrawSignal.cpp" />
     <ClCompile Include="EditorSystem.cpp" />
     <ClCompile Include="GameLogicSystem.cpp" />
@@ -112,6 +113,7 @@
     <ClInclude Include="Body.h" />
     <ClInclude Include="CameraSignal.h" />
     <ClInclude Include="CameraSystem.h" />
+    <ClInclude Include="Collider.h" />
     <ClInclude Include="DebugSignal.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="DrawSignal.h" />

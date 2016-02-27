@@ -49,7 +49,8 @@ namespace SmashEngine
 		auto rotationY = glm::rotate(glm::mat4(), transformComponent->GetRotation().y, glm::vec3(0, 1, 0));
 		auto rotationZ = glm::rotate(glm::mat4(), transformComponent->GetRotation().z, glm::vec3(0, 0, 1));
 		auto scale = glm::scale(glm::mat4(), transformComponent->GetScale());
-		Model = transformMatrix*rotationX*rotationY*rotationZ*scale;
+		auto rotationMatrix = transformComponent->GetRotationMatrix();
+		Model = transformMatrix*rotationMatrix*scale;
 		glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
 		glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, &Model[0][0]);
 		drawableComponent->Render();
