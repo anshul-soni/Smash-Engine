@@ -1,8 +1,11 @@
-
 #include "stdafx.h"
 #include "Collider.h"
 #include "Physics.h"
-
+#include "Body.h"
+#include "Manifold.h"
+#include "SignalManager.h"
+#include "CollisionSignal.h"
+#include "DrawSignal.h"
 #define EPSILON 0.001f // to compensate for floating point errors while comparing floats
 #define EPSILON2 0.00009f
 
@@ -10,45 +13,46 @@ namespace SmashEngine
 {
 	Collider::Collider(Body* b)
 		: body(b)
-	{
-
-	}
+	{	}
 
 	Collider::~Collider()
 	{
-
 	}
 
 	Body* Collider::GetBody() const
 	{
 		return body;
 	}
-
+	bool Collider::TestPoint(const glm::vec3& p)
+	{
+		return false;
+	}
 
 	bool Collider::TestCollision(Collider* other)
 	{
-		ColliderType type = other->GetColliderType();
-
+		auto type = other->GetColliderType();
+		SphereCollider* sphere;
+		BoxCollider* box;
 		switch (type)
 		{
 		case Sphere:
-		{
-			SphereCollider* sphere = static_cast<SphereCollider*>(other);
+			sphere = static_cast<SphereCollider*>(other);
 
 			if (TestSphere(sphere))
+			{
 				return true;
-
+			}
 			return false;
-		}
 		case Box:
-		{
-			BoxCollider* box = static_cast<BoxCollider*>(other);
+			box = static_cast<BoxCollider*>(other);
 
 			if (TestBox(box))
+			{
 				return true;
-
+			}
 			return false;
-		}
+		default:
+			return false;
 		}
 	}
 
@@ -139,16 +143,20 @@ namespace SmashEngine
 		float penetration = (radius + sphere->radius) - (dist);
 		glm::vec3 normal = ab / dist;
 		glm::vec3 contact = p1 + radius*normal;
-
-		Manifold m(body, sphere->GetBody());
-		m.SetContactData(contact, normal, penetration);
-		Physics::GetInstance().GetContactList().push_back(m);
+		Manifold* m = new Manifold(body, sphere->GetBody());
+		m->SetContactData(contact, normal, penetration);
+		SignalManager::GetInstance().Signal(DrawSignal(contact));
+		SignalManager::GetInstance().Signal(CollisionSignal(m));
 	}
 
 
 	void SphereCollider::DetectBox(BoxCollider* box)
 	{
 		box->DetectSphere(this);
+	}
+
+	SphereCollider::~SphereCollider()
+	{
 	}
 
 	BoxCollider::BoxCollider(Body* b, const glm::vec3& extents)
@@ -233,11 +241,6 @@ namespace SmashEngine
 
 	float BoxCollider::CalculateProjection(const glm::vec3& axis)
 	{
-		// **To Do: Do this in A's reference frame for easier debugging**
-		// Also verify if(and why) both the box and given axes shoud be absolute
-		// If Box Collision Data is wrong, it is mostly because of this method
-		// Need to verify the projection values with Unit Test Cases
-
 		glm::mat3 R = body->GetRotationMatrix();
 		glm::vec3 boxX = R[0];
 		glm::vec3 boxY = R[1];
@@ -373,6 +376,10 @@ namespace SmashEngine
 		{
 			int x = 1;
 		}
+		Manifold* m = new Manifold(body, sphere->GetBody());
+		m->SetContactData(contact, normal, penetration);
+		SignalManager::GetInstance().Signal(DrawSignal(contact));
+		SignalManager::GetInstance().Signal(CollisionSignal(m));
 	}
 
 	void BoxCollider::DetectPointFace(BoxCollider* boxB)
@@ -420,8 +427,16 @@ namespace SmashEngine
 				{
 					int x = 1;
 				}
+				Manifold* m = new Manifold(A, B);
+				m->SetContactData(boxB->vertices[i], normal, minDepth);
+				SignalManager::GetInstance().Signal(DrawSignal(boxB->vertices[i]));
+				SignalManager::GetInstance().Signal(CollisionSignal(m));
 			}
 		}
+	}
+
+	BoxCollider::~BoxCollider()
+	{
 	}
 
 	// Point-Face Ref: Game Physics Engine - Ian Millington
@@ -485,10 +500,6 @@ namespace SmashEngine
 				}
 				if (depth2 < 0.01f)
 				{
-					// when the edges are inter-penetrating,
-					// closest point of approach on edge B
-					// is closer to center of A, compared to
-					// the closest point on edge of A
 					float dA_cB = glm::distance2(body->GetPosition(), cB);
 					float dA_cA = glm::distance2(body->GetPosition(), cA);
 					if (dA_cB - dA_cA < EPSILON)
@@ -508,6 +519,10 @@ namespace SmashEngine
 							if (glm::dot(ab, normal) < 0)
 								normal *= -1.0f;
 							float penetration = glm::sqrt(depth2);
+							Manifold* m = new Manifold(body, boxB->body);
+ 							m->SetContactData(contact, normal, penetration);
+							SignalManager::GetInstance().Signal(DrawSignal(contact));
+							SignalManager::GetInstance().Signal(CollisionSignal(m));
 						}
 					}
 				}

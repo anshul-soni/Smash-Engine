@@ -78,6 +78,7 @@
     <ClCompile Include="Body.cpp" />
     <ClCompile Include="CameraSystem.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="CollisionSignal.cpp" />
     <ClCompile Include="DrawSignal.cpp" />
     <ClCompile Include="EditorSystem.cpp" />
     <ClCompile Include="GameLogicSystem.cpp" />
@@ -90,6 +91,7 @@
     <ClCompile Include="InputSignal.cpp" />
     <ClCompile Include="MainEngine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Manifold.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="ModelManager.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
@@ -114,6 +116,7 @@
     <ClInclude Include="CameraSignal.h" />
     <ClInclude Include="CameraSystem.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="CollisionSignal.h" />
     <ClInclude Include="DebugSignal.h" />
     <ClInclude Include="Drawable.h" />
     <ClInclude Include="DrawSignal.h" />
@@ -127,6 +130,7 @@
     <ClInclude Include="imgui_internal.h" />
     <ClInclude Include="InputSignal.h" />
     <ClInclude Include="InputType.h" />
+    <ClInclude Include="Manifold.h" />
     <ClInclude Include="ModelManager.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="PhysicsState.h" />

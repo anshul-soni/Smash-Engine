@@ -16,11 +16,19 @@ namespace SmashEngine
 		void SetVelocity(const glm::vec3& velocity);
 		void SetForce(const glm::vec3& force);
 		void SetCollider(Collider* collider);
+		Collider* GetCollider()const;
 		const glm::vec3& GetVelocity()const;
 		const glm::vec3& GetForce()const;
 		const glm::quat& GetOrientation()const;
 		float GetInverseMass()const;
 		void CalculateAuxilaryVariables(Transform* transform,float dt);
+		const glm::vec3& GetPosition()const;
+		const glm::mat3& GetRotationMatrix()const;
+		glm::vec3 LocalToWorld(const glm::vec3& bodyPoint)const;
+		glm::vec3 WorldToLocal(const glm::vec3& wPoint)const;
+		glm::vec3 LocalToWorldDir(const glm::vec3& dir)const;
+		glm::vec3 WorldToLocalDir(const glm::vec3& dir)const;
+		void SetStatic(bool isStatic);
 	private:
 		const ComponentType type;
 		//constant quantities
@@ -48,6 +56,10 @@ namespace SmashEngine
 		float damping;
 		float angularDamping;
 
-		Collider colliderType;
+		//attributes to store for collision
+		glm::vec3 position;
+		glm::mat3 rotationMatrix;
+
+		bool isStatic;
 	};
 }

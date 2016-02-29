@@ -153,6 +153,15 @@
     <ClCompile Include="DrawSignal.cpp">
       <Filter>Signal\SignalChannels</Filter>
     </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionSignal.cpp">
+      <Filter>Signal\SignalChannels</Filter>
+    </ClCompile>
+    <ClCompile Include="Manifold.cpp">
+      <Filter>Physics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h">
@@ -297,6 +306,15 @@
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="DrawSignal.h">
+      <Filter>Signal\SignalChannels</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Manifold.h">
+      <Filter>Physics</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionSignal.h">
       <Filter>Signal\SignalChannels</Filter>
     </ClInclude>
   </ItemGroup>

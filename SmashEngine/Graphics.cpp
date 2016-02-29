@@ -23,10 +23,10 @@ namespace SmashEngine
 		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		DrawPoints();
-		points.clear();
+		//points.clear();
 		DrawLines();
 		lines.clear();
-		DrawWireframe();
+		//DrawWireframe();
 		if (debugDraw)
 		{
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

@@ -5,7 +5,7 @@
 #include "CameraSignal.h"
 #include "DebugSignal.h"
 #include "DrawSignal.h"
-
+#include "CollisionSignal.h"
 
 namespace SmashEngine {
 	SignalManager& SignalManager::GetInstance() {
@@ -20,6 +20,7 @@ namespace SmashEngine {
 		CreateChannel<CameraSignal>();
 		CreateChannel<DebugSignal>();
 		CreateChannel<DrawSignal>();
+		CreateChannel<CollisionSignal>();
 	}
 
 	SignalManager::~SignalManager() {

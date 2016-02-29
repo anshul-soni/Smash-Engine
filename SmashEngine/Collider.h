@@ -1,5 +1,4 @@
 #pragma once
-
 namespace SmashEngine
 {
 	class SphereCollider;
@@ -69,6 +68,7 @@ namespace SmashEngine
 	public:
 		SphereCollider(Body* body,float scale);
 		ColliderType GetColliderType()const override;
+		float GetRadius() const;
 		bool TestPoint(const glm::vec3& point)override;
 		bool TestSphere(SphereCollider* sphere)override;
 		bool TestBox(BoxCollider* box)override;

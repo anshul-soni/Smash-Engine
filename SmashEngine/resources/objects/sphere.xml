@@ -1,18 +1,17 @@
-<GameObject name = "cube">
+<GameObject name = "test">
 	<Component type = "Transform">
-		<position x="0.0f" y="2.0f" z="0.0f"/>
+		<position x="-4.0f" y="-3.0f" z="0.0f"/>
 		<scale x="1.0f" y="1.0f" z="1.0f"/>
 		<rotation  x="0.0f" y="0.0f" z="0.0f"/>
 	</Component>
 	<Component type = "Render">
-		<model>cube</model>
-		<texture>cube.png</texture>
-		<shader>model</shader>
+		<model>sphere</model>
+		<shader>normal</shader>
 	</Component>
 	<Component type = "Body">
 		<velocity x="0.0f" y="0.0f" z="0.0f"/>
-		<mass>0.1</mass>
-		<collider>box</collider>
-		<isstatic>false</isstatic>
+		<mass>1</mass>
+		<collider>sphere</collider>
+		<isstatic>true</isstatic>
 	</Component>
 </GameObject>

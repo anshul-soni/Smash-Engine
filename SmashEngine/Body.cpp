@@ -17,7 +17,8 @@ namespace SmashEngine
 		orientation(glm::quat(0,0,0,0)),
 		damping(0.99f),
 		angularDamping(0.99f),
-		colliderType(nullptr)
+		collider(nullptr),
+		isStatic(false)
 	{
 	}
 
@@ -44,10 +45,36 @@ namespace SmashEngine
 		}
 		if (pElement->FirstChildElement("mass") != nullptr)
 		{
-			pElement->FirstChildElement("mass")->QueryFloatText(&inverseMass);
+			float mass;
+			pElement->FirstChildElement("mass")->QueryFloatText(&mass);
+			inverseMass = 1 / mass;
 		}else
 		{
 			std::cout << "error reading inverseMass" << std::endl;
+		}
+		if (pElement->FirstChildElement("collider") != nullptr)
+		{
+			std::string colliderType = pElement->FirstChildElement("collider")->GetText();
+			if(colliderType == "sphere")
+			{
+				collider = new SphereCollider(this, 0.5f);
+			}
+			if (colliderType == "box")
+			{
+				collider = new BoxCollider(this, glm::vec3(1));
+			}
+		}
+		else
+		{
+			std::cout << "error reading collider" << std::endl;
+		}
+		if (pElement->FirstChildElement("isstatic") != nullptr)
+		{
+			pElement->FirstChildElement("isstatic")->QueryBoolText(&isStatic);
+		}
+		else
+		{
+			std::cout << "error reading collider" << std::endl;
 		}
 	}
 
@@ -63,6 +90,16 @@ namespace SmashEngine
 	void Body::SetForce(const glm::vec3& force)
 	{
 		this->force = force;
+	}
+
+	void Body::SetCollider(Collider* collider)
+	{
+		this->collider = collider;
+	}
+
+	Collider* Body::GetCollider() const
+	{
+		return collider;
 	}
 
 	const glm::vec3& Body::GetVelocity() const
@@ -82,10 +119,18 @@ namespace SmashEngine
 
 	void Body::CalculateAuxilaryVariables(Transform* transform,float dt)
 	{
+		if(isStatic)
+		{
+			glm::vec3 rotation = transform->GetRotation();
+			orientation = glm::quat(rotation);
+			rotationMatrix = glm::toMat3(glm::normalize(orientation));
+			this->position = transform->GetPosition();
+			return;
+		}
 		auto acceleration = force * inverseMass + GRAVITY;
 
 		orientation = glm::normalize(orientation);
-		auto rotationMatrix = glm::toMat3(orientation);
+		rotationMatrix = glm::toMat3(orientation);
 		inverseInertialTensor = glm::transpose(rotationMatrix)*inverseInertiaTensorLocal*rotationMatrix;
 		auto alpha = inverseInertialTensor*torque;
 
@@ -95,7 +140,7 @@ namespace SmashEngine
 		auto position = transform->GetPosition();
 		position += velocity * dt;
 		transform->SetPosition(position);
-
+		this->position = position;
 		auto dq = glm::quat(0, omega) * dt;
 		orientation += dq * orientation * 0.5f;
 
@@ -103,8 +148,44 @@ namespace SmashEngine
 		omega *= angularDamping;
 
 		transform->SetRotationMatrix(glm::toMat4(orientation));
-
 		force = glm::vec3(0, 0, 0);
 		torque = glm::vec3(0, 0, 0);
+	}
+
+	const glm::vec3& Body::GetPosition() const
+	{
+		return position;
+	}
+
+	const glm::mat3& Body::GetRotationMatrix() const
+	{
+		return rotationMatrix;
+	}
+
+	glm::vec3 Body::LocalToWorld(const glm::vec3& lPoint)const
+	{
+		glm::vec3 com = GetPosition();
+		return (rotationMatrix*lPoint+com);
+	}
+
+	glm::vec3 Body::WorldToLocal(const glm::vec3& wPoint)const 
+	{
+		glm::vec3 com = GetPosition();
+		return ((glm::transpose(rotationMatrix))*(wPoint - com));
+	}
+
+	glm::vec3 Body::LocalToWorldDir(const glm::vec3& lDir)const 
+	{
+		return (rotationMatrix * lDir);
+	}
+
+	glm::vec3 Body::WorldToLocalDir(const glm::vec3& wDir)const
+	{
+		return (glm::transpose(rotationMatrix) * wDir);
+	}
+
+	void Body::SetStatic(bool isStatic)
+	{
+		this->isStatic = isStatic;
 	}
 }
