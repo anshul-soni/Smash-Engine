@@ -10,8 +10,11 @@ The framework is divided into
 
 #Build Instructions#
 The project is developed in Visual Studio 2013
+
 -Open the .sln file in Visual Studio 2013
+
 -Build Solution(Ctrl+Shift+B)
+
 -Run using F5
 
 Instruction for the basic controls is provided in the engine itself.
