@@ -1,11 +1,22 @@
+////////////////////////////////////////////////////////////////////////////////////
+/// All content (c) 2015 Anshul Soni, all rights reserved.                        
+/// @file GameLogicSystem.cpp															 
+/// @date 1/29/2016  5:32 PM			 
+/// @author Anshul Soni <soni.anshul93@gmail.com>								 
+///																				 
+/// As a condition of your accessing this Engine, you agree to be bound 		 
+///	by the following terms and conditions: 										 
+/// The software was created by Anshul Soni, and all copyright and other 		 
+///	rights in such is owned by Anshul Soni. While you are allowed to access,  	 
+/// download and use the code for non-commercial, home use you hereby expressly  
+/// agree that you will not otherwise copy, distribute, modify, the code. 		 
+////////////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
 #include "GameLogicSystem.h"
 #include "ComponentCreator.h"
 #include "Transform.h"
 #include "Render.h"
 #include "Body.h"
-#include "SignalManager.h"
-#include "DrawSignal.h"
 
 namespace SmashEngine
 {
@@ -23,27 +34,10 @@ namespace SmashEngine
 		RegisterComponent(Body);
 		ObjectFactory::GetInstance().Create("test");
 		ObjectFactory::GetInstance().Create("cube");
-		ObjectFactory::GetInstance().Create("sphere");
-		auto sphere = ObjectFactory::GetInstance().Create("sphere");
-		auto sphereBody = sphere->has(Body);
-		sphereBody->SetStatic(false);
-		auto sphereTransform = sphere->has(Transform);
-		sphereTransform->SetPosition(sphereTransform->GetPosition().x, 3.0f, sphereTransform->GetPosition().z);
-
-		sphere = ObjectFactory::GetInstance().Create("sphere");
-		sphereTransform = sphere->has(Transform);
-		sphereTransform->SetPosition(4.0F, sphereTransform->GetPosition().y, sphereTransform->GetPosition().z);
-
-		sphere = ObjectFactory::GetInstance().Create("cube");
-		sphereTransform = sphere->has(Transform);
-		sphereTransform->SetPosition(4.0F, 3.0f, sphereTransform->GetPosition().z);
 	}
 
 	void GameLogicSystem::Update(float dt)
 	{
-		//Signal to draw debug points
-		//SignalManager::GetInstance().Signal(DrawSignal(glm::vec3(0)));
-		//SignalManager::GetInstance().Signal(DrawSignal(glm::vec3(0,1,0), glm::vec3(1)));
 	}
 
 	void GameLogicSystem::Release()

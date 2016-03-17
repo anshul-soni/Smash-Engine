@@ -1,3 +1,16 @@
+////////////////////////////////////////////////////////////////////////////////////
+/// All content (c) 2015 Anshul Soni, all rights reserved.                        
+/// @file Model.cpp															 
+/// @date 2/5/2016  11:27 PM			 
+/// @author Anshul Soni <soni.anshul93@gmail.com>								 
+///																				 
+/// As a condition of your accessing this Engine, you agree to be bound 		 
+///	by the following terms and conditions: 										 
+/// The software was created by Anshul Soni, and all copyright and other 		 
+///	rights in such is owned by Anshul Soni. While you are allowed to access,  	 
+/// download and use the code for non-commercial, home use you hereby expressly  
+/// agree that you will not otherwise copy, distribute, modify, the code. 		 
+////////////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
 #include "Model.h"
 #include "TextureManager.h"
@@ -98,6 +111,8 @@ namespace SmashEngine
 				}
 				else
 				{
+					Texture newTex;
+					newTex.LoadTexture2D(fullPath);
 					materialRemap[i] = static_cast<int>(textures.size());
 					textures.push_back(TextureManager::GetInstance().GetTexture(fullPath));
 					std::cout << "texture loaded" << fullPath << std::endl;
@@ -121,7 +136,6 @@ namespace SmashEngine
 
 		glEnableVertexAttribArray(2);
 		glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(aiVector3D) + sizeof(aiVector2D), (void*)(sizeof(aiVector3D) + sizeof(aiVector2D)));
-		glBindVertexArray(0);
 		return bLoaded = true;
 	}
 
@@ -147,12 +161,6 @@ namespace SmashEngine
 	Shader& Model::GetShader()
 	{
 		return *shader;
-	}
-
-	void Model::SetTexture(const std::string& filePath)
-	{
-
-		textures.push_back(TextureManager::GetInstance().GetTexture(filePath));
 	}
 
 	void Model::SetShader(const std::string& shader)

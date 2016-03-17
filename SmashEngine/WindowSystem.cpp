@@ -1,3 +1,16 @@
+////////////////////////////////////////////////////////////////////////////////////
+/// All content (c) 2015 Anshul Soni, all rights reserved.                        
+/// @file WindowSystem.cpp															 
+/// @date 2/1/2016  1:39 PM			 
+/// @author Anshul Soni <soni.anshul93@gmail.com>								 
+///																				 
+/// As a condition of your accessing this Engine, you agree to be bound 		 
+///	by the following terms and conditions: 										 
+/// The software was created by Anshul Soni, and all copyright and other 		 
+///	rights in such is owned by Anshul Soni. While you are allowed to access,  	 
+/// download and use the code for non-commercial, home use you hereby expressly  
+/// agree that you will not otherwise copy, distribute, modify, the code. 		 
+////////////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
 #include "WindowSystem.h"
 #include "SignalManager.h"
@@ -23,8 +36,7 @@ namespace SmashEngine
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
-		auto monitor = glfwGetPrimaryMonitor();
-		auto mode = glfwGetVideoMode(monitor);
+
 		this->window = glfwCreateWindow(1024, 768, "Smash Engine", nullptr, nullptr);
 		glfwMakeContextCurrent(window);
 		if (window == nullptr)

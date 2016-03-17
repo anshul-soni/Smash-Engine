@@ -1,3 +1,16 @@
+////////////////////////////////////////////////////////////////////////////////////
+/// All content (c) 2015 Anshul Soni, all rights reserved.                        
+/// @file Physics.cpp															 
+/// @date 2/5/2016  11:27 PM			 
+/// @author Anshul Soni <soni.anshul93@gmail.com>								 
+///																				 
+/// As a condition of your accessing this Engine, you agree to be bound 		 
+///	by the following terms and conditions: 										 
+/// The software was created by Anshul Soni, and all copyright and other 		 
+///	rights in such is owned by Anshul Soni. While you are allowed to access,  	 
+/// download and use the code for non-commercial, home use you hereby expressly  
+/// agree that you will not otherwise copy, distribute, modify, the code. 		 
+////////////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
 #include "Physics.h"
 #include "Body.h"
@@ -9,58 +22,26 @@
 namespace SmashEngine
 {
 	Physics::Physics() :
-		type(ENGINE_Physics),
-		fixedDt(0.01f),
-		debugDt(fixedDt),
-		gravity(-10),
-		damping(0.99f),
-		state(PHYSICS_PAUSE),
-		frameStepping(true)
+		type(ENGINE_Physics), 
+		fixedDt(0.001f), 
+		debugDt(fixedDt), 
+		gravity(glm::vec3(0.0f, -10.0f, 0.0f)),
+		damping(0.99f), 
+		state(PHYSICS_PAUSE)
 	{
 		SignalManager::GetInstance().Connect<DebugSignal>(this);
-		SignalManager::GetInstance().Connect<CollisionSignal>(this);
 	}
 
 	void Physics::Update(float dt)
 	{
-		static float timeStep = 1.0f / 60.0f;
-
-		if (state == PHYSICS_FORWARD)
+		for (auto object : ObjectManager::GetInstance().GetObjects())
 		{
-			if (timeStep < 0) timeStep *= -1;
-			state = PHYSICS_PAUSE;
-		}
-
-		if (state == PHYSICS_REVERSE)
-		{
-			if (timeStep > 0) timeStep *= -1;
-			state = PHYSICS_PAUSE;
-		}
-
-		if (!frameStepping)
-		{
-			if (timeStep < 0) timeStep *= -1;
-			StepFunction(timeStep);
-		}
-		else
-		{
-			if (advanceFrame)
+			auto bodyComponent = object.second->has(Body);
+			if (bodyComponent != nullptr)
 			{
-				StepFunction(timeStep);
-				advanceFrame = false;
+				CalculatePosition(*object.second);
 			}
 		}
-		auto draw = true;
-		ImGui::Begin("Physics", &draw, ImVec2(350, 350), 0.5);
-		ImGui::Text("Use W,A,S and D to move the camera around");
-		ImGui::Text("Use Q and E to Rotate the camera");
-		ImGui::Text("Use +,- to zoom in/out");
-		ImGui::Text("Use Space to Toogle play/pause");
-		ImGui::Text("Left arrow key for previous frame(when paused)");
-		ImGui::Text("Right arrow key for next frame(when paused)");
-		ImGui::Text("Use 1 to toogle debug draw");
-		ImGui::InputFloat("Current dt", &timeStep, ImGuiInputTextFlags_ReadOnly);
-		ImGui::End();
 	}
 
 	void Physics::OnSignal(DebugSignal signal)
@@ -70,36 +51,34 @@ namespace SmashEngine
 		case DEBUG_TOOGLE_PLAY:
 			if (state == PHYSICS_PLAY)
 			{
+				debugDt = 0.0f;
 				state = PHYSICS_PAUSE;
 			}
 			else
 			{
+				debugDt = fixedDt;
 				state = PHYSICS_PLAY;
 			}
-			frameStepping = frameStepping ? false : true;
 			break;
 		case DEBUG_FORWARD:
 			if (state == PHYSICS_PAUSE)
 			{
 				state = PHYSICS_FORWARD;
-				advanceFrame = true;
+				debugDt = fixedDt;
 			}
 			break;
 		case DEBUG_REVERSE:
 			if (state == PHYSICS_PAUSE)
 			{
 				state = PHYSICS_REVERSE;
-				advanceFrame = true;
+				debugDt = -fixedDt;
 			}
 			break;
 		default:
 			break;
 		}
 	}
-	void Physics::OnSignal(CollisionSignal signal)
-	{
-		contacts.push_back(signal.GetContactData());
-	}
+
 	void Physics::Init()
 	{
 	}
@@ -109,66 +88,14 @@ namespace SmashEngine
 		return type;
 	}
 
-	void Physics::StepFunction(float dt)
-	{
-		for (auto object : ObjectManager::GetInstance().GetObjects())
-		{
-			auto bodyComponent = object.second->has(Body);
-			if (bodyComponent != nullptr)
-			{
-				auto transformComponent = object.second->has(Transform);
-				bodyComponent->CalculateAuxilaryVariables(transformComponent, dt);
-			}
-		}
-		std::unordered_map<unsigned, GameObject*>::const_iterator object1 = ObjectManager::GetInstance().GetObjects().begin();
-		for (; object1 != ObjectManager::GetInstance().GetObjects().end(); ++object1)
-		{
-			auto body1 = object1->second->has(Body);
-			if (body1 == nullptr)
-			{
-				continue;
-			}
-			auto collider1 = body1->GetCollider();
-			if (collider1 == nullptr)
-			{
-				continue;
-			}
-			std::unordered_map<unsigned, GameObject*>::const_iterator object2 = object1;
-			for (++object2; object2 != ObjectManager::GetInstance().GetObjects().end(); ++object2)
-			{
-				auto body2 = object2->second->has(Body);
-				if (body2 == nullptr)
-				{
-					continue;
-				}
-				auto collider2 = body2->GetCollider();
-				if (collider2 == nullptr)
-				{
-					continue;
-				}
-				if (collider1->TestCollision(collider2))
-				{
-					collider1->DetectContacts(collider2);
-				}
-			}
-		}
-	}
-
-	void Physics::CalculateAuxilaryVariables(GameObject& object)
-	{
-
-	}
-
 	void Physics::CalculatePosition(GameObject& obj)
 	{
 		if (state != PHYSICS_PAUSE)
 		{
 			auto transformComponent = obj.has(Transform);
 			auto bodyComponent = obj.has(Body);
-			auto gravitationalForce = glm::vec3(0, gravity*bodyComponent->GetInverseMass(), 0);
 			//accumulate the total force
-			auto force = gravitationalForce + bodyComponent->GetForce();
-			auto a = force*(1 / bodyComponent->GetInverseMass());;
+			auto a = gravity + bodyComponent->GetForce()*bodyComponent->GetInverseMass();
 			auto position = transformComponent->GetPosition() + bodyComponent->GetVelocity()*debugDt;
 			auto velocity = bodyComponent->GetVelocity() + a*debugDt;
 			velocity *= std::pow(damping, debugDt);
@@ -179,8 +106,6 @@ namespace SmashEngine
 				bodyComponent->SetVelocity(velocity);
 			}
 		}
-
-		
 		switch (state)
 		{
 		case PHYSICS_PLAY:
@@ -198,5 +123,12 @@ namespace SmashEngine
 			state = PHYSICS_PAUSE;
 			break;
 		}	
+		auto draw = true;
+		ImGui::Begin("Physics", &draw, ImVec2(350, 350), 0.5);
+		ImGui::Text("Use Space to Toogle play/pause");
+		ImGui::Text("Left arrow key for previous frame(when paused)");
+		ImGui::Text("Right arrow key for next frame(when paused)");
+		ImGui::Text("Use 1 to toogle debug draw");
+		ImGui::End();
 	}
 }

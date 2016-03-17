@@ -150,17 +150,11 @@
     <ClCompile Include="imgui_impl_glfw_gl3.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
-    <ClCompile Include="DrawSignal.cpp">
-      <Filter>Signal\SignalChannels</Filter>
+    <ClCompile Include="Shape.cpp">
+      <Filter>Resources</Filter>
     </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>Physics</Filter>
-    </ClCompile>
-    <ClCompile Include="CollisionSignal.cpp">
-      <Filter>Signal\SignalChannels</Filter>
-    </ClCompile>
-    <ClCompile Include="Manifold.cpp">
-      <Filter>Physics</Filter>
+    <ClCompile Include="ShapeManager.cpp">
+      <Filter>Resources</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -305,34 +299,23 @@
     <ClInclude Include="Drawable.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="DrawSignal.h">
-      <Filter>Signal\SignalChannels</Filter>
+    <ClInclude Include="Shape.h">
+      <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Manifold.h">
-      <Filter>Physics</Filter>
-    </ClInclude>
-    <ClInclude Include="CollisionSignal.h">
-      <Filter>Signal\SignalChannels</Filter>
+    <ClInclude Include="ShapeManager.h">
+      <Filter>Resources</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="resources\shaders\normal.frag">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="resources\shaders\normal.vert">
+      <Filter>Shaders</Filter>
+    </None>
     <None Include="imgui.ini">
       <Filter>Editor</Filter>
     </None>
-    <None Include="resources\shaders\shape.frag">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="resources\shaders\shape.vert">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="resources\shaders\model.vert">
-      <Filter>Shaders</Filter>
-    </None>
-    <None Include="resources\shaders\model.frag">
-      <Filter>Shaders</Filter>
-    </None>
+    <None Include="SmashEngine.licenseheader" />
   </ItemGroup>
 </Project>

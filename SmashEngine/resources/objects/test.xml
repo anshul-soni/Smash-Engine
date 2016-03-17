@@ -1,17 +1,11 @@
 <GameObject name = "test">
 	<Component type = "Transform">
-		<position x="0.0f" y="-3.0f" z="0.0f"/>
+		<position x="0.0f" y="-3.0f" z="-2.0f"/>
 		<scale x="1.0f" y="1.0f" z="1.0f"/>
 		<rotation  x="0.0f" y="0.0f" z="0.0f"/>
 	</Component>
 	<Component type = "Render">
-		<model>cube</model>
+		<model>floor/CobbleStones2.obj</model>
 		<shader>normal</shader>
-	</Component>
-	<Component type = "Body">
-		<velocity x="0.0f" y="0.0f" z="0.0f"/>
-		<mass>1</mass>
-		<collider>box</collider>
-		<isstatic>true</isstatic>
 	</Component>
 </GameObject>

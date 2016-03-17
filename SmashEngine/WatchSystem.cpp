@@ -1,3 +1,16 @@
+////////////////////////////////////////////////////////////////////////////////////
+/// All content (c) 2015 Anshul Soni, all rights reserved.                        
+/// @file WatchSystem.cpp															 
+/// @date 1/23/2016  2:49 PM			 
+/// @author Anshul Soni <soni.anshul93@gmail.com>								 
+///																				 
+/// As a condition of your accessing this Engine, you agree to be bound 		 
+///	by the following terms and conditions: 										 
+/// The software was created by Anshul Soni, and all copyright and other 		 
+///	rights in such is owned by Anshul Soni. While you are allowed to access,  	 
+/// download and use the code for non-commercial, home use you hereby expressly  
+/// agree that you will not otherwise copy, distribute, modify, the code. 		 
+////////////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
 #include "WatchSystem.h"
 
@@ -23,10 +36,14 @@ namespace SmashEngine
 	{
 		frameCounter++;
 		auto currentTime = glfwGetTime();
-		this->dt = static_cast<float>(currentTime - lastTime);
-		frameRate = 1000.0f/this->dt;
-		lastTime = glfwGetTime();
-
+		this->dt = static_cast<float>(currentTime - lastFrame);
+		if(currentTime-lastTime >= 1.0)
+		{
+			frameRate = frameCounter;
+			frameCounter = 0;
+			lastTime += 1.0;
+		}
+		lastFrame = currentTime;
 	}
 
 	void WatchSystem::Release()
@@ -43,7 +60,7 @@ namespace SmashEngine
 		return dt;
 	}
 
-	float WatchSystem::GetFrameRate()const
+	int WatchSystem::GetFrameRate()const
 	{
 		return frameRate;
 	}

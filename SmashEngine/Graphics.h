@@ -1,36 +1,35 @@
+////////////////////////////////////////////////////////////////////////////////////
+/// All content (c) 2015 Anshul Soni, all rights reserved.                        
+/// @file Graphics.h															 
+/// @date 1/29/2016  5:32 PM			 
+/// @author Anshul Soni <soni.anshul93@gmail.com>								 
+///																				 
+/// As a condition of your accessing this Engine, you agree to be bound 		 
+///	by the following terms and conditions: 										 
+/// The software was created by Anshul Soni, and all copyright and other 		 
+///	rights in such is owned by Anshul Soni. While you are allowed to access,  	 
+/// download and use the code for non-commercial, home use you hereby expressly  
+/// agree that you will not otherwise copy, distribute, modify, the code. 		 
+////////////////////////////////////////////////////////////////////////////////////
 #pragma once
 #include "Engine.h"
 #include "SignalHandler.h"
 #include "DebugSignal.h"
-#include "Shader.h"
-#include "Model.h"
-#include "DrawSignal.h"
 
 namespace SmashEngine
 {
 	class Graphics:public Engine,
-		public SignalHandler<DebugSignal>,
-		public SignalHandler<DrawSignal>
+		public SignalHandler<DebugSignal>
 	{
 	public:
 		Graphics();
 		void Update(float dt)override;
 		void Init()override;
 		void OnSignal(DebugSignal signal)override;
-		void OnSignal(DrawSignal signal)override;
 		EngineType GetType()const override;
 		~Graphics();
 	private:
-		Model* contactSphere;
-		void DrawLines();
-		void DrawPoints();
-		void DrawWireframe();
-		void DebugDrawLine(glm::vec3 startPoint, glm::vec3 endPoint, glm::vec3 color);
-		std::vector<const glm::vec3> points;
-		std::vector<const std::pair<glm::vec3,glm::vec3>> lines;
-		GLuint line_Buffer;
 		const EngineType type;
-		Shader* debugShader;
 		bool debugDraw;
 	};
 }

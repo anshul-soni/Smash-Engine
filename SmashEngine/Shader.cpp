@@ -1,3 +1,16 @@
+////////////////////////////////////////////////////////////////////////////////////
+/// All content (c) 2015 Anshul Soni, all rights reserved.                        
+/// @file Shader.cpp															 
+/// @date 1/23/2016  2:49 PM			 
+/// @author Anshul Soni <soni.anshul93@gmail.com>								 
+///																				 
+/// As a condition of your accessing this Engine, you agree to be bound 		 
+///	by the following terms and conditions: 										 
+/// The software was created by Anshul Soni, and all copyright and other 		 
+///	rights in such is owned by Anshul Soni. While you are allowed to access,  	 
+/// download and use the code for non-commercial, home use you hereby expressly  
+/// agree that you will not otherwise copy, distribute, modify, the code. 		 
+////////////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
 #include "Shader.h"
 #include "ResourcePath.h"
@@ -32,7 +45,6 @@ namespace SmashEngine
 		}
 		catch (std::ifstream::failure e)
 		{
-			std::cout << shaderKey << std::endl;
 			std::cout << "ERROR::SHADER::FILE_NOT_READ_SUCCESSFULLY" << std::endl;
 		}
 		const GLchar* vShaderCode = vertexCode.c_str();
@@ -51,7 +63,6 @@ namespace SmashEngine
 		if (!success)
 		{
 			glGetShaderInfoLog(vertex, 512, nullptr, infoLog);
-			std::cout << shaderKey << std::endl;
 			std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED \n" << infoLog << std::endl;
 		};
 
@@ -64,7 +75,6 @@ namespace SmashEngine
 		if (!success)
 		{
 			glGetShaderInfoLog(fragment, 512, nullptr, infoLog);
-			std::cout << shaderKey << std::endl;
 			std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED \n" << infoLog << std::endl;
 		};
 
@@ -77,7 +87,6 @@ namespace SmashEngine
 		if (!success)
 		{
 			glGetProgramInfoLog(this->Program, 512, nullptr, infoLog);
-			std::cout << shaderKey << std::endl;
 			std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED \n" << infoLog << std::endl;
 
 		}

@@ -1,6 +1,18 @@
+////////////////////////////////////////////////////////////////////////////////////
+/// All content (c) 2015 Anshul Soni, all rights reserved.                        
+/// @file Texture.cpp															 
+/// @date 1/23/2016  2:49 PM			 
+/// @author Anshul Soni <soni.anshul93@gmail.com>								 
+///																				 
+/// As a condition of your accessing this Engine, you agree to be bound 		 
+///	by the following terms and conditions: 										 
+/// The software was created by Anshul Soni, and all copyright and other 		 
+///	rights in such is owned by Anshul Soni. While you are allowed to access,  	 
+/// download and use the code for non-commercial, home use you hereby expressly  
+/// agree that you will not otherwise copy, distribute, modify, the code. 		 
+////////////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
 #include "Texture.h"
-#include "ResourcePath.h"
 
 namespace SmashEngine
 {
@@ -12,16 +24,16 @@ namespace SmashEngine
 	{
 	};
 
-	Texture::Texture(const std::string& path) :path(ResourcePath::GetInstance().GetPath(RESOURCE_Texture,path))
+	Texture::Texture(const std::string& path)
 	{
-		LoadTexture2D();
+		LoadTexture2D(path);
 	};
 
 	Texture::~Texture() {
 		glDeleteTextures(1, &id);
 	}
 
-	void Texture::LoadTexture2D(){
+	bool Texture::LoadTexture2D(const std::string& path){
 		// Get the bytes for the texture.
 		auto image = SOIL_load_image(
 			path.c_str(),
@@ -30,7 +42,7 @@ namespace SmashEngine
 			&channels,
 			SOIL_LOAD_RGBA);
 		if (image == nullptr)
-			return;
+			return false;
 		GLuint id;
 		// Create OpenGL texture and load bytes into it.
 		glGenTextures(1, &id);
@@ -47,6 +59,7 @@ namespace SmashEngine
 		// Return new texture.
 		this->id = id;
 		this->path = path;
+		return true;
 	}
 
 	void Texture::BindTexture() const {

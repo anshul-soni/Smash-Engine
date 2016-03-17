@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /// All content (c) 2015 Anshul Soni, all rights reserved.                        
-/// @file Shader.h															 
-/// @date 1/23/2016  2:49 PM			 
+/// @file ShapeManager.h															 
+/// @date 2/5/2016  11:27 PM			 
 /// @author Anshul Soni <soni.anshul93@gmail.com>								 
 ///																				 
 /// As a condition of your accessing this Engine, you agree to be bound 		 
@@ -12,14 +12,23 @@
 /// agree that you will not otherwise copy, distribute, modify, the code. 		 
 ////////////////////////////////////////////////////////////////////////////////////
 #pragma once
+#include "Shape.h"
 
 namespace SmashEngine
 {
-	class Shader
+	class ShapeManager
 	{
 	public:
-		GLuint Program;
-		explicit Shader(const std::string& shaderKey);
-		void Use()const;
+		static ShapeManager& GetInstance()
+		{
+			static ShapeManager instance;
+			return instance;
+		}
+		ShapeManager();
+		Shape* GetShape(const std::string& key);
+		~ShapeManager();
+	private:
+		void AddShape(const std::string& key);
+		std::unordered_map<std::string, Shape*> Shapes;
 	};
 }
