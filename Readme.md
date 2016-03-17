@@ -10,3 +10,13 @@ The project is developed in Visual Studio 2013
 Instruction for the basic controls is provided in the engine itself.
 
 Please note that this engine is work in progress.
+
+#External Libraries#
+##OpenGL#
+##GLFW#
+##SOIL#
+##GLM#
+##ImGUI#
+##Sigslot#
+##TinyXML2#
+##Assimp#
