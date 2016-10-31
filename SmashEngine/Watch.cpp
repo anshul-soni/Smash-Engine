@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /// All content (c) 2015 Anshul Soni, all rights reserved.                        
-/// @file WatchSystem.h															 
+/// @file Watch.cpp															 
 /// @date 1/23/2016  2:49 PM			 
 /// @author Anshul Soni <soni.anshul93@gmail.com>								 
 ///																				 
@@ -11,30 +11,62 @@
 /// download and use the code for non-commercial, home use you hereby expressly  
 /// agree that you will not otherwise copy, distribute, modify, the code. 		 
 ////////////////////////////////////////////////////////////////////////////////////
-#pragma once
-#include "System.h"
+#include "stdafx.h"
+#include "Watch.h"
 
 namespace SmashEngine
 {
-	class WatchSystem:public System
+	Watch* Watch::instance = nullptr;
+	Watch::Watch() :dt(0), frameRate(0), frameCounter(0), lastTime(0)
 	{
-	public:
-		static WatchSystem& GetInstance();
-		void Init()override;
-		void Update(float dt)override;
-		void Release()override;
-		SystemType GetType()const override;
-		float Getdt()const;
-		int GetFrameRate()const;
-	private:
-		const SystemType type;
-		float dt;
-		int frameRate;
-		int frameCounter;
-		double lastTime;
-		double lastFrame;
-		WatchSystem();
-		WatchSystem(const WatchSystem&) = delete;
-		WatchSystem& operator=(const WatchSystem) = delete;
-	};
+		lastTime = glfwGetTime();
+	}
+
+	void Watch::Start()
+	{
+		if(instance)
+		{
+			return;
+		}
+		instance = new Watch();
+	}
+	
+	void Watch::Stop()
+	{
+		//clear the system
+	}
+
+	Watch& Watch::GetInstance()
+	{
+		if (instance)
+		{
+			return *instance;
+		}
+		Start();
+		return *instance;
+	}
+
+	void Watch::Update()
+	{
+		frameCounter++;
+		auto currentTime = glfwGetTime();
+		this->dt = static_cast<float>(currentTime - lastFrame);
+		if(currentTime-lastTime >= 1.0)
+		{
+			frameRate = frameCounter;
+			frameCounter = 0;
+			lastTime += 1.0;
+		}
+		lastFrame = currentTime;
+	}
+
+	float Watch::Getdt()const
+	{
+		return dt;
+	}
+
+	int Watch::GetFrameRate()const
+	{
+		return frameRate;
+	}
 }

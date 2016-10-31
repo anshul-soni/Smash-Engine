@@ -23,12 +23,6 @@ namespace SmashEngine
 	{
 	}
 
-	WindowSystem & WindowSystem::GetInstance()
-	{
-		static WindowSystem instance;
-		return instance;
-	}
-
 	void WindowSystem::Init()
 	{
 		glfwInit();
@@ -64,6 +58,9 @@ namespace SmashEngine
 		if (!glfwWindowShouldClose(window))
 		{
 			glfwPollEvents();
+			glfwSwapBuffers(window);
+			glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		}else
 		{
 			SignalManager::GetInstance().Signal(ENGINE_TERMINATE);
@@ -89,6 +86,11 @@ namespace SmashEngine
 	}
 	void WindowSystem::KeyBoardCallBack(GLFWwindow* window, int key, int scancode, int action, int mode)
 	{
+		if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
+		{
+			SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::ENGINE_TERMINATE);
+			glfwSetWindowShouldClose(window, GL_TRUE);
+		}
 	}
 	void WindowSystem::MouseCallBack(GLFWwindow* window, int button, int action, int mods)
 	{

@@ -13,10 +13,10 @@
 ////////////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
 #include "Graphics.h"
-#include "WindowSystem.h"
 #include "SignalManager.h"
 #include "ObjectManager.h"
 #include "Render.h"
+#include "Camera.h"
 
 namespace SmashEngine
 {
@@ -27,9 +27,6 @@ namespace SmashEngine
 
 	void Graphics::Update(float dt)
 	{
-		glfwSwapBuffers(WindowSystem::GetInstance().GetWindow());
-		glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 		//For Wireframe uncomment next statement
 		if (debugDraw)
@@ -39,12 +36,27 @@ namespace SmashEngine
 		{
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		}
+		//This works because there is only one camera right now
+		//needs to be restructred when adding multiple camera system
+		Camera* camera = nullptr;
+		for (auto object : ObjectManager::GetInstance().GetObjects())
+		{
+			Camera* cameraComponent = object.second->has(Camera);
+			if (cameraComponent!= nullptr)
+			{
+				cameraComponent->Update(dt);
+				camera = cameraComponent;
+			}
+		}
 		for (auto object:ObjectManager::GetInstance().GetObjects())
 		{
-			auto renderComponent = object.second->has(Render);
-			if (renderComponent!=nullptr)
+			if (camera)
 			{
-				renderComponent->Draw();
+				auto renderComponent = object.second->has(Render);
+				if (renderComponent != nullptr)
+				{
+					renderComponent->Draw(camera->GetProjectionMatrix(), camera->GetViewMatrix());
+				}
 			}
 		}
 	}

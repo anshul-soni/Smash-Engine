@@ -16,18 +16,33 @@
 
 namespace SmashEngine
 {
-	ObjectManager::ObjectManager() :type(SYSTEM_ObjectManager)
+	ObjectManager* ObjectManager::instance = nullptr;
+	ObjectManager::ObjectManager()
 	{
+	}
+
+	void ObjectManager::Start()
+	{
+		if(instance)
+		{
+			return;
+		}
+		instance = new ObjectManager();
+	}
+
+	void ObjectManager::Stop()
+	{
+		
 	}
 
 	ObjectManager& ObjectManager::GetInstance()
 	{
-		static ObjectManager instance;
-			return instance;
-	}
-
-	void ObjectManager::Init()
-	{
+		if (instance)
+		{
+			return *instance;
+		}
+		Start();
+		return *instance;
 	}
 
 	void ObjectManager::Update(float dt)
@@ -43,10 +58,6 @@ namespace SmashEngine
 			}
 		}
 		objectsToBeDeleted.clear();
-	}
-
-	void ObjectManager::Release()
-	{
 	}
 
 	void ObjectManager::AddObject(GameObject* object)
@@ -84,11 +95,6 @@ namespace SmashEngine
 	const std::unordered_map<unsigned, GameObject*>& ObjectManager::GetObjects() const
 	{
 		return gameObjects;
-	}
-
-	SystemType ObjectManager::GetType() const
-	{
-		return type;
 	}
 
 	ObjectManager::~ObjectManager()

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /// All content (c) 2015 Anshul Soni, all rights reserved.                        
-/// @file WindowSystem.h															 
-/// @date 1/27/2016  10:59 PM			 
+/// @file Watch.h															 
+/// @date 1/23/2016  2:49 PM			 
 /// @author Anshul Soni <soni.anshul93@gmail.com>								 
 ///																				 
 /// As a condition of your accessing this Engine, you agree to be bound 		 
@@ -12,27 +12,26 @@
 /// agree that you will not otherwise copy, distribute, modify, the code. 		 
 ////////////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include "System.h"
 
 namespace SmashEngine
 {
-	class WindowSystem:public System
+	class Watch
 	{
 	public:
-		WindowSystem();
-		virtual void Init()override;
-		virtual void Update(float dt)override;
-		virtual void Release()override;
-		SystemType GetType()const override;
-		GLFWwindow* GetWindow()const;
-		virtual ~WindowSystem();
-	protected:
-		const SystemType type;
-		GLFWwindow* window;
+		static void Start();
+		static void Stop();
+		static Watch& GetInstance();
+		void Update();
+		float Getdt()const;
+		int GetFrameRate()const;
 	private:
-		static void MouseCallBack(GLFWwindow* window, int button, int action, int mods);
-		static void KeyBoardCallBack(GLFWwindow* window, int key, int scancode, int action, int mode);
-		WindowSystem(WindowSystem&) = delete;
-		WindowSystem& operator=(const WindowSystem) = delete;
+		Watch();
+		float dt;
+		int frameRate;
+		int frameCounter;
+		double lastTime;
+		double lastFrame;
+		Watch& operator=(const Watch) = delete;
+		static Watch* instance;
 	};
 }

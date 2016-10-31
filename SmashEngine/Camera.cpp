@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /// All content (c) 2015 Anshul Soni, all rights reserved.                        
-/// @file CameraSystem.cpp															 
+/// @file Camera.cpp															 
 /// @date 2/5/2016  11:27 PM			 
 /// @author Anshul Soni <soni.anshul93@gmail.com>								 
 ///																				 
@@ -12,18 +12,12 @@
 /// agree that you will not otherwise copy, distribute, modify, the code. 		 
 ////////////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
-#include "CameraSystem.h"
+#include "Camera.h"
 #include "SignalManager.h"
 
 namespace SmashEngine
 {
-	CameraSystem& CameraSystem::GetInstance()
-	{
-		static CameraSystem instance;
-		return instance;
-	}
-	CameraSystem::CameraSystem() :
-		type(SYSTEM_Camera),
+	Camera::Camera() :
 		fov(45.0f),
 		projectionMatrix(glm::mat4(1)),
 		viewMatrix(glm::mat4(1)),
@@ -38,12 +32,17 @@ namespace SmashEngine
 	{
 	}
 
-	void CameraSystem::Init()
+	void Camera::Initialize()
 	{
 		SignalManager::GetInstance().Connect<CameraSignal>(this);
 	}
 
-	void CameraSystem::Update(float dt)
+	void Camera::Deserialize(tinyxml2::XMLElement* pElement)
+	{
+		//layer for the camera will be deserialized
+	}
+
+	void Camera::Update(float dt)
 	{
 		deltaTime = dt;
 
@@ -58,11 +57,11 @@ namespace SmashEngine
 		viewMatrix = glm::lookAt(position, position + direction, glm::vec3(0, 1, 0));
 	}
 
-	void CameraSystem::Release()
+	void Camera::Destroy()
 	{
 	}
 
-	void CameraSystem::OnSignal(CameraSignal signal)
+	void Camera::OnSignal(CameraSignal signal)
 	{
 		switch (signal)
 		{
@@ -101,17 +100,13 @@ namespace SmashEngine
 		}
 	}
 
-	SystemType CameraSystem::GetType() const
-	{
-		return type;
-	}
 
-	const glm::mat4& CameraSystem::GetViewMatrix()const
+	const glm::mat4& Camera::GetViewMatrix()const
 	{
 		return viewMatrix;
 	}
 
-	const glm::mat4& CameraSystem::GetProjectionMatrix()const
+	const glm::mat4& Camera::GetProjectionMatrix()const
 	{
 		return projectionMatrix;
 	}

@@ -17,6 +17,7 @@
 #include "Transform.h"
 #include "Render.h"
 #include "Body.h"
+#include "Camera.h"
 
 namespace SmashEngine
 {
@@ -32,6 +33,8 @@ namespace SmashEngine
 		RegisterComponent(Transform);
 		RegisterComponent(Render);
 		RegisterComponent(Body);
+		RegisterComponent(Camera);
+		ObjectFactory::GetInstance().Create("camera");
 		ObjectFactory::GetInstance().Create("test");
 		ObjectFactory::GetInstance().Create("cube");
 	}

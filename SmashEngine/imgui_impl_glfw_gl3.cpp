@@ -240,7 +240,7 @@ void ImGui_ImplGlfwGL3_KeyCallback(GLFWwindow*, int key, int, int action, int mo
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 	{
 		SmashEngine::SignalManager::GetInstance().Signal(SmashEngine::ENGINE_TERMINATE);
-		glfwSetWindowShouldClose(SmashEngine::WindowSystem::GetInstance().GetWindow(), GL_TRUE);
+		//glfwSetWindowShouldClose(SmashEngine::WindowSystem::GetInstance().GetWindow(), GL_TRUE);
 	}
 	if (key == GLFW_KEY_W &&  action == GLFW_REPEAT)
 	{

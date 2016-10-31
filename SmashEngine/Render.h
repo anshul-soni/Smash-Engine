@@ -24,7 +24,7 @@ namespace SmashEngine
 		Render();
 		void Initialize()override;
 		void Deserialize(tinyxml2::XMLElement* pElement)override;
-		void Draw();
+		void Draw(const glm::mat4& projectionMatrix, const glm::mat4& viewMatrix);
 		void Destroy()override;
 		~Render();
 	private:

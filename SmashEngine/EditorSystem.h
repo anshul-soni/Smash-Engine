@@ -12,22 +12,21 @@
 /// agree that you will not otherwise copy, distribute, modify, the code. 		 
 ////////////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include "System.h"
+#include "WindowSystem.h"
 
 namespace SmashEngine
 {
 	class EditorSystem :
-		public System
+		public WindowSystem
 	{
 	public:
-		static EditorSystem& GetInstance();
+		EditorSystem(void);
 		void Init()override;
 		void Update(float dt)override;
 		SystemType GetType()const override;
 		void Release()override;
-		~EditorSystem(void);
+		virtual ~EditorSystem(void);
 	private:
 		const SystemType type;
-		EditorSystem(void);
 	};
 }

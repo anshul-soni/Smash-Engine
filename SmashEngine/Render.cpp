@@ -17,8 +17,8 @@
 #include "ModelManager.h"
 #include "Transform.h"
 #include "GameObject.h"
-#include "CameraSystem.h"
 #include "ShapeManager.h"
+#include "Camera.h"
 
 namespace SmashEngine
 {
@@ -46,12 +46,10 @@ namespace SmashEngine
 		}
 	}
 
-	void Render::Draw()
+	void Render::Draw(const glm::mat4& projectionMatrix,const glm::mat4& viewMatrix)
 	{
-		auto Projection = CameraSystem::GetInstance().GetProjectionMatrix();
-		auto View = CameraSystem::GetInstance().GetViewMatrix();
-		auto Model = glm::mat4(1.0f);
-		auto MVP = Projection*View;
+		glm::mat4 Model = glm::mat4(1.0f);
+		glm::mat4 MVP = projectionMatrix*viewMatrix;
 		drawableComponent->BindVAO();
 		auto shader = drawableComponent->GetShader();
 		auto matrixID = glGetUniformLocation(shader.Program, "MVP");
@@ -67,7 +65,7 @@ namespace SmashEngine
 		Model = transformMatrix*rotationX*rotationY*rotationZ*scale;
 		glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
 		glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, &Model[0][0]);
-		glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, &View[0][0]);
+		glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, &viewMatrix[0][0]);
 		drawableComponent->Render();
 
 	}

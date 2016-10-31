@@ -13,14 +13,12 @@
 ////////////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
 #include "MainEngine.h"
-#include "WatchSystem.h"
+#include "Watch.h"
 #include "WindowSystem.h"
 #include "ObjectManager.h"
-#include "CameraSystem.h"
 #include "ObjectFactory.h"
 #include "GameLogicSystem.h"
 #include "SignalManager.h"
-#include "EditorSystem.h"
 
 namespace SmashEngine
 {
@@ -31,22 +29,23 @@ namespace SmashEngine
 
 	void MainEngine::Update(float dt)
 	{
+		Watch watch = Watch::GetInstance();
 		while (running)
 		{
 			//Update watch system before hte engine 
-			WatchSystem::GetInstance().Update(dt);
+			watch.Update();
+			float deltaTime = watch.Getdt();
 			//Update All the engines present in the engine container
 			for (auto engine : engines)
 			{
-				engine.second->Update(WatchSystem::GetInstance().Getdt());
+				engine.second->Update(deltaTime);
 			}
+			ObjectManager::GetInstance().Update(deltaTime);
 			//Update Singleton systems
-			WindowSystem::GetInstance().Update(WatchSystem::GetInstance().Getdt());
-			CameraSystem::GetInstance().Update(WatchSystem::GetInstance().Getdt());
-			ObjectFactory::GetInstance().Update(WatchSystem::GetInstance().Getdt());
-			ObjectManager::GetInstance().Update(WatchSystem::GetInstance().Getdt());
-			EditorSystem::GetInstance().Update(WatchSystem::GetInstance().Getdt());
-			GameLogicSystem::GetInstance().Update(WatchSystem::GetInstance().Getdt());
+			editorSystem->Update(deltaTime);
+			gameLogicSystem->Update(deltaTime);
+			//ObjectFactory::GetInstance().Update(Watch::GetInstance().Getdt());
+			//GameLogicSystem::GetInstance().Update(Watch::GetInstance().Getdt());
 		}
 	}
 
@@ -58,13 +57,12 @@ namespace SmashEngine
 			engine.second->Init();
 		}
 		//Initialize Singleton systems
-		WatchSystem::GetInstance().Init();
-		WindowSystem::GetInstance().Init();
-		CameraSystem::GetInstance().Init();
-		ObjectFactory::GetInstance().Init();
-		ObjectManager::GetInstance().Init();
-		EditorSystem::GetInstance().Init();
-		GameLogicSystem::GetInstance().Init();
+		Watch::Start();
+		editorSystem = new EditorSystem();
+		editorSystem->Init();
+		gameLogicSystem = new GameLogicSystem();
+		gameLogicSystem->Init();
+		//ObjectFactory::GetInstance().Init();
 	}
 
 	void MainEngine::InsertEngine(Engine* engine)

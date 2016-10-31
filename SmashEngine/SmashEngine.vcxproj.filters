@@ -55,6 +55,9 @@
     <Filter Include="Editor">
       <UniqueIdentifier>{0f94d307-1860-4efc-884e-b772a481fb0d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Modules">
+      <UniqueIdentifier>{a191f89e-0083-4d6c-86ad-fd21fad3465f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -101,12 +104,6 @@
     </ClCompile>
     <ClCompile Include="Model.cpp">
       <Filter>Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="WatchSystem.cpp">
-      <Filter>Systems</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraSystem.cpp">
-      <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="GameLogicSystem.cpp">
       <Filter>Systems</Filter>
@@ -155,6 +152,12 @@
     </ClCompile>
     <ClCompile Include="ShapeManager.cpp">
       <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="Watch.cpp">
+      <Filter>Systems</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -217,12 +220,6 @@
     </ClInclude>
     <ClInclude Include="TextureManager.h">
       <Filter>Resource Managers</Filter>
-    </ClInclude>
-    <ClInclude Include="WatchSystem.h">
-      <Filter>Systems</Filter>
-    </ClInclude>
-    <ClInclude Include="CameraSystem.h">
-      <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="GameLogicSystem.h">
       <Filter>Systems</Filter>
@@ -304,6 +301,12 @@
     </ClInclude>
     <ClInclude Include="ShapeManager.h">
       <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Watch.h">
+      <Filter>Systems</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

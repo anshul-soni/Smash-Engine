@@ -15,7 +15,8 @@
 #include "Engine.h"
 #include "SignalHandler.h"
 #include "EngineState.h"
-
+#include "EditorSystem.h"
+#include "GameLogicSystem.h"
 
 namespace SmashEngine
 {
@@ -34,5 +35,7 @@ namespace SmashEngine
 		const EngineType type;
 		bool running;
 		std::unordered_map<EngineType, Engine*> engines;
+		EditorSystem* editorSystem;
+		GameLogicSystem* gameLogicSystem;
 	};
 }

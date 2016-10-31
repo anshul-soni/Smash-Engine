@@ -18,21 +18,21 @@
 
 namespace SmashEngine
 {
-	EditorSystem& EditorSystem::GetInstance()
+
+	EditorSystem::EditorSystem() :WindowSystem(),type(SYSTEM_Editor)
 	{
-		static EditorSystem instance;
-		return instance;
 	}
 
 	void EditorSystem::Init()
 	{
-		ImGui_ImplGlfwGL3_Init(WindowSystem::GetInstance().GetWindow(), true);
-
+		WindowSystem::Init();
+		ImGui_ImplGlfwGL3_Init(window, true);
 		ImGui_ImplGlfwGL3_NewFrame();
 	}
 
 	void EditorSystem::Update(float dt)
 	{
+		WindowSystem::Update(dt);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 		auto draw = true;
 		ImGui::Begin("Camera Instructions", &draw, ImVec2(350, 350), 0.5);
@@ -51,13 +51,10 @@ namespace SmashEngine
 
 	void EditorSystem::Release()
 	{
+		WindowSystem::Release();
 	}
 
 	EditorSystem::~EditorSystem()
-	{
-	}
-
-	EditorSystem::EditorSystem() :type(SYSTEM_Editor)
 	{
 	}
 }
