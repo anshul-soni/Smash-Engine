@@ -28,6 +28,6 @@ namespace SmashEngine
 		void Destroy()override;
 		~Render();
 	private:
-		Drawable* drawableComponent;
+		Primitive* primitiveComponent;
 	};
 }

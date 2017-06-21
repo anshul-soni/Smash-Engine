@@ -14,15 +14,15 @@
 #pragma once
 #include "VertexBufferObject.h"
 #include "Texture.h"
-#include "Drawable.h"
+#include "Primitive.h"
 
 namespace SmashEngine
 {
-	class Model:public Drawable
+	class Model:public Primitive
 	{
 	public:
 		explicit Model(const std::string& filePath);
-		bool LoadModel()override;
+		bool Init()override;
 		void Render()override;
 		void BindVAO()const override;
 		Shader& GetShader()override;

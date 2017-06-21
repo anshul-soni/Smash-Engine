@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /// All content (c) 2015 Anshul Soni, all rights reserved.                        
-/// @file Shape.h															 
+/// @file Primitive.h															 
 /// @date 2/5/2016  11:27 PM			 
 /// @author Anshul Soni <soni.anshul93@gmail.com>								 
 ///																				 
@@ -12,31 +12,20 @@
 /// agree that you will not otherwise copy, distribute, modify, the code. 		 
 ////////////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include "Drawable.h"
-#include "VertexBufferObject.h"
-
+#include "stdafx.h"
+#include "Shader.h"
 namespace SmashEngine
 {
-	enum Shapes{Cube,Sphere,Hemisphere};
-
-	class Shape:public Drawable
+	class Primitive
 	{
 	public:
-		explicit Shape(const std::string shape);
-		bool LoadModel()override;
-		void Render()override;
-		void BindVAO()const override;
-		Shader& GetShader()override;
-		void SetShader(const std::string&)override;
-		~Shape();
+		Primitive(){};
+		virtual bool Init()=0;
+		virtual void Render() = 0;
+		virtual void BindVAO()const = 0;
+		virtual Shader& GetShader() = 0;
+		virtual void SetShader(const std::string&) = 0;
+		virtual ~Primitive(){};
 	private:
-		Shapes key;
-		bool bLoaded;
-		VertexBufferObject* vboModelData;
-		unsigned int VAO;
-		Shader* shader;
-		GLuint	vboVertices;
-		GLuint 	vboColors;
-		GLuint	iboElements;
 	};
 }

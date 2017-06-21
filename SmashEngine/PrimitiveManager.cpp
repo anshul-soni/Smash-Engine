@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /// All content (c) 2015 Anshul Soni, all rights reserved.                        
-/// @file ShapeManager.cpp															 
-/// @date 2/5/2016  11:27 PM			 
+/// @file PrimitiveManager.cpp															 
+/// @date 1/23/2016  2:49 PM			 
 /// @author Anshul Soni <soni.anshul93@gmail.com>								 
 ///																				 
 /// As a condition of your accessing this Engine, you agree to be bound 		 
@@ -12,29 +12,55 @@
 /// agree that you will not otherwise copy, distribute, modify, the code. 		 
 ////////////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
-#include "ShapeManager.h"
+#include "PrimitiveManager.h"
+#include "Cube.h"
 
 namespace SmashEngine
 {
-	ShapeManager::ShapeManager()
+	PrimitiveManager::PrimitiveManager()
 	{
 	}
 
-	Shape* ShapeManager::GetShape(const std::string& key)
+	Model* PrimitiveManager::GetModel(const std::string& key)
 	{
-		if (Shapes.find(key) == Shapes.end())
+		if (models.find(key) == models.end())
 		{
-			AddShape(key);
+			AddModel(key);
 		}
-		return Shapes[key];
+		return models[key];
 	}
 
-	void ShapeManager::AddShape(const std::string& key)
+	Primitive * PrimitiveManager::GetPrimitive(const std::string & key)
 	{
-		Shapes[key] = new Shape(key);
+		if (primitives.find(key) == primitives.end())
+		{
+			AddPrimitive(key);
+		}
+		return primitives[key];
 	}
 
-	ShapeManager::~ShapeManager()
+	PrimitiveManager::~PrimitiveManager()
 	{
+	}
+
+	void PrimitiveManager::AddModel(const std::string& key)
+	{
+		models[key] = new Model(key.c_str());
+	}
+	void PrimitiveManager::AddPrimitive(const std::string & key)
+	{
+		if (key == "Cube")
+		{
+			primitives[key] = new Cube();
+		}
+		if (key == "Sphere")
+		{
+		}
+		if (key == "Plane")
+		{
+		}
+		if (key == "Wireframe")
+		{
+		}
 	}
 }

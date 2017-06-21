@@ -14,10 +14,9 @@
 #include "stdafx.h"
 #include "Render.h"
 #include "ShaderManager.h"
-#include "ModelManager.h"
+#include "PrimitiveManager.h"
 #include "Transform.h"
 #include "GameObject.h"
-#include "ShapeManager.h"
 #include "Camera.h"
 
 namespace SmashEngine
@@ -32,41 +31,52 @@ namespace SmashEngine
 
 	void Render::Deserialize(tinyxml2::XMLElement* pElement)
 	{
+		//Set the primitive component
 		if (pElement->FirstChildElement("model"))
 		{
-			drawableComponent = ModelManager::GetInstance().GetModel(pElement->FirstChildElement("model")->GetText());
+			primitiveComponent = PrimitiveManager::GetInstance().GetModel(pElement->FirstChildElement("model")->GetText());
 		}
-		if (pElement->FirstChildElement("shape"))
+
+		if (pElement->FirstChildElement("primitive"))
 		{
-			drawableComponent = ShapeManager::GetInstance().GetShape(pElement->FirstChildElement("shape")->GetText());
+			primitiveComponent = PrimitiveManager::GetInstance().GetPrimitive(pElement->FirstChildElement("primitive")->GetText());
 		}
-		if (pElement->FirstChildElement("shader"))
+
+		//Set the shader for the component
+		if (primitiveComponent)
 		{
-			drawableComponent->SetShader(pElement->FirstChildElement("shader")->GetText());
+			if (pElement->FirstChildElement("shader"))
+			{
+				primitiveComponent->SetShader(pElement->FirstChildElement("shader")->GetText());
+			}
 		}
 	}
 
 	void Render::Draw(const glm::mat4& projectionMatrix,const glm::mat4& viewMatrix)
 	{
+		glMatrixMode(GL_PROJECTION);
 		glm::mat4 Model = glm::mat4(1.0f);
 		glm::mat4 MVP = projectionMatrix*viewMatrix;
-		drawableComponent->BindVAO();
-		auto shader = drawableComponent->GetShader();
-		auto matrixID = glGetUniformLocation(shader.Program, "MVP");
-		auto viewMatrixID = glGetUniformLocation(shader.Program, "V");
-		auto modelMatrixID = glGetUniformLocation(shader.Program, "M");
+		glm::vec3 lightPosition = glm::vec3(0.0f, 2.0f, -10.0f);
+		primitiveComponent->BindVAO();
+		Shader shader = primitiveComponent->GetShader();
+		GLint matrixID = glGetUniformLocation(shader.Program, "MVP");
+		GLint viewMatrixID = glGetUniformLocation(shader.Program, "V");
+		GLint modelMatrixID = glGetUniformLocation(shader.Program, "M");
+		GLint lightPositionID = glGetUniformLocation(shader.Program, "lightPosition_worldSpace");
 		shader.Use();
-		auto transformComponent = this->GetOwner()->has(Transform);
-		auto transformMatrix = glm::translate(glm::mat4(), transformComponent->GetPosition());
-		auto rotationX = glm::rotate(glm::mat4(), transformComponent->GetRotation().x, glm::vec3(1, 0, 0));
-		auto rotationY = glm::rotate(glm::mat4(), transformComponent->GetRotation().y, glm::vec3(0, 1, 0));
-		auto rotationZ = glm::rotate(glm::mat4(), transformComponent->GetRotation().z, glm::vec3(0, 0, 1));
-		auto scale = glm::scale(glm::mat4(), transformComponent->GetScale());
+		Transform* transformComponent = this->GetOwner()->has(Transform);
+		glm::mat4 transformMatrix = glm::translate(glm::mat4(), transformComponent->GetPosition());
+		glm::mat4 rotationX = glm::rotate(glm::mat4(), transformComponent->GetRotation().x, glm::vec3(1, 0, 0));
+		glm::mat4 rotationY = glm::rotate(glm::mat4(), transformComponent->GetRotation().y, glm::vec3(0, 1, 0));
+		glm::mat4 rotationZ = glm::rotate(glm::mat4(), transformComponent->GetRotation().z, glm::vec3(0, 0, 1));
+		glm::mat4 scale = glm::scale(glm::mat4(), transformComponent->GetScale());
 		Model = transformMatrix*rotationX*rotationY*rotationZ*scale;
 		glUniformMatrix4fv(matrixID, 1, GL_FALSE, &MVP[0][0]);
 		glUniformMatrix4fv(modelMatrixID, 1, GL_FALSE, &Model[0][0]);
 		glUniformMatrix4fv(viewMatrixID, 1, GL_FALSE, &viewMatrix[0][0]);
-		drawableComponent->Render();
+		glUniform3fv(lightPositionID,1, &lightPosition[0]);
+		primitiveComponent->Render();
 
 	}
 

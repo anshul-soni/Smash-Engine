@@ -62,6 +62,7 @@ namespace SmashEngine
 
 	float Watch::Getdt()const
 	{
+		//return 1.0f / 60.0f;
 		return dt;
 	}
 

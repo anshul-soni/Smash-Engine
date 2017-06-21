@@ -30,7 +30,7 @@ namespace SmashEngine
 		case RESOURCE_Model:
 			resourcePath += "models/";
 			resourcePath += key;
-			//resourcePath += ".model";
+			resourcePath += ".model";
 			break;
 		case RESOURCE_Object:
 			resourcePath += "objects/";
@@ -48,7 +48,7 @@ namespace SmashEngine
 			resourcePath += ".vert";
 			break;
 		case RESOURCE_Texture:
-			resourcePath += "model/";
+			resourcePath += "textures/";
 			resourcePath += key;
 			break;
 		default:

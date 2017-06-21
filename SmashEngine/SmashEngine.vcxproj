@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -13,6 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{5017EF6A-8487-4E42-A4F9-E6464697CF12}</ProjectGuid>
     <RootNamespace>SmashEngine</RootNamespace>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -24,7 +25,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v140</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -52,11 +53,11 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <PrecompiledHeader>Create</PrecompiledHeader>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32s.lib;glew32.lib;SOIL.lib;assimpd.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32s.lib;glfw3.lib;glew32.lib;SOIL.lib;assimp.lib;glfw3dll.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>
       </IgnoreAllDefaultLibraries>
     </Link>
@@ -81,19 +82,19 @@
   <ItemGroup>
     <ClCompile Include="Body.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Cube.cpp" />
     <ClCompile Include="EditorSystem.cpp" />
     <ClCompile Include="GameLogicSystem.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Graphics.cpp" />
     <ClCompile Include="imgui.cpp" />
-    <ClCompile Include="imgui_demo.cpp" />
     <ClCompile Include="imgui_draw.cpp" />
     <ClCompile Include="imgui_impl_glfw_gl3.cpp" />
     <ClCompile Include="InputSignal.cpp" />
     <ClCompile Include="MainEngine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
-    <ClCompile Include="ModelManager.cpp" />
+    <ClCompile Include="PrimitiveManager.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
     <ClCompile Include="Physics.cpp" />
@@ -101,8 +102,6 @@
     <ClCompile Include="ResourcePath.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
-    <ClCompile Include="Shape.cpp" />
-    <ClCompile Include="ShapeManager.cpp" />
     <ClCompile Include="SignalManager.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -117,8 +116,9 @@
     <ClInclude Include="Body.h" />
     <ClInclude Include="CameraSignal.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Cube.h" />
     <ClInclude Include="DebugSignal.h" />
-    <ClInclude Include="Drawable.h" />
+    <ClInclude Include="Primitive.h" />
     <ClInclude Include="EditorSystem.h" />
     <ClInclude Include="EngineState.h" />
     <ClInclude Include="EngineType.h" />
@@ -129,7 +129,7 @@
     <ClInclude Include="imgui_internal.h" />
     <ClInclude Include="InputSignal.h" />
     <ClInclude Include="InputType.h" />
-    <ClInclude Include="ModelManager.h" />
+    <ClInclude Include="PrimitiveManager.h" />
     <ClInclude Include="Physics.h" />
     <ClInclude Include="PhysicsState.h" />
     <ClInclude Include="Render.h" />
@@ -137,12 +137,11 @@
     <ClInclude Include="ResourceType.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderManager.h" />
-    <ClInclude Include="Shape.h" />
-    <ClInclude Include="ShapeManager.h" />
     <ClInclude Include="SignalHandler.h" />
     <ClInclude Include="SignalManager.h" />
     <ClInclude Include="SignalSource.h" />
     <ClInclude Include="sigslot.h" />
+    <ClInclude Include="Sphere.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentCreator.h" />
@@ -163,6 +162,7 @@
     <ClInclude Include="VertexBufferObject.h" />
     <ClInclude Include="Watch.h" />
     <ClInclude Include="WindowSystem.h" />
+    <ClInclude Include="WireFrame.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="imgui.ini" />

@@ -1,6 +1,6 @@
 ////////////////////////////////////////////////////////////////////////////////////
 /// All content (c) 2015 Anshul Soni, all rights reserved.                        
-/// @file ModelManager.cpp															 
+/// @file PrimitiveManager.h															 
 /// @date 1/23/2016  2:49 PM			 
 /// @author Anshul Soni <soni.anshul93@gmail.com>								 
 ///																				 
@@ -11,30 +11,27 @@
 /// download and use the code for non-commercial, home use you hereby expressly  
 /// agree that you will not otherwise copy, distribute, modify, the code. 		 
 ////////////////////////////////////////////////////////////////////////////////////
-#include "stdafx.h"
-#include "ModelManager.h"
+#pragma once
+#include "Model.h"
 
 namespace SmashEngine
 {
-	ModelManager::ModelManager()
+	class PrimitiveManager
 	{
-	}
-
-	Model* ModelManager::GetModel(const std::string& key)
-	{
-		if (models.find(key)==models.end())
+	public:
+		static PrimitiveManager& GetInstance()
 		{
-			AddModel(key);
+			static PrimitiveManager instance;
+			return instance;
 		}
-		return models[key];
-	}
-
-	ModelManager::~ModelManager()
-	{
-	}
-
-	void ModelManager::AddModel(const std::string& key)
-	{
-		models[key] = new Model(key.c_str());
-	}
+													PrimitiveManager();
+		Model*										GetModel(const std::string& key);
+		Primitive*									GetPrimitive(const std::string& key);
+													~PrimitiveManager();
+	private:
+		void										AddModel(const std::string& key);
+		void										AddPrimitive(const std::string& key);
+		std::unordered_map<std::string, Model*>		models;
+		std::unordered_map<std::string, Primitive*> primitives;
+	};
 }

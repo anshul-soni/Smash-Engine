@@ -5,11 +5,12 @@
 		<rotation  x="0.0f" y="0.0f" z="0.0f"/>
 	</Component>
 	<Component type = "Render">
-		<model>cube.obj</model>
+		<model>Cube</model>
 		<shader>normal</shader>
+		<texture>cube.png</texture>
 	</Component>
 	<Component type = "Body">
 		<velocity x="0.0f" y="0.0f" z="0.0f"/>
-		<mass>100000.0f</mass>
+		<mass>100.0f</mass>
 	</Component>
 </GameObject>

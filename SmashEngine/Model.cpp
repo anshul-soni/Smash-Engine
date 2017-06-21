@@ -40,10 +40,10 @@ namespace SmashEngine
 		numMaterial(0)
 	{
 		vboModelData = new VertexBufferObject();
-		LoadModel();
+		Init();
 	}
 
-	bool Model::LoadModel()
+	bool Model::Init()
 	{
 		if (vboModelData->GetBufferID() == 0)
 		{
@@ -151,6 +151,8 @@ namespace SmashEngine
 				textures[matIndex]->BindTexture();
 			glDrawArrays(GL_TRIANGLES, meshStartIndices[i], meshSizes[i]);
 		}
+		//glEnable(GL_PROGRAM_POINT_SIZE);
+		//glDrawArrays(GL_POINTS, 0, meshSizes[i]);
 	}
 
 	void Model::BindVAO()const

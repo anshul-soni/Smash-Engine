@@ -58,6 +58,9 @@
     <Filter Include="Modules">
       <UniqueIdentifier>{a191f89e-0083-4d6c-86ad-fd21fad3465f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics\Primitives">
+      <UniqueIdentifier>{195329fc-1691-4c37-b601-f5d2413174ac}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -93,17 +96,11 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
-    <ClCompile Include="ModelManager.cpp">
-      <Filter>Resource Managers</Filter>
-    </ClCompile>
     <ClCompile Include="ShaderManager.cpp">
       <Filter>Resource Managers</Filter>
     </ClCompile>
     <ClCompile Include="TextureManager.cpp">
       <Filter>Resource Managers</Filter>
-    </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>Resources</Filter>
     </ClCompile>
     <ClCompile Include="GameLogicSystem.cpp">
       <Filter>Systems</Filter>
@@ -138,26 +135,26 @@
     <ClCompile Include="imgui.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
-    <ClCompile Include="imgui_demo.cpp">
-      <Filter>Editor</Filter>
-    </ClCompile>
     <ClCompile Include="imgui_draw.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
     <ClCompile Include="imgui_impl_glfw_gl3.cpp">
       <Filter>Editor</Filter>
     </ClCompile>
-    <ClCompile Include="Shape.cpp">
-      <Filter>Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="ShapeManager.cpp">
-      <Filter>Resources</Filter>
-    </ClCompile>
     <ClCompile Include="Watch.cpp">
       <Filter>Systems</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Model.cpp">
+      <Filter>Graphics\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Cube.cpp">
+      <Filter>Graphics\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="PrimitiveManager.cpp">
+      <Filter>Resource Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -191,9 +188,6 @@
     <ClInclude Include="VertexBufferObject.h">
       <Filter>Resources</Filter>
     </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>Resources</Filter>
-    </ClInclude>
     <ClInclude Include="stdafx.h">
       <Filter>Precompiled Header</Filter>
     </ClInclude>
@@ -211,9 +205,6 @@
     </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="ModelManager.h">
-      <Filter>Resource Managers</Filter>
     </ClInclude>
     <ClInclude Include="ShaderManager.h">
       <Filter>Resource Managers</Filter>
@@ -293,20 +284,29 @@
     <ClInclude Include="imgui_internal.h">
       <Filter>Editor</Filter>
     </ClInclude>
-    <ClInclude Include="Drawable.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="Shape.h">
-      <Filter>Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="ShapeManager.h">
-      <Filter>Resources</Filter>
-    </ClInclude>
     <ClInclude Include="Watch.h">
       <Filter>Systems</Filter>
     </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Primitive.h">
+      <Filter>Graphics\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Model.h">
+      <Filter>Graphics\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="WireFrame.h">
+      <Filter>Graphics\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Cube.h">
+      <Filter>Graphics\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="Sphere.h">
+      <Filter>Graphics\Primitives</Filter>
+    </ClInclude>
+    <ClInclude Include="PrimitiveManager.h">
+      <Filter>Resource Managers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

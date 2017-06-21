@@ -15,9 +15,9 @@ void main()
 { 
 	vec3 lightColor = vec3(1,1,1);
 	float lightPower = 500.0f;
-	
+	//
 	float distance = length(lightPosition_worldSpace - position_worldSpace);
-	
+	//
 	vec3 materialDiffuseColor = texture2D(myTextureSampler,UV).rgb;
 	vec3 materialAmbientColor = vec3(0.1,0.1,0.1)*materialDiffuseColor;
 	vec3 materialSpecularColor = vec3(0.3,0.3,0.3);
@@ -31,11 +31,17 @@ void main()
 	
 	float cosTheta = clamp(dot(n,l),0.0f,1.0f);
 	color.a = 0.3;
-	//color.rgb = materialAmbientColor +
-	//		materialDiffuseColor*lightColor*lightPower*cosTheta/(distance*distance)+
-	//		materialSpecularColor*lightColor*lightPower*pow(cosAlpha,5)/(distance*distance);
+	
+
 	color.rgb = materialAmbientColor +
-			materialDiffuseColor+
-			materialSpecularColor;
-	//color.rgba = vec4(1,0,0,0.3);
+			materialDiffuseColor*lightColor*lightPower*cosTheta/(distance*distance)+
+			materialSpecularColor*lightColor*lightPower*pow(cosAlpha,5)/(distance*distance);
+
+
+	//color.rgb = materialAmbientColor +
+	//		materialDiffuseColor+
+	//		materialSpecularColor;
+	
+	color.rgba = vec4(1,0,0,0.3);
+	//color.rgba = vec4(normal_cameraSpace,0.3);
 }
