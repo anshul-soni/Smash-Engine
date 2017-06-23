@@ -14,6 +14,8 @@
 #include "stdafx.h"
 #include "PrimitiveManager.h"
 #include "Cube.h"
+#include "Sphere.h"
+#include "WireFrame.h"
 
 namespace SmashEngine
 {
@@ -55,12 +57,14 @@ namespace SmashEngine
 		}
 		if (key == "Sphere")
 		{
+			primitives[key] = new Sphere();
 		}
 		if (key == "Plane")
 		{
 		}
 		if (key == "Wireframe")
 		{
+			primitives[key] = new Wireframe();
 		}
 	}
 }

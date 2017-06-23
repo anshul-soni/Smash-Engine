@@ -15,7 +15,6 @@
 #include "Model.h"
 #include "TextureManager.h"
 #include "ResourcePath.h"
-#include "ShaderManager.h"
 
 namespace SmashEngine
 {
@@ -35,19 +34,16 @@ namespace SmashEngine
 	}
 	Model::Model(const std::string& filePath) :
 		key(filePath), 
-		bLoaded(false), 
-		VAO(0), 
 		numMaterial(0)
 	{
-		vboModelData = new VertexBufferObject();
 		Init();
 	}
 
 	bool Model::Init()
 	{
-		if (vboModelData->GetBufferID() == 0)
+		if (vbo->GetBufferID() == 0)
 		{
-			vboModelData->CreateVBO();
+			vbo->CreateVBO();
 			textures.reserve(50);
 		}
 		Assimp::Importer importer;
@@ -65,7 +61,7 @@ namespace SmashEngine
 			auto mesh = scene->mMeshes[i];
 			auto meshFaces = mesh->mNumFaces;
 			materialIndices.push_back(mesh->mMaterialIndex);
-			auto sizeBefore = vboModelData->GetCurrentSize();
+			auto sizeBefore = vbo->GetCurrentSize();
 			meshStartIndices.push_back(sizeBefore / vertexTotalSize);
 			for (unsigned int j = 0; j < meshFaces; j++)
 			{
@@ -75,14 +71,14 @@ namespace SmashEngine
 					auto pos = mesh->mVertices[face.mIndices[k]];
 					auto uv = mesh->mTextureCoords[0][face.mIndices[k]];
 					auto normal = mesh->HasNormals() ? mesh->mNormals[face.mIndices[k]] : aiVector3D(1.0f, 1.0f, 1.0f);
-					vboModelData->AddData(&pos, sizeof(aiVector3D));
-					vboModelData->AddData(&uv, sizeof(aiVector2D));
-					vboModelData->AddData(&normal, sizeof(aiVector3D));
+					vbo->AddData(&pos, sizeof(aiVector3D));
+					vbo->AddData(&uv, sizeof(aiVector2D));
+					vbo->AddData(&normal, sizeof(aiVector3D));
 				}
 			}
 			auto meshVertices = mesh->mNumVertices;
 			totalVertices += meshVertices;
-			meshSizes.push_back((vboModelData->GetCurrentSize() - sizeBefore) / vertexTotalSize);
+			meshSizes.push_back((vbo->GetCurrentSize() - sizeBefore) / vertexTotalSize);
 		}
 		numMaterial = scene->mNumMaterials;
 		std::vector<int> materialRemap(numMaterial);
@@ -124,10 +120,10 @@ namespace SmashEngine
 			auto oldIndex = materialIndices[i];
 			materialIndices[i] = materialRemap[oldIndex];
 		}
-		glGenVertexArrays(1, &VAO);
-		glBindVertexArray(VAO);
-		vboModelData->BindVBO();
-		vboModelData->UploadDataToGPU(GL_DYNAMIC_DRAW);
+		glGenVertexArrays(1, &vao);
+		glBindVertexArray(vao);
+		vbo->BindVBO();
+		vbo->UploadDataToGPU(GL_DYNAMIC_DRAW);
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 2 * sizeof(aiVector3D) + sizeof(aiVector2D), 0);
 
@@ -153,21 +149,6 @@ namespace SmashEngine
 		}
 		//glEnable(GL_PROGRAM_POINT_SIZE);
 		//glDrawArrays(GL_POINTS, 0, meshSizes[i]);
-	}
-
-	void Model::BindVAO()const
-	{
-		glBindVertexArray(VAO);
-	}
-
-	Shader& Model::GetShader()
-	{
-		return *shader;
-	}
-
-	void Model::SetShader(const std::string& shader)
-	{
-		this->shader = ShaderManager::GetInstance().GetShader(shader);
 	}
 
 	Model::~Model()

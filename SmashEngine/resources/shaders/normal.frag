@@ -31,8 +31,6 @@ void main()
 	
 	float cosTheta = clamp(dot(n,l),0.0f,1.0f);
 	color.a = 0.3;
-	
-
 	color.rgb = materialAmbientColor +
 			materialDiffuseColor*lightColor*lightPower*cosTheta/(distance*distance)+
 			materialSpecularColor*lightColor*lightPower*pow(cosAlpha,5)/(distance*distance);
@@ -41,7 +39,6 @@ void main()
 	//color.rgb = materialAmbientColor +
 	//		materialDiffuseColor+
 	//		materialSpecularColor;
-	
+
 	color.rgba = vec4(1,0,0,0.3);
-	//color.rgba = vec4(normal_cameraSpace,0.3);
 }

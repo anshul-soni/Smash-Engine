@@ -1,4 +1,21 @@
-﻿  Cube.cpp
+﻿  WindowSystem.cpp
+  Watch.cpp
+  Sphere.cpp
+d:\smash\smash-engine\smashengine\sphere.cpp(22): warning C4018: '<': signed/unsigned mismatch
+d:\smash\smash-engine\smashengine\sphere.cpp(24): warning C4018: '<': signed/unsigned mismatch
+  ResourcePath.cpp
+  Render.cpp
+  Skipping... (no relevant changes detected)
+  Wireframe.cpp
+  PrimitiveManager.cpp
+  Primitive.cpp
+  Physics.cpp
+  Model.cpp
+  Graphics.cpp
+  GameLogicSystem.cpp
+  EditorSystem.cpp
+  Cube.cpp
+  Camera.cpp
   SOIL.lib(SOIL.obj) : MSIL .netmodule or module compiled with /GL found; restarting link with /LTCG; add /LTCG to the link command line to improve linker performance
 LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
 Body.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification

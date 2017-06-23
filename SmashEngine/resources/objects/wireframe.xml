@@ -1,15 +1,11 @@
-<GameObject name = "test">
+<GameObject name = "wireframe">
 	<Component type = "Transform">
-		<position x="5.0f" y="-3.0f" z="-2.0f"/>
+		<position x="0.0f" y="0.0f" z="0.0f"/>
 		<scale x="1.0f" y="1.0f" z="1.0f"/>
 		<rotation  x="0.0f" y="0.0f" z="0.0f"/>
 	</Component>
 	<Component type = "Render">
-		<primitive>Sphere</primitive>
+		<primitive>Wireframe</primitive>
 		<shader>normal</shader>
-	</Component>
-	<Component type = "Body">
-		<velocity x="0.0f" y="0.0f" z="0.0f"/>
-		<mass>100.0f</mass>
 	</Component>
 </GameObject>
