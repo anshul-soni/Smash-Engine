@@ -12,6 +12,8 @@
 /// agree that you will not otherwise copy, distribute, modify, the code. 		 
 ////////////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
+#include "GameObject.h"
+#include "Transform.h"
 #include "Camera.h"
 #include "SignalManager.h"
 
@@ -44,17 +46,23 @@ namespace SmashEngine
 
 	void Camera::Update(float dt)
 	{
-		deltaTime = dt;
+		Transform* transformComponent = GetOwner()->has(Transform);
+		if (transformComponent)
+		{
+			float verticalAngle = transformComponent->GetRotation().y;
+			float horizontalAngle = transformComponent->GetRotation().x;
+			deltaTime = dt;
 
-		direction = glm::vec3(cos(verticalAngle)*sin(horizontalAngle), sin(verticalAngle), cos(verticalAngle)*cos(horizontalAngle));
+			direction = glm::vec3(cos(verticalAngle)*sin(horizontalAngle), sin(verticalAngle), cos(verticalAngle)*cos(horizontalAngle));
 
-		right = glm::vec3(sin(horizontalAngle - 3.14f / 2.0f), 0, cos(horizontalAngle - 3.14f / 2.0f));
+			right = glm::vec3(sin(horizontalAngle - 3.14f / 2.0f), 0, cos(horizontalAngle - 3.14f / 2.0f));
 
-		up = glm::cross(right, direction);
+			up = glm::cross(right, direction);
 
-		projectionMatrix = glm::perspective(fov, 4.0f / 3.0f, 0.1f, 1000.0f);
+			projectionMatrix = glm::perspective(fov, 4.0f / 3.0f, 0.1f, 1000.0f);
 
-		viewMatrix = glm::lookAt(position, position + direction, glm::vec3(0, 1, 0));
+			viewMatrix = glm::lookAt(transformComponent->GetPosition(), transformComponent->GetPosition() + direction, glm::vec3(0, 1, 0));
+		}
 	}
 
 	void Camera::Destroy()
@@ -63,40 +71,48 @@ namespace SmashEngine
 
 	void Camera::OnSignal(CameraSignal signal)
 	{
-		switch (signal)
+		Transform* transformComponent = GetOwner()->has(Transform);
+		if (transformComponent)
 		{
-		case CAMERA_DOWN:
-			position -= up*deltaTime*cameraSpeed;
-			break;
-		case CAMERA_UP:
-			position += up*deltaTime*cameraSpeed;
-			break;
-		case CAMERA_LEFT:
-			position -= right*deltaTime*cameraSpeed;
-			break;
-		case CAMERA_RIGHT:
-			position += right*deltaTime*cameraSpeed;
-			break;
-		case CAMERA_ZOOMIN:
-			position += direction*deltaTime*(cameraSpeed*4);
-			break;
-		case CAMERA_ZOOMOUT:
-			position -= direction*deltaTime*(cameraSpeed*4);
-			break;
-		case CAMERA_ROTATE_LEFT:
-			horizontalAngle += deltaTime*cameraSpeed/5;
-			break;
-		case CAMERA_ROTATE_RIGHT:
-			horizontalAngle -= deltaTime*cameraSpeed/5;
-			break;
-		case CAMERA_ROTATE_UP:
-			verticalAngle += deltaTime*cameraSpeed/5;
-			break;
-		case CAMERA_ROTATE_DOWN:
-			verticalAngle -= deltaTime*cameraSpeed/5;
-			break;
-		default:
-			break;
+			glm::vec3 currentPosition = transformComponent->GetPosition();
+			glm::vec3 currentOrientation = transformComponent->GetRotation();
+			switch (signal)
+			{
+			case CAMERA_DOWN:
+				currentPosition -= up*deltaTime*cameraSpeed;
+				break;
+			case CAMERA_UP:
+				currentPosition += up*deltaTime*cameraSpeed;
+				break;
+			case CAMERA_LEFT:
+				currentPosition -= right*deltaTime*cameraSpeed;
+				break;
+			case CAMERA_RIGHT:
+				currentPosition += right*deltaTime*cameraSpeed;
+				break;
+			case CAMERA_ZOOMIN:
+				currentPosition += direction*deltaTime*(cameraSpeed * 4);
+				break;
+			case CAMERA_ZOOMOUT:
+				currentPosition -= direction*deltaTime*(cameraSpeed * 4);
+				break;
+			case CAMERA_ROTATE_LEFT:
+				currentOrientation.x += deltaTime*cameraSpeed / 5;
+				break;
+			case CAMERA_ROTATE_RIGHT:
+				currentOrientation.x -= deltaTime*cameraSpeed / 5;
+				break;
+			case CAMERA_ROTATE_UP:
+				currentOrientation.y += deltaTime*cameraSpeed / 5;
+				break;
+			case CAMERA_ROTATE_DOWN:
+				currentOrientation.y -= deltaTime*cameraSpeed / 5;
+				break;
+			default:
+				break;
+			}
+			transformComponent->SetPosition(currentPosition);
+			transformComponent->SetRotation(currentOrientation);
 		}
 	}
 

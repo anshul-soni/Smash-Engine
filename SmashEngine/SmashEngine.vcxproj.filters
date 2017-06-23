@@ -156,6 +156,15 @@
     <ClCompile Include="PrimitiveManager.cpp">
       <Filter>Resource Managers</Filter>
     </ClCompile>
+    <ClCompile Include="Wireframe.cpp">
+      <Filter>Graphics\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Primitive.cpp">
+      <Filter>Graphics\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="Sphere.cpp">
+      <Filter>Graphics\Primitives</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="System.h">

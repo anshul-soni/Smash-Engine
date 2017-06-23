@@ -12,7 +12,6 @@
 /// agree that you will not otherwise copy, distribute, modify, the code. 		 
 ////////////////////////////////////////////////////////////////////////////////////
 #pragma once
-#include "VertexBufferObject.h"
 #include "Texture.h"
 #include "Primitive.h"
 
@@ -24,21 +23,14 @@ namespace SmashEngine
 		explicit Model(const std::string& filePath);
 		bool Init()override;
 		void Render()override;
-		void BindVAO()const override;
-		Shader& GetShader()override;
-		void SetShader(const std::string& shader)override;
 		~Model();
 	private:
 		const std::string key;
-		bool bLoaded;
-		VertexBufferObject* vboModelData;
-		unsigned int VAO;
 		std::vector<Texture*> textures;
 		std::vector<int> meshStartIndices;
 		std::vector<int> meshSizes;
 		std::vector<int> materialIndices;
 		int numMaterial;
-		Shader* shader;
 		Model() = delete;
 	};
 }

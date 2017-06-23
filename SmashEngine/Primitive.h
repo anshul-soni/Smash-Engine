@@ -14,18 +14,27 @@
 #pragma once
 #include "stdafx.h"
 #include "Shader.h"
+#include "VertexBufferObject.h"
+
 namespace SmashEngine
 {
 	class Primitive
 	{
 	public:
-		Primitive(){};
-		virtual bool Init()=0;
-		virtual void Render() = 0;
-		virtual void BindVAO()const = 0;
-		virtual Shader& GetShader() = 0;
-		virtual void SetShader(const std::string&) = 0;
-		virtual ~Primitive(){};
+		Primitive();
+		virtual bool				Init()=0;
+		virtual void				Render() = 0;
+		virtual void				BindVAO()const;
+		virtual Shader&				GetShader();
+		virtual void				SetShader(const std::string&);
+		virtual						~Primitive(){};
+	protected:
+		bool						bLoaded;
+		Shader*						shader;
+		unsigned int				vao;
+		VertexBufferObject*			vbo;
+		unsigned int				elementBuffer;
+		std::vector<unsigned int>	indices;
 	private:
 	};
 }

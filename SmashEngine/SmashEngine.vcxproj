@@ -94,6 +94,7 @@
     <ClCompile Include="MainEngine.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Model.cpp" />
+    <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="PrimitiveManager.cpp" />
     <ClCompile Include="ObjectFactory.cpp" />
     <ClCompile Include="ObjectManager.cpp" />
@@ -103,6 +104,7 @@
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="SignalManager.cpp" />
+    <ClCompile Include="Sphere.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -111,6 +113,7 @@
     <ClCompile Include="VertexBufferObject.cpp" />
     <ClCompile Include="Watch.cpp" />
     <ClCompile Include="WindowSystem.cpp" />
+    <ClCompile Include="Wireframe.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Body.h" />

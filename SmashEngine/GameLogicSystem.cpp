@@ -37,6 +37,7 @@ namespace SmashEngine
 		ObjectFactory::GetInstance().Create("camera");
 		ObjectFactory::GetInstance().Create("test");
 		ObjectFactory::GetInstance().Create("cube");
+		ObjectFactory::GetInstance().Create("wireframe");
 	}
 
 	void GameLogicSystem::Update(float dt)
