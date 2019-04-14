@@ -52,7 +52,7 @@ namespace SmashEngine
 			//make sure that the object exists and was not already deleted
 			if(gameObjects.find(object->GetId())!=gameObjects.end())
 			{
-				auto id = object->GetId();
+				unsigned int id = object->GetId();
 				delete object;
 				gameObjects.erase(id);
 			}

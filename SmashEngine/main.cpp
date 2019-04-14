@@ -21,14 +21,14 @@ int main()
 {
 	float dt = 0;
 	//Main Engine that stores all the Engines and Systems
-	auto engine = new SmashEngine::MainEngine();
+	SmashEngine::MainEngine* engine = new SmashEngine::MainEngine();
 	//Create an instance of the graphic engine here
-	auto graphicsEngine = new SmashEngine::Graphics();
+	SmashEngine::Graphics* graphicsEngine = new SmashEngine::Graphics();
 	//Insert the graphics engine into the main engine
 	engine->InsertEngine(graphicsEngine);
 
 	//Create an instance of the graphic engine here
-	auto physicsEngine = new SmashEngine::Physics();
+	SmashEngine::Physics* physicsEngine = new SmashEngine::Physics();
 	//Insert the graphics engine into the main engine
 	engine->InsertEngine(physicsEngine);
 

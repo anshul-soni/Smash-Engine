@@ -61,6 +61,9 @@
     <Filter Include="Graphics\Primitives">
       <UniqueIdentifier>{195329fc-1691-4c37-b601-f5d2413174ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Memory Manager">
+      <UniqueIdentifier>{43acbcd2-3e66-4bb8-bbe4-19d2e090888e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -164,6 +167,12 @@
     </ClCompile>
     <ClCompile Include="Sphere.cpp">
       <Filter>Graphics\Primitives</Filter>
+    </ClCompile>
+    <ClCompile Include="StandardMemoryPool.cpp">
+      <Filter>Memory Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="MemoryPool.cpp">
+      <Filter>Memory Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -316,6 +325,12 @@
     </ClInclude>
     <ClInclude Include="PrimitiveManager.h">
       <Filter>Resource Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="MemoryPool.h">
+      <Filter>Memory Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="StandardMemoryPool.h">
+      <Filter>Memory Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

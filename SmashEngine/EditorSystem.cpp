@@ -34,7 +34,7 @@ namespace SmashEngine
 	{
 		WindowSystem::Update(dt);
 		glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-		auto draw = true;
+		bool draw = true;
 		ImGui::Begin("Camera Instructions", &draw, ImVec2(350, 350), 0.5);
 		ImGui::Text("Use Scroll Wheell to Zoom in/out");
 		ImGui::Text("Press Left Mouse button and move to move the camera");

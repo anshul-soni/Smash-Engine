@@ -93,6 +93,7 @@
     <ClCompile Include="InputSignal.cpp" />
     <ClCompile Include="MainEngine.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MemoryPool.cpp" />
     <ClCompile Include="Model.cpp" />
     <ClCompile Include="Primitive.cpp" />
     <ClCompile Include="PrimitiveManager.cpp" />
@@ -105,6 +106,7 @@
     <ClCompile Include="ShaderManager.cpp" />
     <ClCompile Include="SignalManager.cpp" />
     <ClCompile Include="Sphere.cpp" />
+    <ClCompile Include="StandardMemoryPool.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Texture.cpp" />
     <ClCompile Include="TextureManager.cpp" />
@@ -121,6 +123,7 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Cube.h" />
     <ClInclude Include="DebugSignal.h" />
+    <ClInclude Include="MemoryPool.h" />
     <ClInclude Include="Primitive.h" />
     <ClInclude Include="EditorSystem.h" />
     <ClInclude Include="EngineState.h" />
@@ -145,6 +148,7 @@
     <ClInclude Include="SignalSource.h" />
     <ClInclude Include="sigslot.h" />
     <ClInclude Include="Sphere.h" />
+    <ClInclude Include="StandardMemoryPool.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentCreator.h" />
