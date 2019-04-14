@@ -41,32 +41,32 @@ namespace SmashEngine
 	{
 		tinyxml2::XMLDocument xmlDoc;
 		std::string gameObjectName;
-		auto filepath = ResourcePath::GetInstance().GetPath(RESOURCE_Object, filename);
+		std::string filepath = ResourcePath::GetInstance().GetPath(RESOURCE_Object, filename);
 		if(xmlDoc.LoadFile(filepath.c_str())!=tinyxml2::XML_SUCCESS)
 		{
 			std::cout << "failed to load file " << filepath << std::endl;
 			return nullptr;
 		}
-		auto pRoot = xmlDoc.FirstChildElement("GameObject");
+		tinyxml2::XMLElement* pRoot = xmlDoc.FirstChildElement("GameObject");
 		assert(pRoot != nullptr);
 		gameObjectName = pRoot->Attribute("name");
-		auto pComponent = pRoot->FirstChildElement("Component");
+		tinyxml2::XMLElement* pComponent = pRoot->FirstChildElement("Component");
 		assert(pComponent != nullptr);
 		//GameObject To hold Components 
-		auto object = new GameObject(gameObjectName,++lastObjectId);
+		GameObject* object = new GameObject(gameObjectName,++lastObjectId);
 		while (pComponent != nullptr)
 		{
 			assert(pComponent != nullptr);
 			std::string componentName;
 			componentName = pComponent->Attribute("type");
-			auto itr = ComponentMap.find(componentName);
+			std::unordered_map<std::string,ComponentCreator*>::iterator itr = ComponentMap.find(componentName);
 			//Abort if the component creator was not found 
 			//Component needs to be registered in the factory before creating
 			assert(itr != ComponentMap.end());
 			//Creator for each object is stored in the map, if the creator was found, then get the creator
-			auto creator = itr->second;
+			ComponentCreator* creator = itr->second;
 			//Create the component that needs to be added to the object using the creator
-			auto component = creator->Create();
+			Component* component = creator->Create();
 			//Call the desrializer for the required component
 			component->Deserialize(pComponent);
 			//add the component that was created to the object

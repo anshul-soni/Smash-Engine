@@ -35,7 +35,7 @@ namespace SmashEngine
 
 	bool Texture::LoadTexture2D(const std::string& path){
 		// Get the bytes for the texture.
-		auto image = SOIL_load_image(
+		unsigned char* image = SOIL_load_image(
 			path.c_str(),
 			&width,
 			&height,

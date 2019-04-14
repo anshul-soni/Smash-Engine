@@ -92,12 +92,12 @@ namespace SmashEngine
 	{
 		if (state != PHYSICS_PAUSE)
 		{
-			auto transformComponent = obj.has(Transform);
-			auto bodyComponent = obj.has(Body);
+			Transform* transformComponent = obj.has(Transform);
+			Body* bodyComponent = obj.has(Body);
 			//accumulate the total force
-			auto a = gravity + bodyComponent->GetForce()*bodyComponent->GetInverseMass();
-			auto position = transformComponent->GetPosition() + bodyComponent->GetVelocity()*debugDt;
-			auto velocity = bodyComponent->GetVelocity() + a*debugDt;
+			glm::vec3 a = gravity + bodyComponent->GetForce()*bodyComponent->GetInverseMass();
+			glm::vec3 position = transformComponent->GetPosition() + bodyComponent->GetVelocity()*debugDt;
+			glm::vec3 velocity = bodyComponent->GetVelocity() + a*debugDt;
 			velocity *= std::pow(damping, debugDt);
 			transformComponent->SetPosition(position);
 			//Dont set the velocity of the object
@@ -123,7 +123,7 @@ namespace SmashEngine
 			state = PHYSICS_PAUSE;
 			break;
 		}	
-		auto draw = true;
+		bool draw = true;
 		ImGui::Begin("Physics", &draw, ImVec2(350, 350), 0.5);
 		ImGui::Text("Use Space to Toogle play/pause");
 		ImGui::Text("Left arrow key for previous frame(when paused)");

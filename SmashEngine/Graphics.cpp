@@ -52,7 +52,7 @@ namespace SmashEngine
 		{
 			if (camera)
 			{
-				auto renderComponent = object.second->has(Render);
+				Render* renderComponent = object.second->has(Render);
 				if (renderComponent != nullptr)
 				{
 					renderComponent->Draw(camera->GetProjectionMatrix(), camera->GetViewMatrix());

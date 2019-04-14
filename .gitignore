@@ -49,6 +49,7 @@ build/
 *.log
 *.scc
 *.orig
+*.vscode
 
 # Visual C++ cache files
 ipch/

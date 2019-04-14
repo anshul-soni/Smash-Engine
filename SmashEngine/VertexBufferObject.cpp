@@ -42,7 +42,7 @@ namespace SmashEngine
 	{
 		if (!dataUploaded)
 			return nullptr;
-		auto res = glMapBuffer(bufferType, uh);
+		void* res = glMapBuffer(bufferType, uh);
 		return res;
 	}
 
@@ -50,7 +50,7 @@ namespace SmashEngine
 	{
 		if (!dataUploaded)
 			return nullptr;
-		auto res = glMapBufferRange(bufferType, offset, length, uh);
+		void* res = glMapBufferRange(bufferType, offset, length, uh);
 		return res;
 	}
 	void VertexBufferObject::UnMapBuffer()const
