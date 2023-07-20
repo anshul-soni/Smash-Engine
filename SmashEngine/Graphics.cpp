@@ -38,10 +38,10 @@ namespace SmashEngine
 		}
 		//This works because there is only one camera right now
 		//needs to be restructred when adding multiple camera system
-		Camera* camera = nullptr;
+		std::shared_ptr<Camera> camera = nullptr;
 		for (auto object : ObjectManager::GetInstance().GetObjects())
 		{
-			Camera* cameraComponent = object.second->has(Camera);
+			std::shared_ptr<Camera> cameraComponent = object.second->has(Camera);
 			if (cameraComponent!= nullptr)
 			{
 				cameraComponent->Update(dt);
@@ -52,7 +52,7 @@ namespace SmashEngine
 		{
 			if (camera)
 			{
-				Render* renderComponent = object.second->has(Render);
+				std::shared_ptr<Render> renderComponent = object.second->has(Render);
 				if (renderComponent != nullptr)
 				{
 					renderComponent->Draw(camera->GetProjectionMatrix(), camera->GetViewMatrix());

@@ -10,7 +10,7 @@
 		<texture>cube.png</texture>
 	</Component>
 	<Component type = "Body">
-		<velocity x="0.0f" y="0.0f" z="0.0f"/>
-		<mass>100.0f</mass>
+		<velocity x="0.0f" y="0.0f" z="3.5.0f"/>
+		<mass>200.0f</mass>
 	</Component>
 </GameObject>

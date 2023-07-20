@@ -43,7 +43,7 @@ namespace SmashEngine
 
 	void Camera::Update(float dt)
 	{
-		Transform* transformComponent = GetOwner()->has(Transform);
+		std::shared_ptr<Transform> transformComponent = GetOwner()->has(Transform);
 		if (transformComponent)
 		{
 			float verticalAngle = transformComponent->GetRotation().y;
@@ -68,7 +68,7 @@ namespace SmashEngine
 
 	void Camera::OnSignal(CameraSignal signal)
 	{
-		Transform* transformComponent = GetOwner()->has(Transform);
+		std::shared_ptr<Transform> transformComponent = GetOwner()->has(Transform);
 		if (transformComponent)
 		{
 			glm::vec3 currentPosition = transformComponent->GetPosition();

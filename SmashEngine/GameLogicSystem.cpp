@@ -31,7 +31,7 @@ namespace SmashEngine
 		//This creates a component creator for the type of 
 		//component you register
 		RegisterComponent(Transform);
-		RegisterComponent(Render);
+	    RegisterComponent(Render);
 		RegisterComponent(Body);
 		RegisterComponent(Camera);
 		ObjectFactory::GetInstance().Create("camera");

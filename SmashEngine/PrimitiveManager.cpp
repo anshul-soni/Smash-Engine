@@ -55,14 +55,11 @@ namespace SmashEngine
 		{
 			primitives[key] = new Cube();
 		}
-		if (key == "Sphere")
+	    else if (key == "Sphere")
 		{
 			primitives[key] = new Sphere();
 		}
-		if (key == "Plane")
-		{
-		}
-		if (key == "Wireframe")
+		else if (key == "Wireframe")
 		{
 			primitives[key] = new Wireframe();
 		}

@@ -14,6 +14,8 @@
 #pragma once
 #include "Component.h"
 #include "ComponentType.h"
+#include <memory>
+
 namespace SmashEngine
 {
 	class GameObject
@@ -22,26 +24,26 @@ namespace SmashEngine
 		GameObject(const std::string& name,unsigned int id);
 		~GameObject(void);
 
-		void				Initialize();
-		void				Destroy();
-		Component*			GetComponent(ComponentType typeID);
-		void				AddComponent(ComponentType typeID, Component *component);
-		unsigned int		GetId()const;
-		const std::string&	GetName()const;
+		void				                                          Initialize();
+		void				                                          Destroy();
+		std::shared_ptr<Component>			                          GetComponent(ComponentType typeID);
+		void				                                          AddComponent(ComponentType typeID,std::shared_ptr<Component> component);
+		unsigned int		                                          GetId()const;
+		const std::string&	                                          GetName()const;
 		template<typename type>
-		type* GetComponentType(ComponentType typeId);
+        std::shared_ptr<type>                                         GetComponentType(ComponentType typeId);
 	private:
-		std::string			ObjectName;
-		bool				deleteThis;
-		std::unordered_map<ComponentType, Component*> components;
-		unsigned int		objectId;
+		std::string			                                          ObjectName;
+		bool				                                          deleteThis;
+		std::unordered_map<ComponentType, std::shared_ptr<Component>> components;
+		unsigned int		                                          objectId;
 
 	};
 
 	template<typename type>
-	type * GameObject::GetComponentType(ComponentType typeId)
+	std::shared_ptr<type>  GameObject::GetComponentType(ComponentType typeId)
 	{
-		return static_cast<type*>(GetComponent(typeId));
+		return std::static_pointer_cast<type>(GetComponent(typeId));
 	}
 
 #define has(type) GetComponentType<type>( TYPE_##type )

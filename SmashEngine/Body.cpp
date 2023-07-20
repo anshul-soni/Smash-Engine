@@ -45,20 +45,18 @@ namespace SmashEngine
 				std::cout << "error reading velocity" << std::endl;
 			}
 		}
-		if (pElement->FirstChildElement("mass") != nullptr)
+        if (pElement->FirstChildElement("mass") == nullptr)
+        {
+            return;
+        }
+		float mass;
+		pElement->FirstChildElement("mass")->QueryFloatText(&mass);
+		if(mass == 0.0f)
 		{
-			float mass;
-			pElement->FirstChildElement("mass")->QueryFloatText(&mass);
-			if(mass == 0.0f)
-			{
-				inverseMass = 0.0f;
-			}else
-			{
-				inverseMass = 1 / mass;
-			}
+			inverseMass = 0.0f;
 		}else
 		{
-			std::cout << "error reading mass" << std::endl;
+			inverseMass = 1 / mass;
 		}
 	}
 

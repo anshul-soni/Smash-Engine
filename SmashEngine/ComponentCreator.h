@@ -14,6 +14,7 @@
 #pragma once
 #include "Component.h"
 #include "ObjectFactory.h"
+#include <memory>
 namespace SmashEngine
 {
 	class Component;
@@ -27,7 +28,7 @@ namespace SmashEngine
 		}
 
 		ComponentType TypeId;
-		virtual Component * Create() = 0;
+		virtual std::shared_ptr<Component> Create() = 0;
 	};
 
 	template<typename type>
@@ -39,12 +40,12 @@ namespace SmashEngine
 		{
 		}
 
-		virtual Component * Create()override
+		virtual std::shared_ptr<Component> Create()override
 		{
-			return new type();
+            return std::make_shared<type>();
 		}
 	};
 
 };
 
-#define RegisterComponent(type) ObjectFactory::GetInstance().AddComponentCreator( #type, new ComponentCreatorType<type>( TYPE_##type ) );
+#define RegisterComponent(type) ObjectFactory::GetInstance().AddComponentCreator( #type, std::make_shared<ComponentCreatorType<type>>( TYPE_##type ) );
