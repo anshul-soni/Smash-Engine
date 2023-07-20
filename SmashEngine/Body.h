@@ -28,10 +28,22 @@ namespace SmashEngine
 		const glm::vec3& GetVelocity()const;
 		const glm::vec3& GetForce()const;
 		float GetInverseMass()const;
+
+		/* Clears the accumalated force in each step.
+		   Should be called automatically after each integration step 
+		*/
+		void ClearAccumulator();
+
+        void AddForce(glm::vec3& force);
 	private:
 		const ComponentType type;
 		float inverseMass;
 		glm::vec3 velocity;
 		glm::vec3 force;
+
+		/* Holds the force to be applied at next simulation iteration only.
+		   This value is zeroed at each integration step*/
+		glm::vec3 forceAccumulated;
+
 	};
 }

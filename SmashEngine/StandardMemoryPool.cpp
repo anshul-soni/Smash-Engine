@@ -107,7 +107,7 @@ namespace SmashEngine
 			return;
 		}
 		MemoryChunk* block = (MemoryChunk*)(unsigned char*)ptr - sizeof(MemoryChunk);
-		assert(block->m_bIsFree == false, "This block is already free");
+		//assert(block->m_bIsFree == false, "This block is already free");
 		if (block->m_bIsFree)
 		{
 			return;

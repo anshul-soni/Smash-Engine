@@ -27,14 +27,14 @@ namespace SmashEngine
 		void Init()override;
 		void Update(float dt)override;
 		SystemType GetType()const override;
-		GameObject* Create(const std::string& filename);
-		void AddComponentCreator(const std::string& name, ComponentCreator* creator);
+		std::shared_ptr<GameObject> Create(const std::string& filename);
+		void AddComponentCreator(const std::string& name, std::shared_ptr<ComponentCreator> creator);
 		void Release()override;
 		~ObjectFactory(void);
 	private:
 		const SystemType type;
 		unsigned int lastObjectId;
-		std::unordered_map<std::string, ComponentCreator*> ComponentMap;
+		std::unordered_map<std::string, std::shared_ptr<ComponentCreator>> ComponentMap;
 		ObjectFactory(void);
 	};
 }

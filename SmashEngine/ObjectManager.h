@@ -24,16 +24,16 @@ namespace SmashEngine
 		static void Stop();
 		static ObjectManager& GetInstance();
 		void Update(float dt);
-		void AddObject(GameObject* object);
-		void DeleteObject(GameObject* object);
+		void AddObject(std::shared_ptr<GameObject> object);
+		void DeleteObject(std::shared_ptr<GameObject> object);
 		void DeleteObject(const std::string objectName);
 		void DeleteObject(const unsigned int objectId);
-		const std::unordered_map<unsigned, GameObject*>& GetObjects()const;
+		const std::unordered_map<unsigned, std::shared_ptr<GameObject>>& GetObjects()const;
 		~ObjectManager(void);
 	private:
 		ObjectManager(void);
-		std::unordered_map<unsigned, GameObject*> gameObjects;
-		std::set<GameObject*> objectsToBeDeleted;
+		std::unordered_map<unsigned, std::shared_ptr<GameObject>> gameObjects;
+		std::set<std::shared_ptr<GameObject>> objectsToBeDeleted;
 		ObjectManager(const ObjectManager&) = delete;
 		ObjectManager& operator=(const ObjectManager) = delete;
 		static ObjectManager* instance;

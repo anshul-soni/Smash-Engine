@@ -92,11 +92,11 @@ namespace SmashEngine
 	{
 		if (state != PHYSICS_PAUSE)
 		{
-			Transform* transformComponent = obj.has(Transform);
-			Body* bodyComponent = obj.has(Body);
+			std::shared_ptr<Transform> transformComponent = obj.has(Transform);
+			std::shared_ptr<Body> bodyComponent = obj.has(Body);
 			//accumulate the total force
 			glm::vec3 a = gravity + bodyComponent->GetForce()*bodyComponent->GetInverseMass();
-			glm::vec3 position = transformComponent->GetPosition() + bodyComponent->GetVelocity()*debugDt;
+            glm::vec3 position = transformComponent.get()->GetPosition();
 			glm::vec3 velocity = bodyComponent->GetVelocity() + a*debugDt;
 			velocity *= std::pow(damping, debugDt);
 			transformComponent->SetPosition(position);

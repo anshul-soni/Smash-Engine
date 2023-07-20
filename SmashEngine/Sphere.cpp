@@ -19,9 +19,9 @@ namespace SmashEngine
 		float const R = 1.0f / (float)(latitude - 1);
 		float const S = 1.0f / (float)(longitude - 1);
 
-		for (size_t r = 0; r < latitude; ++r)
+		for (int r = 0; r < latitude; ++r) 
 		{
-			for (size_t s = 0; s < longitude; ++s)
+			for (int s = 0; s < longitude; ++s)
 			{
 				float const y = (float)(sin(-glm::pi<double>()*0.5f + glm::pi<double>()* r * R));
 				float const x = (float)(cos(2 * glm::pi<double>() * s * S) * sin(glm::pi<double>() * r * R));

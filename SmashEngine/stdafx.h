@@ -17,6 +17,8 @@
 #include <set>
 #include <fstream>
 #include <sstream>
+#include <memory.h>
+#include <memory>
 
 //OpenGl
 #include <GL\glew.h>

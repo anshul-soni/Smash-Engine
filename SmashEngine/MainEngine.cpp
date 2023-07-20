@@ -58,9 +58,9 @@ namespace SmashEngine
 		}
 		//Initialize Singleton systems
 		Watch::Start();
-		editorSystem = new EditorSystem();
+        editorSystem = std::make_unique<EditorSystem>();
 		editorSystem->Init();
-		gameLogicSystem = new GameLogicSystem();
+        gameLogicSystem = std::make_unique<GameLogicSystem>();
 		gameLogicSystem->Init();
 		//ObjectFactory::GetInstance().Init();
 	}

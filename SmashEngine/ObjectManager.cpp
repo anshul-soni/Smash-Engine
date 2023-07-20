@@ -53,19 +53,18 @@ namespace SmashEngine
 			if(gameObjects.find(object->GetId())!=gameObjects.end())
 			{
 				unsigned int id = object->GetId();
-				delete object;
 				gameObjects.erase(id);
 			}
 		}
 		objectsToBeDeleted.clear();
 	}
 
-	void ObjectManager::AddObject(GameObject* object)
+	void ObjectManager::AddObject(std::shared_ptr<GameObject> object)
 	{
 		gameObjects[object->GetId()] = object;
 	}
 
-	void ObjectManager::DeleteObject(GameObject* object)
+	void ObjectManager::DeleteObject(std::shared_ptr<GameObject> object)
 	{
 		if (gameObjects.find(object->GetId())!=gameObjects.end())
 		{
@@ -84,7 +83,7 @@ namespace SmashEngine
 		}
 	}
 
-	void ObjectManager::DeleteObject(const unsigned objectId)
+	void ObjectManager::DeleteObject(const unsigned int objectId)
 	{
 		if (gameObjects.find(objectId) != gameObjects.end())
 		{
@@ -92,7 +91,7 @@ namespace SmashEngine
 		}
 	}
 
-	const std::unordered_map<unsigned, GameObject*>& ObjectManager::GetObjects() const
+	const std::unordered_map<unsigned, std::shared_ptr<GameObject>>& ObjectManager::GetObjects() const
 	{
 		return gameObjects;
 	}

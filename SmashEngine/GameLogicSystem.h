@@ -26,7 +26,6 @@ namespace SmashEngine
 		void Release()override;
 		SystemType GetType()const override;
 	private:
-		GameObject* test;
 		const SystemType type;
 		GameLogicSystem(const GameLogicSystem&) = delete;
 		GameLogicSystem& operator=(const GameLogicSystem&) = delete;

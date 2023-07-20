@@ -65,7 +65,7 @@ namespace SmashEngine
 		GLint modelMatrixID = glGetUniformLocation(shader.Program, "M");
 		GLint lightPositionID = glGetUniformLocation(shader.Program, "lightPosition_worldSpace");
 		shader.Use();
-		Transform* transformComponent = this->GetOwner()->has(Transform);
+		std::shared_ptr<Transform> transformComponent = this->GetOwner()->has(Transform);
 		glm::mat4 transformMatrix = glm::translate(glm::mat4(), transformComponent->GetPosition());
 		glm::mat4 rotationX = glm::rotate(glm::mat4(), transformComponent->GetRotation().x, glm::vec3(1, 0, 0));
 		glm::mat4 rotationY = glm::rotate(glm::mat4(), transformComponent->GetRotation().y, glm::vec3(0, 1, 0));

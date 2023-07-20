@@ -37,7 +37,7 @@ namespace SmashEngine
 	{
 	}
 
-	GameObject* ObjectFactory::Create(const std::string& filename)
+	std::shared_ptr<GameObject> ObjectFactory::Create(const std::string& filename)
 	{
 		tinyxml2::XMLDocument xmlDoc;
 		std::string gameObjectName;
@@ -53,20 +53,20 @@ namespace SmashEngine
 		tinyxml2::XMLElement* pComponent = pRoot->FirstChildElement("Component");
 		assert(pComponent != nullptr);
 		//GameObject To hold Components 
-		GameObject* object = new GameObject(gameObjectName,++lastObjectId);
+		std::shared_ptr<GameObject> object = std::make_shared<GameObject>(gameObjectName,++lastObjectId);
 		while (pComponent != nullptr)
 		{
 			assert(pComponent != nullptr);
 			std::string componentName;
 			componentName = pComponent->Attribute("type");
-			std::unordered_map<std::string,ComponentCreator*>::iterator itr = ComponentMap.find(componentName);
+			std::unordered_map<std::string,std::shared_ptr<ComponentCreator>>::iterator itr = ComponentMap.find(componentName);
 			//Abort if the component creator was not found 
 			//Component needs to be registered in the factory before creating
 			assert(itr != ComponentMap.end());
 			//Creator for each object is stored in the map, if the creator was found, then get the creator
-			ComponentCreator* creator = itr->second;
+			std::shared_ptr<ComponentCreator> creator = itr->second;
 			//Create the component that needs to be added to the object using the creator
-			Component* component = creator->Create();
+			std::shared_ptr<Component> component = creator->Create();
 			//Call the desrializer for the required component
 			component->Deserialize(pComponent);
 			//add the component that was created to the object
@@ -80,7 +80,7 @@ namespace SmashEngine
 		return object;
 	}
 
-	void ObjectFactory::AddComponentCreator(const std::string& name, ComponentCreator* creator)
+	void ObjectFactory::AddComponentCreator(const std::string& name, std::shared_ptr<ComponentCreator> creator)
 	{
 		ComponentMap[name] = creator;
 	}

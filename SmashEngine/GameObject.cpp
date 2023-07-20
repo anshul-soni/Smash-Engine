@@ -37,7 +37,7 @@ namespace SmashEngine
 	{
 	}
 
-	Component* GameObject::GetComponent(ComponentType typeID)
+	std::shared_ptr<Component> GameObject::GetComponent(ComponentType typeID)
 	{
 		if (components.find(typeID)!=components.end())
 		{
@@ -46,7 +46,7 @@ namespace SmashEngine
 		return nullptr;
 	}
 
-	void GameObject::AddComponent(ComponentType typeID, Component* component)
+	void GameObject::AddComponent(ComponentType typeID, std::shared_ptr<Component> component)
 	{
 		if (components.find(typeID) == components.end())
 		{
